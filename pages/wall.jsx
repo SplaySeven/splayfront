@@ -7,7 +7,7 @@ export default function wall() {
 	console.log(User);
 	return (
 		<div>
-			<h1>Bienvendio al Muro</h1>
+			<h1>Bienvendio al Muro en unos minutotas vermos mas sobre esto feliz dia</h1>
 		</div>
 	);
 }
