@@ -15,6 +15,7 @@ export const NEW_ACCOUNT = gql`
 			latitude
 			longitude
 			gender
+			type
 		}
 	}
 `;

@@ -65,6 +65,7 @@ const Index = () => {
 		<FormStyle onSubmit={formik.handleSubmit}>
 			<ItemStyled>
 				<div>{mensaje && mostrarMensaje()}</div>
+				<LabelStyled>Correo o telefono</LabelStyled>
 				<InputSyled
 					type="text"
 					placeholder="Email o Telefono"
@@ -75,6 +76,7 @@ const Index = () => {
 				/>
 			</ItemStyled>
 			<ItemStyled>
+				<LabelStyled>Password</LabelStyled>
 				<InputSyled
 					type="password"
 					placeholder="Password"
@@ -94,6 +96,8 @@ export default Index;
 
 /* estilos css */
 
+const LabelStyled = styled.div`color: ${Colores.white_color};`;
+
 const FormStyle = styled.form`
 	float: right;
 	display: flex;
@@ -102,14 +106,18 @@ const FormStyle = styled.form`
 	width: 50%;
 `;
 
-const ItemStyled = styled.div`padding: 3px;`;
+const ItemStyled = styled.div`
+	padding: 3px;
+	margin-left: 2%;
+`;
 const InputSyled = styled.input`
-	height: 28px;
-
+	height: 25px;
+	width: 100%;
+	border-top: 2px;
 	text-decoration: none;
-	border: 3px solid white;
+	border: 3px solid ${Colores.white_color};
 	outline: none;
-	color: ${Colores.grey_font};
+	color: ${Colores.white_color};
 	text-align: center;
 	::hover {
 		background-color: ${Colores.white_color};
@@ -119,14 +127,14 @@ const InputSyled = styled.input`
 `;
 const InicarSescionStyled = styled.button`
 	outline: none;
+	margin-top: 15px;
 	border: 3px solid white;
 	color: ${Colores.white_color};
 	background-color: ${Colores.Primario};
-	padding: 2px 2px;
+	padding: 4px 4px;
 	border-radius: 15px;
-	margin: 2px 2px;
-	width: 13%;
-	height: 20px;
+	margin-left: 2%;
+	width: 15%;
 	box-sizing: content-box;
 	display: inline-block;
 	text-decoration: none;
@@ -141,5 +149,5 @@ const InicarSescionStyled = styled.button`
 	}
 `;
 const BotonLargo = styled(InicarSescionStyled)`
-width: 21%; 
+width: 22%;
 `;
