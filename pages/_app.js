@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-	const [ auth, setauth ] = useState(null);
+	const [ auth, setauth ] = useState(undefined);
 	useEffect(() => {
 		const token = getToken();
 		if (!token) {
@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps }) {
 		}),
 		[ auth ]
 	);
+	if (auth === undefined) return null;
 	return (
 		<React.Fragment>
 			<ApolloProvider client={client}>

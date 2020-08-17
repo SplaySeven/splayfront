@@ -28,10 +28,27 @@ export const AUTHENTICATE_USER = gql`
 	}
 `;
 
-export const USUARIO_ACTUAL = gql`
-	query obtenerUsuario {
-		obtenerUsuario {
-			user
+export const GET_USER = gql`
+	query getUser($id: ID, $email: String) {
+		getUser(id: $id, email: $email) {
+			id
+			email
+			phone
+			name
+			lastname
+			gender
+			birthdayDay
+			birthdayMonth
+			birthdayYear
+			country
+			city
+			latitude
+			longitude
+			avatar
+			active
+			confirmed
+			created
+			type
 		}
 	}
 `;

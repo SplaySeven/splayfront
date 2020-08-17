@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import useAuth from '../hooks/useAuth';
 import Layout from '../components/Layout';
 import Navbar from '../components/organims/Navbar';
-export default function wall() {
-	const User = useAuth();
+export default function wall(props) {
+	const { id } = props;
 
 	return (
 		<React.Fragment>
