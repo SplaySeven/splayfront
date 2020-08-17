@@ -96,7 +96,8 @@ const index = () => {
 				});
 				//Usuario Creado Correctamente
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
-				route.push('/favorites');
+				const id = '12456789788788';
+				route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -354,12 +355,14 @@ const ContainerGeneralSyled = styled.div`
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
+	height: 100vh;
 `;
 
 const FormRegistroStyled = styled.form`
 	max-width: 70%;
-	padding-top: 6%;
+
 	margin: auto;
+	margin-top: 75px;
 	box-sizing: border-box;
 	display: flex;
 `;

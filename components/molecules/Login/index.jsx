@@ -9,6 +9,7 @@ import { setToken, decodeToken } from '../../../utils/token';
 import { Colores } from '../../../styles/Colores';
 import useAuth from '../../../hooks/useAuth';
 import { AUTHENTICATE_USER } from '../../../gql/user';
+import { route } from 'next/dist/next-server/server/router';
 
 const Index = () => {
 	//Router
@@ -47,7 +48,7 @@ const Index = () => {
 				//localStorage.setItem('token', token);
 				setToken(token);
 				setUser(token);
-				//Direccionar a Muro
+				route.push('wall');
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -117,7 +118,7 @@ const InputSyled = styled.input`
 	text-decoration: none;
 	border: 3px solid ${Colores.white_color};
 	outline: none;
-	color: ${Colores.white_color};
+	color: black;
 	text-align: center;
 	::hover {
 		background-color: ${Colores.white_color};
