@@ -35,3 +35,22 @@ export const USUARIO_ACTUAL = gql`
 		}
 	}
 `;
+
+export const UPDATE_AVATAR = gql`
+	mutation updateAvatar($file: Upload) {
+		updateAvatar(file: $file) {
+			status
+			urlAvatar
+		}
+	}
+`;
+export const SEARCH = gql`
+	query search($search: String) {
+		search(search: $search) {
+			name
+			lastname
+			email
+			avatar
+		}
+	}
+`;

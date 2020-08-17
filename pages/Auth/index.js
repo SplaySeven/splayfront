@@ -1,10 +1,14 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import Home from '../../components/organims/Registro';
+import Navbar from '../../components/organims/Navbar';
+import Registro from '../../components/organims/Registro';
+import Footer from '../../components/organims/Footer';
 export default function index() {
 	return (
 		<Layout>
-			<Home />
+			<Navbar />
+			<Registro />
+			<Footer />
 		</Layout>
 	);
 }

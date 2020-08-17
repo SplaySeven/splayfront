@@ -1,9 +1,14 @@
 import React from 'react';
-
+import Layout from '../components/Layout';
+import Navbar from '../components/organims/Navbar';
+import Footer from '../components/organims/Footer';
+import Category from '../components/organims/Category';
 export default function category() {
 	return (
-		<div>
-			<h1>Estamos en la pagina de categorias y avatar</h1>
-		</div>
+		<Layout>
+			<Navbar />
+			<Category />
+			<Footer />
+		</Layout>
 	);
 }
