@@ -1,50 +1,24 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import AuthContext from '../context/AuthContext';
 import Layout from '../components/Layout';
-import { getToken, setToken } from '../utils/token';
-
+import useAuth from '../hooks/useAuth';
 // Compomentes
 
 import Auth from '../pages/Auth';
 import Wall from '../pages/wall';
 
 export default function index() {
-	const [ auth, setauth ] = useState(undefined);
+	const { auth } = useAuth();
+
+	const [ user, setuser ] = useState(undefined);
+
 	useEffect(() => {
-		const token = getToken();
-		if (!token) {
-			setauth(null);
-		} else {
-			setauth(token);
-		}
+		setuser(auth);
 	}, []);
 
-	const logout = () => {
-		console.log('cerrar sesion');
-	};
-
-	const setUser = (user) => {
-		setauth(user);
-	};
-
-	const authData = useMemo(
-		() => ({
-			auth,
-			logout,
-			setUser
-		}),
-		[ auth ]
-	);
-
 	return (
-		<AuthContext.Provider value={authData}>
-			{!auth ? (
-				<Layout>
-					<Auth />
-				</Layout>
-			) : (
-				<Wall />
-			)}
-		</AuthContext.Provider>
+		<Layout>
+			{auth === null && <Auth />}
+			{auth && <Wall id={auth.id} />}
+		</Layout>
 	);
 }

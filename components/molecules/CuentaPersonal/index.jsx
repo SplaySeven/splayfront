@@ -89,13 +89,15 @@ const index = () => {
 							country: country_name,
 							city: city,
 							latitude: latitude,
-							longitude: longitude
+							longitude: longitude,
+							type: 'P'
 						}
 					}
 				});
 				//Usuario Creado Correctamente
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
-				route.push('/favorites');
+				const id = '12456789788788';
+				route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -107,9 +109,7 @@ const index = () => {
 			<FormRegistroStyled onSubmit={formik.handleSubmit}>
 				<ContainerIzquierdoSyled>
 					<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
-
 					<SubTituloFormSyled>Es Simples y Cortos pasos..</SubTituloFormSyled>
-
 					<Input50Syled
 						type="text"
 						id="name"
@@ -165,7 +165,7 @@ const index = () => {
 					{formik.errors.passwordReconfirmar ? <div>{formik.errors.passwordReconfirmar}</div> : null}
 
 					<VideoStyled>
-						<iframe width="90%" height="250" src="https://www.youtube.com/embed/tgbNymZ7vqY" />
+						<iframe width="90%" height="200%" src="https://www.youtube.com/embed/tgbNymZ7vqY" />
 					</VideoStyled>
 				</ContainerIzquierdoSyled>
 				<ContainerDerechoSyled>
@@ -310,6 +310,14 @@ const index = () => {
 							defaultChecked={formik.values.gender === 'H'}
 							onChange={formik.handleChange}
 						/>
+						Personalizado
+						<input
+							type="radio"
+							name="gender"
+							value="P"
+							defaultChecked={formik.values.gender === 'P'}
+							onChange={formik.handleChange}
+						/>
 						<ImgHelpStyle />
 					</SexoStyled>
 
@@ -339,23 +347,24 @@ function initialValues() {
 		birthdayDay: '',
 		birthdayMonth: '',
 		birthdayYear: '',
-		gender: 'H'
+		gender: 'M'
 	};
 }
 
 const ContainerGeneralSyled = styled.div`
 	width: 100%;
 	margin: 0px;
-	margin-top: 75px;
 	padding: 0px;
+	height: 100vh;
 `;
 
 const FormRegistroStyled = styled.form`
 	max-width: 70%;
+
 	margin: auto;
+	margin-top: 75px;
 	box-sizing: border-box;
 	display: flex;
-	padding: 10px;
 `;
 const ContainerIzquierdoSyled = styled.div`
 	width: 100%;
@@ -365,7 +374,7 @@ const ContainerIzquierdoSyled = styled.div`
 `;
 
 const TituloFormSyled = styled.h1`
-	padding-top: 10px;
+	padding-top: 3%;
 	text-align: left;
 	font-size: 50px;
 	color: #5a5b5d;
@@ -373,22 +382,22 @@ const TituloFormSyled = styled.h1`
 `;
 const SubTituloFormSyled = styled.p`
 	color: #5a5b5d;
-	font-size: 20px;
-	margin-top: 7px;
-	margin-bottom: 7px;
+	font-size: 18px;
+	margin-top: 0px;
+	margin-bottom: 15px;
 	text-align: left;
-	padding: 5px;
+
 	width: 100%;
 `;
 const Input50Syled = styled.input`
 	width: 49%;
 	outline: none;
-	font-size: 18px;
-	padding: 15px;
+	font-size: 14px;
+	padding: 10px 16px;
 	margin-top: 0px;
 	margin-bottom: 12px;
 	flex-wrap: wrap;
-	border-radius: 15px;
+	border-radius: 8px;
 	border: 2px solid ${Colores.grey_font};
 	justify-content: space-between;
 	font-family: ${Colores.tipo_letra};
@@ -396,10 +405,10 @@ const Input50Syled = styled.input`
 const Input100Syled = styled.input`
 	width: 100%;
 	outline: none;
-	font-size: 18px;
-	padding: 15px;
+	font-size: 14px;
+	padding: 10px 16px;
 	margin-bottom: 12px;
-	border-radius: 15px;
+	border-radius: 8px;
 
 	border: 2px solid ${Colores.grey_font};
 `;
@@ -420,11 +429,11 @@ const ContainerDerechoSyled = styled.div`
 	width: 100%;
 `;
 const LabelFechaStyled = styled.p`
-	margin-top: 23px;
-	margin-left: 60px;
+	margin-top: 38px;
+	margin-left: 0px;
 	text-align: left;
 	padding: 1px;
-	font-size: 22px;
+	font-size: 15px;
 	color: #808080;
 `;
 
@@ -439,13 +448,14 @@ const ItemContainerSytled = styled.div`
 
 const SelectDiaStyled = styled.select`
 	width: 100%;
-	height: 55px;
-	font-size: 100%;
+	height: 35px;
+	font-size: 14px;
 	cursor: pointer;
-	border-radius: 15px;
+	border-radius: 8px;
 	border: 2px solid ${Colores.grey_font};
 	font-family: ${Colores.tipo_letra};
-	padding: 15px;
+	padding-left: 15px;
+
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -458,14 +468,14 @@ const SelectDiaStyled = styled.select`
 		outline-offset: 0 !important;
 		outline-width: 0;
 		background-color: #00a79d;
-		border-radius: 20px;
+		border-radius: 8px;
 		border: 2px solid ${Colores.grey_font};
 	}
 `;
 
 const LabelStyled = styled.label`
-	font-size: 22px;
-	color: #808080;
+	font-size: 15px;
+	color: ${Colores.grey_font};
 `;
 const ImgHelpStyle = styled.img.attrs({ src: ImagHelper })`
 width: 30px;
@@ -474,22 +484,22 @@ border: 1px solid blue;`;
 
 const SexoStyled = styled.fieldset`
 	text-align: left;
-	margin-left: 50px;
+	margin-left: 0px;
 	border-style: none;
-	padding: 14px;
+	padding: 10px;
 	float: left;
-	font-size: 22px;
+	font-size: 15px;
 	width: 100%;
-	color: #808080;
+	color: ${Colores.grey_font};
 	padding-top: 25px;
 	& input {
 		margin: 12px;
 	}
 `;
 const ParrafoStyled = styled.p`
-	color: #808080;
-	margin-left: 50px;
-	font-size: 18px;
+	color: ${Colores.grey_font};
+	margin-left: 10px;
+	font-size: 15px;
 	text-align: justify;
 	margin-top: 12px;
 `;
@@ -508,8 +518,8 @@ const BotonSyled = styled.button`
 
 	:hover {
 		background: white;
-		color: #808080;
+		color: ${Colores.grey_font};
 		cursor: pointer;
-		border: 3px solid #808080;
+		border: 3px solid ${Colores.grey_font};
 	}
 `;
