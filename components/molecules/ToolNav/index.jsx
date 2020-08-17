@@ -13,7 +13,6 @@ import useAuth from '../../../hooks/useAuth';
 export default function index() {
 	const { auth } = useAuth();
 
-	console.log(auth);
 	return (
 		<React.Fragment>
 			<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
@@ -23,8 +22,10 @@ export default function index() {
 			</Link>
 
 			<LabelUsuarioStyled>Carlos</LabelUsuarioStyled>
-			<InicarSescionStyled type="submit">Inicio</InicarSescionStyled>
-			<BotonLargo type="submit">Creacion</BotonLargo>
+			<InicarSescionStyled type="submit">
+				<a href="/">Inicio</a>
+			</InicarSescionStyled>
+			<BotonLargo type="submit">Cerrar Sesión</BotonLargo>
 			<Link href="/">
 				<a>
 					<SocialNetwork />
@@ -80,5 +81,5 @@ const InicarSescionStyled = styled.button`
 	}
 `;
 const BotonLargo = styled(InicarSescionStyled)`
-width: 59px;
+width: 100px;
 `;

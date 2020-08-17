@@ -9,16 +9,14 @@ import Wall from '../pages/wall';
 export default function index() {
 	const { auth } = useAuth();
 
-	const [ user, setuser ] = useState(undefined);
-
 	useEffect(() => {
 		setuser(auth);
 	}, []);
 
 	return (
 		<Layout>
-			{auth === null && <h1>HOla autorizado</h1>}
-			{auth && <Wall />}
+			{auth === null && <Auth />}
+			{auth && <Wall id={auth.id} />}
 		</Layout>
 	);
 }
