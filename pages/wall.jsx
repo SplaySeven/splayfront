@@ -9,7 +9,7 @@ export default function wall() {
 	return (
 		<React.Fragment>
 			<Navbar />
-			<MensajeMuroStyle>Bienvendio al Muro en unos minutotas vermos mas sobre esto feliz dia</MensajeMuroStyle>
+			<MensajeMuroStyle>Bienvendio al Muro en unos minutos vermos mas sobre esto feliz dia...</MensajeMuroStyle>
 		</React.Fragment>
 	);
 }
