@@ -9,8 +9,6 @@ import Wall from '../pages/wall';
 export default function index() {
 	const { auth } = useAuth();
 
-	const [ user, setuser ] = useState(undefined);
-
 	useEffect(() => {
 		setuser(auth);
 	}, []);
