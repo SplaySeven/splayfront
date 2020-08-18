@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';

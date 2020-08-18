@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { getToken, setToken, decodeToken } from '../utils/token';
+import { getToken, setToken, decodeToken, removeToken } from '../utils/token';
 import AuthContext from '../context/AuthContext';
 import '../styles/globals.css';
 
@@ -22,7 +22,8 @@ function MyApp({ Component, pageProps }) {
 	}, []);
 
 	const logout = () => {
-		console.log('cerrar sesion');
+		removeToken();
+		setauth(null);
 	};
 
 	const setUser = (user) => {
@@ -37,7 +38,10 @@ function MyApp({ Component, pageProps }) {
 		}),
 		[ auth ]
 	);
+
 	if (auth === undefined) return null;
+	console.log(auth);
+
 	return (
 		<React.Fragment>
 			<ApolloProvider client={client}>

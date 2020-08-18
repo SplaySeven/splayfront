@@ -4,21 +4,36 @@ import IconoNumeros from '../../atoms/IconoNumeros';
 import IconoDos from '../../../public/imagenes/Icono2.png';
 import IconoTres from '../../../public/imagenes/Icono3.png';
 import IconoCuatro from '../../../public/imagenes/Icono4.png';
+import { UPDATE_AVATAR, GET_USER } from '../../../gql/user';
 import ProfilePhoto from '../../atoms/ProfilePhoto';
 import { Colores } from '../../../styles/Colores';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/client';
-import { UPDATE_AVATAR } from '../../../gql/user';
+import useAuth from '../../../hooks/useAuth';
 
 export default function index() {
+	const { auth } = useAuth();
 	function Categorias(e) {
 		e.preventDefault();
 	}
 
-	const nombre = 'Carlos';
+	const [ updateAvatar ] = useMutation(UPDATE_AVATAR, {
+		update(cache, { data: { updateAvatar } }) {
+			const { getUser } = cache.readQuery({
+				query: GET_USER,
+				variables: { id: auth.id }
+			});
 
-	const [ updateAvatar ] = useMutation(UPDATE_AVATAR);
+			cache.writeQuery({
+				query: GET_USER,
+				variables: { id: auth.id },
+				data: {
+					getUser: { ...getUser, avatar: updateAvatar.urlAvatar }
+				}
+			});
+		}
+	});
 	const onDrop = useCallback(async (acceptedFile) => {
 		const file = acceptedFile[0];
 		try {
@@ -47,7 +62,7 @@ export default function index() {
 		<ContainerCategorySyled>
 			<FormRegistroCategoryStyled onSubmit={Categorias}>
 				<TituloCategorisStyled>
-					<h1>Bienvenido {nombre}</h1>
+					<h1>Bienvenido {auth.name}</h1>
 				</TituloCategorisStyled>
 				<SubTituloCategorisStyled>
 					<h2>

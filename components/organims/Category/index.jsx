@@ -10,7 +10,7 @@ export default function index() {
 	);
 }
 
-//css
+//css aqui
 
 const SectionStyled = styled.main`
 	background-image: url(${logofondo});

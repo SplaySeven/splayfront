@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
-import { setToken, decodeToken } from '../../../utils/token';
+import { setToken } from '../../../utils/token';
 import { Colores } from '../../../styles/Colores';
 import useAuth from '../../../hooks/useAuth';
 import { AUTHENTICATE_USER } from '../../../gql/user';
@@ -46,9 +47,11 @@ const Index = () => {
 				//Guardar el token en localstorage
 				const { token } = data.authenticateUser;
 				//localStorage.setItem('token', token);
+				console.log(`Desde el login ${token}`);
 				setToken(token);
 				setUser(token);
-				route.push('wall');
+
+				//router.push('wall2');
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -88,7 +91,7 @@ const Index = () => {
 				/>
 			</ItemStyled>
 			<InicarSescionStyled type="submit">Iniciar Sesión</InicarSescionStyled>
-			<BotonLargo onClick={() => Router.push('/myroute')}>¿Olvidaste Tu Cuenta?</BotonLargo>
+			<BotonLargo>¿Olvidaste Tu Cuenta?</BotonLargo>
 		</FormStyle>
 	);
 };

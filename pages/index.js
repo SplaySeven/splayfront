@@ -4,9 +4,10 @@ import useAuth from '../hooks/useAuth';
 // Compomentes
 
 import Auth from '../pages/Auth';
-import Wall from '../pages/wall';
+import Wall from '../pages/wall2';
 
 export default function index() {
+	const [ user, setuser ] = useState(null);
 	const { auth } = useAuth();
 
 	useEffect(() => {
@@ -16,7 +17,7 @@ export default function index() {
 	return (
 		<Layout>
 			{auth === null && <Auth />}
-			{auth && <Wall id={auth.id} />}
+			{auth && <Wall />}
 		</Layout>
 	);
 }
