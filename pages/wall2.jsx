@@ -1,16 +1,17 @@
-import React from 'react';
 import styled from 'styled-components';
-import useAuth from '../hooks/useAuth';
-import Layout from '../components/Layout';
 import Navbar from '../components/organims/Navbar';
-
+import useAuth from '../hooks/useAuth';
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../gql/user';
 export default function wall() {
 	const { auth } = useAuth();
-	console.log(auth);
+
 	return (
 		<React.Fragment>
-			<Navbar />
-			<MensajeMuroStyle>Bienvendio al Muro en unos minutos vermos mas sobre esto feliz dia...</MensajeMuroStyle>
+			<Navbar nombre={'hola'} />
+			<MensajeMuroStyle>
+				Bienvendio al Muro en unos miasasanutos vermos mas sobre esto feliz dia...
+			</MensajeMuroStyle>
 		</React.Fragment>
 	);
 }

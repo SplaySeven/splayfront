@@ -12,9 +12,9 @@ import useAuth from '../../../hooks/useAuth';
 
 import { useApolloClient } from '@apollo/client';
 //<Link href="/wall/[wall]" as={`/wall/${auth.id}`}></Link>
-export default function index() {
+export default function index(props) {
 	const { auth, logout, setUser } = useAuth();
-
+	console.log(auth);
 	const router = useRouter();
 	const client = useApolloClient();
 	const onLogout = () => {
@@ -23,7 +23,6 @@ export default function index() {
 		router.push('/');
 	};
 
-	console.log(auth);
 	return (
 		<React.Fragment>
 			<div>

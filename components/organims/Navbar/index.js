@@ -2,26 +2,19 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Colores } from '../../../styles/Colores';
 import useAuth from '../../../hooks/useAuth';
-
 import LogoOficial from '../../atoms/LogoOficial';
 import Login from '../../molecules/Login';
 
 // Nav Var ya Logeado
-import LogoCorto from '../../atoms/LogoCorto';
-import Search from '../../molecules/Search';
-import ToolNav from '../../molecules/ToolNav';
+import HeaderLogged from '../Navbar/HeaderLogged';
+import { getToken, setToken, decodeToken, removeToken } from '../../../utils/token';
 const index = () => {
 	const { auth } = useAuth();
 
-	const [ user, setUser ] = useState(undefined);
-
-	useEffect(() => {
-		setUser(auth);
-	}, []);
-
+	if (auth === undefined) return null;
 	return (
 		<React.Fragment>
-			{user === null && (
+			{auth === null && (
 				<NavbarStyled>
 					<ContainerLogoStyled>
 						<LogoOficial />
@@ -29,15 +22,7 @@ const index = () => {
 					<Login />
 				</NavbarStyled>
 			)}
-			{user && (
-				<NavbarStyled>
-					<ContainerLogoCortoStyled>
-						<LogoCorto />
-					</ContainerLogoCortoStyled>
-					<Search />
-					<ToolNav />
-				</NavbarStyled>
-			)}
+			{auth && <HeaderLogged />}
 		</React.Fragment>
 	);
 };

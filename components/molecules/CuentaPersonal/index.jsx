@@ -97,18 +97,6 @@ const index = () => {
 					}
 				});
 
-				//Generamos el Token
-
-				const { data2 } = await authenticateUser({
-					variables: {
-						input: {
-							email,
-							password
-						}
-					}
-				});
-				console.log(email, password);
-
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
 
 				const id = data.newUser.id;
@@ -178,10 +166,6 @@ const index = () => {
 						error={formik.errors.passwordRecinfirmar}
 					/>
 					{formik.errors.passwordReconfirmar ? <div>{formik.errors.passwordReconfirmar}</div> : null}
-
-					<VideoStyled>
-						<iframe width="90%" height="200%" src="https://www.youtube.com/embed/tgbNymZ7vqY" />
-					</VideoStyled>
 				</ContainerIzquierdoSyled>
 				<ContainerDerechoSyled>
 					<LabelFechaStyled>Fecha de nacimiento</LabelFechaStyled>

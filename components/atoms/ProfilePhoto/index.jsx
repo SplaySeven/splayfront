@@ -7,11 +7,13 @@ import styled from 'styled-components';
 
 export default function Logo1() {
 	const { auth } = useAuth();
+
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: auth.id }
 	});
 	if (loading || error) return null;
 	const { getUser } = data;
+
 	return (
 		<LogoStyled>
 			<LogoSrcStyled getUser={getUser} />

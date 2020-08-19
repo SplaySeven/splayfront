@@ -47,11 +47,8 @@ const Index = () => {
 				//Guardar el token en localstorage
 				const { token } = data.authenticateUser;
 				//localStorage.setItem('token', token);
-				console.log(`Desde el login ${token}`);
 				setToken(token);
 				setUser(token);
-
-				//router.push('wall2');
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}

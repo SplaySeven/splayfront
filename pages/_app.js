@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { getToken, setToken, decodeToken, removeToken } from '../utils/token';
-import AuthContext from '../context/AuthContext';
+
 import '../styles/globals.css';
 
 import client from '../config/apollo';
@@ -11,55 +10,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-	const [ auth, setauth ] = useState(undefined);
-	useEffect(() => {
-		const token = getToken();
-		if (!token) {
-			setauth(null);
-		} else {
-			setauth(decodeToken(token));
-		}
-	}, []);
-
-	const logout = () => {
-		removeToken();
-		setauth(null);
-	};
-
-	const setUser = (user) => {
-		setauth(user);
-	};
-
-	const authData = useMemo(
-		() => ({
-			auth,
-			logout,
-			setUser
-		}),
-		[ auth ]
-	);
-
-	if (auth === undefined) return null;
-	console.log(auth);
-
 	return (
 		<React.Fragment>
 			<ApolloProvider client={client}>
-				<AuthContext.Provider value={authData}>
-					<ToastContainer
-						position="top-right"
-						autoClose={5000}
-						hideProgressBar
-						newestOnTop
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-					/>
+				<ToastContainer
+					position="top-right"
+					autoClose={5000}
+					hideProgressBar
+					newestOnTop
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+				/>
 
-					<Component {...pageProps} />
-				</AuthContext.Provider>
+				<Component {...pageProps} />
 			</ApolloProvider>
 		</React.Fragment>
 	);

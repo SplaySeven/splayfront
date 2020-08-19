@@ -14,6 +14,7 @@ import useAuth from '../../../hooks/useAuth';
 
 export default function index() {
 	const { auth } = useAuth();
+	console.log(auth);
 	function Categorias(e) {
 		e.preventDefault();
 	}
@@ -34,6 +35,7 @@ export default function index() {
 			});
 		}
 	});
+
 	const onDrop = useCallback(async (acceptedFile) => {
 		const file = acceptedFile[0];
 		try {
@@ -58,6 +60,7 @@ export default function index() {
 		onDrop
 	});
 
+	//
 	return (
 		<ContainerCategorySyled>
 			<FormRegistroCategoryStyled onSubmit={Categorias}>
