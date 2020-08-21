@@ -1,14 +1,15 @@
 import React from 'react';
-
+import { getToken, decodeToken, removeToken } from '../../../utils/token';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
 import AvatarM from '../../../public/imagenes/AvatarMasculino.png';
-import useAuth from '../../../hooks/useAuth';
+
 export default function Logo1() {
-	const { auth } = useAuth();
+	const token = decodeToken(getToken());
+
 	const { data, loading, error } = useQuery(GET_USER, {
-		variables: { id: auth.id }
+		variables: { id: token.id }
 	});
 	if (loading || error) return null;
 	const { getUser } = data;

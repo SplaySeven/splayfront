@@ -61,12 +61,20 @@ export const UPDATE_AVATAR = gql`
 		}
 	}
 `;
+export const UPDATE_PICTURE = gql`
+	mutation updatePicture($file: Upload) {
+		updatePicture(file: $file) {
+			status
+			urlPicture
+		}
+	}
+`;
 export const SEARCH = gql`
 	query search($search: String) {
 		search(search: $search) {
 			name
 			lastname
-			email
+			id
 			avatar
 		}
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import imgFriends from '../../../public/icons/wall-profile/friends-on.png';
+import imgFriends from '../../../public/imagenes/friends-on.png';
 
 export default function index(props) {
 	return (

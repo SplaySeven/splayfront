@@ -1,0 +1,27 @@
+@import "../../../pages/styles.css";
+
+.search-users {
+	width: 100%;
+}
+.input {
+	width: 100%;
+}
+.icon {
+	width: 100%;
+}
+.results {
+	max-height: 50vh;
+	overflow-y: scroll;
+}
+
+.ui.image {
+	width: 45px !important;
+	height: 45px !important;
+	border-radius: 50% !important;
+	margin-right: 20px;
+}
+
+.p {
+	margin: 0;
+	color: black;
+}

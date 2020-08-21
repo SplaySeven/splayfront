@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -7,27 +6,34 @@ import { useApolloClient } from '@apollo/client';
 import WallOrganism from '../components/organims/Wall';
 import Layout from '../components/Layout';
 */
-
+import { getToken, decodeToken } from '../../../../utils/token';
 import { row, py3, container, colmd1 } from '../../../../pages/styles';
 import LogoCorto from '../../../atoms/LogoCorto';
 import Search from '../../../molecules/Search';
 import Avatar from '../../../atoms/Avatar';
 import Icons from '../../../atoms/IconsButon';
 
-import imgFriends from '../../../../public/icons/wall-profile/friends-on.png';
-import imginfo from '../../../../public/icons/wall-profile/info-on.png';
-import imgNotifications from '../../../../public/icons/wall-profile/notifications-on.png';
-import imgcerrar from '../../../../public/icons/wall-profile/closeWhite.png';
+import imgFriends from '../../../../public/imagenes/friends-on.png';
+import imginfo from '../../../../public/imagenes/info-on.png';
+import imgNotifications from '../../../../public/imagenes/notifications-on.png';
+import imgcerrar from '../../../../public/imagenes/closeWhite.png';
 
 import useAuth from '../../../../hooks/useAuth';
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../../../../gql/user';
 
-const wall = (props) => {
+const wall = () => {
+	const { logout } = useAuth();
 	const router = useRouter();
-	const { auth, logout } = useAuth();
 
+	const token = decodeToken(getToken());
+	const { data, loading, error } = useQuery(GET_USER, {
+		variables: { id: token.id }
+	});
+	if (loading || error) return null;
+	const { getUser } = data;
 	const client = useApolloClient();
 	const onLogout = () => {
-		console.log('cerramos');
 		client.clearStore();
 		logout();
 		router.push('/');
@@ -41,16 +47,22 @@ const wall = (props) => {
 						<LogoCorto />
 						<Search />
 						<Colmd1>
-							<Avatar />
+							<Link href="/wall/[wall]" as={`/wall/${getUser.id}`}>
+								<a>
+									<Avatar />
+								</a>
+							</Link>
 						</Colmd1>
 						<Colmd1>
 							<DivName>
-								<Name>{auth.name}</Name>
+								<Name>{getUser.name}</Name>
 							</DivName>
 						</Colmd1>
 						<Colmd1>
 							<DivBtn0>
-								<BtnInicio>Inicio</BtnInicio>
+								<Link href="/">
+									<BtnInicio>Inicio</BtnInicio>
+								</Link>
 							</DivBtn0>
 						</Colmd1>
 						<Divbtncerrar>

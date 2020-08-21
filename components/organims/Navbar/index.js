@@ -7,7 +7,7 @@ import Login from '../../molecules/Login';
 
 // Nav Var ya Logeado
 import HeaderLogged from '../Navbar/HeaderLogged';
-import { getToken, setToken, decodeToken, removeToken } from '../../../utils/token';
+
 const index = () => {
 	const { auth } = useAuth();
 
