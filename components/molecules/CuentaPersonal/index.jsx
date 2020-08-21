@@ -4,10 +4,11 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
+import { setToken } from '../../../utils/token';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
-import { NEW_ACCOUNT } from '../../../gql/user';
-
+import useAuth from '../../../hooks/useAuth';
+import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../gql/user';
 import ImagHelper from '../../../public/imagenes/icon-1.png';
 import { Colores } from '../../../styles/Colores';
 
@@ -47,7 +48,8 @@ function useCoordenadas() {
 const index = () => {
 	//Mutation para crear nuevos usuarios
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
-
+	const { setUser } = useAuth();
+	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 	// Leer Posicion
 	const coordenadas = useCoordenadas();
 
@@ -94,10 +96,11 @@ const index = () => {
 						}
 					}
 				});
-				//Usuario Creado Correctamente
+
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
-				const id = '12456789788788';
-				route.push(`/categories?id=${id}`, `/categories/${id}`);
+
+				const id = data.newUser.id;
+				//	route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -163,10 +166,6 @@ const index = () => {
 						error={formik.errors.passwordRecinfirmar}
 					/>
 					{formik.errors.passwordReconfirmar ? <div>{formik.errors.passwordReconfirmar}</div> : null}
-
-					<VideoStyled>
-						<iframe width="90%" height="200%" src="https://www.youtube.com/embed/tgbNymZ7vqY" />
-					</VideoStyled>
 				</ContainerIzquierdoSyled>
 				<ContainerDerechoSyled>
 					<LabelFechaStyled>Fecha de nacimiento</LabelFechaStyled>

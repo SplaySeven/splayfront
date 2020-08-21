@@ -1,24 +1,24 @@
 import { gql } from '@apollo/client';
 
 export const IS_FOLLOW = gql`
-	query isFollow($email: String) {
-		isFollow(email: $email)
+	query isFollow($id: ID!) {
+		isFollow(id: $id)
 	}
 `;
 export const FOLLOW = gql`
-	mutation follow($email: String!) {
-		follow(email: $email)
+	mutation follow($id: ID!) {
+		follow(id: $id)
 	}
 `;
 
 export const UN_FOLLOW = gql`
-	mutation unFollow($email: String!) {
-		unFollow(email: $email)
+	mutation unFollow($id: ID!) {
+		unFollow(id: $id)
 	}
 `;
 export const GET_FOLLOWERS = gql`
-	query getFollowers($email: String!) {
-		getFollowers(email: $email) {
+	query getFollowers($id: ID!) {
+		getFollowers(id: $id) {
 			email
 			name
 			avatar

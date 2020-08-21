@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Colores } from '../../../styles/Colores';
 import Avatar from '../../atoms/Avatar';
@@ -9,40 +10,50 @@ import Information from '../../atoms/Information';
 import Notifications from '../../atoms/Notifications';
 import useAuth from '../../../hooks/useAuth';
 
+import { useApolloClient } from '@apollo/client';
 //<Link href="/wall/[wall]" as={`/wall/${auth.id}`}></Link>
-export default function index() {
-	const { auth } = useAuth();
+export default function index(props) {
+	const { auth, logout, setUser } = useAuth();
+
+	const router = useRouter();
+	const client = useApolloClient();
+	const onLogout = () => {
+		client.clearStore();
+		logout();
+		router.push('/');
+	};
 
 	return (
 		<React.Fragment>
-			<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
-				<a>
-					<Avatar />
-				</a>
-			</Link>
-
-			<LabelUsuarioStyled>Carlos</LabelUsuarioStyled>
-			<InicarSescionStyled type="submit">
-				<a href="/">Inicio</a>
-			</InicarSescionStyled>
-			<BotonLargo type="submit">Cerrar Sesión</BotonLargo>
-			<Link href="/">
-				<a>
-					<SocialNetwork />
-				</a>
-			</Link>
-
-			<Link href="/">
-				<a>
-					<Information />
-				</a>
-			</Link>
-			<Link href="/">
-				<a>
-					{' '}
-					<Notifications />
-				</a>
-			</Link>
+			<div>
+				<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
+					<a>
+						<Avatar />
+					</a>
+				</Link>
+				<LabelUsuarioStyled>{auth.name}</LabelUsuarioStyled>
+				<InicarSescionStyled type="submit">
+					<a href="/">Inicio</a>
+				</InicarSescionStyled>
+				<BotonLargo onClick={onLogout} type="submit">
+					Cerrar Sesión
+				</BotonLargo>
+				<Link href="/">
+					<a>
+						<SocialNetwork />
+					</a>
+				</Link>
+				<Link href="/">
+					<a>
+						<Information />
+					</a>
+				</Link>
+				<Link href="/">
+					<a>
+						<Notifications />
+					</a>
+				</Link>
+			</div>
 		</React.Fragment>
 	);
 }

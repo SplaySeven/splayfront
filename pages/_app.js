@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { getToken, setToken, decodeToken } from '../utils/token';
+import { getToken, decodeToken, removeToken } from '../utils/token';
 import AuthContext from '../context/AuthContext';
+import 'semantic-ui-css/semantic.min.css';
 import '../styles/globals.css';
+import './styles.css';
 
 import client from '../config/apollo';
 import { ToastContainer } from 'react-toastify';
@@ -11,22 +13,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-	const [ auth, setauth ] = useState(undefined);
+	const [ auth, setAuth ] = useState(undefined);
+
 	useEffect(() => {
 		const token = getToken();
 		if (!token) {
-			setauth(null);
+			setAuth(null);
 		} else {
-			setauth(decodeToken(token));
+			setAuth(decodeToken(token));
 		}
 	}, []);
 
 	const logout = () => {
-		console.log('cerrar sesion');
+		removeToken();
+		setAuth(null);
 	};
 
 	const setUser = (user) => {
-		setauth(user);
+		setAuth(user);
+		setAuth(decodeToken(user));
 	};
 
 	const authData = useMemo(
@@ -37,6 +42,7 @@ function MyApp({ Component, pageProps }) {
 		}),
 		[ auth ]
 	);
+
 	if (auth === undefined) return null;
 	return (
 		<React.Fragment>
