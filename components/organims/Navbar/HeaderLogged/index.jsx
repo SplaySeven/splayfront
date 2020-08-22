@@ -23,15 +23,8 @@ import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../../gql/user';
 
 const wall = () => {
-	const { logout } = useAuth();
+	const { auth, logout } = useAuth();
 	const router = useRouter();
-
-	const token = decodeToken(getToken());
-	const { data, loading, error } = useQuery(GET_USER, {
-		variables: { id: token.id }
-	});
-	if (loading || error) return null;
-	const { getUser } = data;
 	const client = useApolloClient();
 	const onLogout = () => {
 		client.clearStore();
@@ -47,7 +40,7 @@ const wall = () => {
 						<LogoCorto />
 						<Search />
 						<Colmd1>
-							<Link href="/wall/[wall]" as={`/wall/${getUser.id}`}>
+							<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
 								<a>
 									<Avatar />
 								</a>
@@ -55,7 +48,7 @@ const wall = () => {
 						</Colmd1>
 						<Colmd1>
 							<DivName>
-								<Name>{getUser.name}</Name>
+								<Name>{auth.name}</Name>
 							</DivName>
 						</Colmd1>
 						<Colmd1>
