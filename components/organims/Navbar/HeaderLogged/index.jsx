@@ -6,7 +6,7 @@ import { useApolloClient } from '@apollo/client';
 import WallOrganism from '../components/organims/Wall';
 import Layout from '../components/Layout';
 */
-import { getToken, decodeToken } from '../../../../utils/token';
+
 import { row, py3, container, colmd1 } from '../../../../pages/styles';
 import LogoCorto from '../../../atoms/LogoCorto';
 import Search from '../../../molecules/Search';
@@ -19,19 +19,10 @@ import imgNotifications from '../../../../public/imagenes/notifications-on.png';
 import imgcerrar from '../../../../public/imagenes/closeWhite.png';
 
 import useAuth from '../../../../hooks/useAuth';
-import { useQuery } from '@apollo/client';
-import { GET_USER } from '../../../../gql/user';
 
 const wall = () => {
-	const { logout } = useAuth();
+	const { auth, logout } = useAuth();
 	const router = useRouter();
-
-	const token = decodeToken(getToken());
-	const { data, loading, error } = useQuery(GET_USER, {
-		variables: { id: token.id }
-	});
-	if (loading || error) return null;
-	const { getUser } = data;
 	const client = useApolloClient();
 	const onLogout = () => {
 		client.clearStore();
@@ -47,7 +38,7 @@ const wall = () => {
 						<LogoCorto />
 						<Search />
 						<Colmd1>
-							<Link href="/wall/[wall]" as={`/wall/${getUser.id}`}>
+							<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
 								<a>
 									<Avatar />
 								</a>
@@ -55,7 +46,7 @@ const wall = () => {
 						</Colmd1>
 						<Colmd1>
 							<DivName>
-								<Name>{getUser.name}</Name>
+								<Name>{auth.name}</Name>
 							</DivName>
 						</Colmd1>
 						<Colmd1>

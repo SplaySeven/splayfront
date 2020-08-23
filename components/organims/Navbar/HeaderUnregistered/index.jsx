@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Colores } from '../../../styles/Colores';
-import useAuth from '../../../hooks/useAuth';
-import LogoOficial from '../../atoms/LogoOficial';
-import Login from '../../molecules/Login';
+import { Colores } from '../../../../styles/Colores';
+import LogoOficial from '../../../atoms/LogoOficial';
+import Login from '../../../../components/molecules/Login';
 
-// Nav Var ya Logeado
-import HeaderLogged from '../Navbar/HeaderLogged';
-
-const index = (props) => {
-	console.log(props);
-	if (props === undefined) return null;
-
-	return <React.Fragment>{props === null ? <h1>Vacio</h1> : <h1>con datos</h1>}</React.Fragment>;
-};
-
-export default index;
-
-/*css*/
+export default function index() {
+	return (
+		<NavbarStyled>
+			<ContainerLogoStyled>
+				<LogoOficial />
+			</ContainerLogoStyled>
+			<Login />
+		</NavbarStyled>
+	);
+}
 
 const NavbarStyled = styled.header`
 	background: ${Colores.Primario};

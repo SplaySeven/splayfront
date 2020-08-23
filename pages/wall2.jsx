@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import Navbar from '../components/organims/Navbar';
+
+import HeaderLogged from '../components/organims/Navbar/HeaderLogged';
 
 export default function wall() {
 	return (
 		<React.Fragment>
-			<Navbar />
+			<HeaderLogged />
 			<MensajeMuroStyle>
 				Bienvendio al Muro en unos miasasanutos vermos mas sobre esto feliz dia...
 			</MensajeMuroStyle>

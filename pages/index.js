@@ -6,7 +6,7 @@ import useAuth from '../hooks/useAuth';
 import Auth from '../pages/Auth';
 import Wall from '../pages/wall2';
 
-export default function index() {
+export default function index2() {
 	const { auth } = useAuth();
 
 	return (

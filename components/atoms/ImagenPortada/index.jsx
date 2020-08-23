@@ -22,14 +22,16 @@ export default function index(props) {
 				break;
 		}
 	};
+	const { origen } = props.userId;
 
 	return (
 		<React.Fragment>
 			<ImgPortada>
-				<div>
-					<BtnPicture onClick={() => handlerModal('portada')}>Editar foto de portada</BtnPicture>
-				</div>
-
+				{origen === 'W' && (
+					<div>
+						<BtnPicture onClick={() => handlerModal('portada')}>Editar foto de portada</BtnPicture>
+					</div>
+				)}
 				<AvatarPortada userId={props} />
 			</ImgPortada>
 			<ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
