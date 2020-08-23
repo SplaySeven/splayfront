@@ -7,6 +7,7 @@ export default function index() {
 	const router = useRouter();
 	const userId = router.query.id;
 
+	// Se pone F para saver que son Seguidores
 	return (
 		<React.Fragment>
 			<HeaderLogged />
