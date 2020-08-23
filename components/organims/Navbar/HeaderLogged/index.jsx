@@ -6,7 +6,7 @@ import { useApolloClient } from '@apollo/client';
 import WallOrganism from '../components/organims/Wall';
 import Layout from '../components/Layout';
 */
-import { getToken, decodeToken } from '../../../../utils/token';
+
 import { row, py3, container, colmd1 } from '../../../../pages/styles';
 import LogoCorto from '../../../atoms/LogoCorto';
 import Search from '../../../molecules/Search';
@@ -19,8 +19,6 @@ import imgNotifications from '../../../../public/imagenes/notifications-on.png';
 import imgcerrar from '../../../../public/imagenes/closeWhite.png';
 
 import useAuth from '../../../../hooks/useAuth';
-import { useQuery } from '@apollo/client';
-import { GET_USER } from '../../../../gql/user';
 
 const wall = () => {
 	const { auth, logout } = useAuth();
