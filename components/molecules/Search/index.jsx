@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ImagenNoFound from '../../../public/imagenes/AvatarMasculino.png';
+import ImagenNoFound from '../../../public/imagenes/Icon-avatar-default.png';
+
 import searchicon from '../../../public/icons/wall-profile/btnSearch.png';
 import { row, colmd4, colmd12, label } from '../../../pages/styles';
 import { Search,Image } from 'semantic-ui-react';
@@ -35,7 +36,8 @@ export default function index() {
 			setResults([]);
 		}
 	}, [data]);
-    
+	
+	
  
 	const onChange = (e) => {
 		if (e.target.value) setSearch(e.target.value);
