@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ImagenNoFound from '../../../public/imagenes/Icon-avatar-default.png';
+import ImagenNoFound from '../../../public/imagenes/icon-avatar-default.png';
 
 import searchicon from '../../../public/icons/wall-profile/btnSearch.png';
 import { row, colmd4, colmd12, label } from '../../../pages/styles';
