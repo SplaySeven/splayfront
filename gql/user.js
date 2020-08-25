@@ -45,6 +45,7 @@ export const GET_USER = gql`
 			latitude
 			longitude
 			avatar
+			picture
 			active
 			confirmed
 			created
@@ -77,5 +78,16 @@ export const SEARCH = gql`
 			id
 			avatar
 		}
+	}
+`;
+export const DELETE_AVATAR = gql`
+	mutation deleteAvatar {
+		deleteAvatar
+	}
+`;
+
+export const DELETE_PICTURE = gql`
+	mutation deletePicture {
+		deletePicture
 	}
 `;
