@@ -5,6 +5,7 @@ import { setContext } from 'apollo-link-context';
 
 const httpLink = createUploadLink({
 	uri: 'http://localhost:4000/graphql',
+	//uri: 'https://splayserver.herokuapp.com/',
 	fetch
 });
 
