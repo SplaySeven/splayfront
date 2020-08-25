@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import imgaddasfriend from '../../../public/icons/wall-profile/Invite-friend-on.png';
-import { colmd2, textcenter } from '../../../pages/styles';
+import { colmd2, textcenter } from '../../../styles/styles';
 import { useQuery, useMutation } from '@apollo/client';
 import { IS_FOLLOW, FOLLOW, UN_FOLLOW } from '../../../gql/follow';
 import { Button } from 'semantic-ui-react';

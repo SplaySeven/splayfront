@@ -150,5 +150,5 @@ const InicarSescionStyled = styled.button`
 	}
 `;
 const BotonLargo = styled(InicarSescionStyled)`
-width: 22%;
+width: 23%;
 `;

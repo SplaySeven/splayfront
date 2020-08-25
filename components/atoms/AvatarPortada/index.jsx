@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
 import AvatarM from '../../../public/imagenes/AvatarMasculino.png';
-import useAuth from '../../../hooks/useAuth';
+import Modalbasic from '../../organims/Modal/ModalBasic';
+import AvatarForm from '../../organims/AvatarForm';
 export default function Logo1(props) {
+	const [ showModal, setShowModal ] = useState(false);
 	const { userId } = props.userId;
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: userId.userId }
@@ -15,7 +17,10 @@ export default function Logo1(props) {
 
 	return (
 		<DivphotoProfile2>
-			<ImgProfile getUser={getUser} />
+			<ImgProfile getUser={getUser} onClick={() => setShowModal(true)} />
+			<Modalbasic show={showModal} setShow={setShowModal} title="Subir Foto de Avatar">
+				<AvatarForm setShowModal={setShowModal} />
+			</Modalbasic>
 		</DivphotoProfile2>
 	);
 }
@@ -40,4 +45,7 @@ border-style: none;
 border-radius: 50%;
 width:100%;
 height:100%;
+:hover{
+	cursor: pointer;
+}
 `;

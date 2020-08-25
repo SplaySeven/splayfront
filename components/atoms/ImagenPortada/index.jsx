@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import AvatarPortada from '../AvatarPortada';
+import portada from '../../../public/imagenes/INTERESES/Mascotas (vd).png';
 import styled from 'styled-components';
-import { colmd10 } from '../../../pages/styles';
+import { colmd10 } from '../../../styles/styles';
 import imgcerrar from '../../../public/imagenes/closeWhite.png';
 import ModalBasic from '../../organims/Modal/ModalBasic';
 import PortadaForm from '../../organims/Portada/PortadaForm';
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../../../gql/user';
+
 export default function index(props) {
+	const { userId } = props.userId;
 	const [ showModal, setShowModal ] = useState(false);
 	const [ titleModal, setTitleModal ] = useState('');
 	const [ childrenModal, setChildrenModal ] = useState(null);
+
+	const { data, loading, error } = useQuery(GET_USER, {
+		variables: { id: userId }
+	});
+	if (loading || error) return null;
+	const { getUser } = data;
 
 	const handlerModal = (type) => {
 		switch (type) {
@@ -26,7 +37,7 @@ export default function index(props) {
 
 	return (
 		<React.Fragment>
-			<ImgPortada>
+			<ImgPortada getUser={getUser}>
 				{origen === 'W' && (
 					<div>
 						<BtnPicture onClick={() => handlerModal('portada')}>Editar foto de portada</BtnPicture>
@@ -41,8 +52,10 @@ export default function index(props) {
 	);
 }
 
+/*const ImgProfile = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))` */
+
 const ImgPortada = styled.div`
-	${colmd10} background: url(/imagenes/bg-manuel.jpg);
+	${colmd10} background: url(${(props) => (props.getUser.picture ? props.getUser.picture : portada)});
 	background-position-x: 0%;
 	background-position-y: 0%;
 	background-repeat: repeat;

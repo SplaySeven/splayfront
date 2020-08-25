@@ -25,7 +25,7 @@ import iconcityfrom from '../../../public/icons/wall-profile/city-from-on.png';
 import iconfeeling from '../../../public/icons/wall-profile/feeling-on.png';
 import iconinterest from '../../../public/icons/wall-profile/interest-on.png';
 import walloff from '../../../public/icons/wall-profile/wall-off.png';
-import { colmd3, px0 } from '../../../pages/styles';
+import { colmd3, px0 } from '../../../styles/styles';
 export default function index(props) {
 	const { userId } = props.userId;
 	//console.log(userId);
