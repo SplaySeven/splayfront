@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
@@ -38,6 +37,7 @@ const DivphotoProfile2 = styled.div`
 	top: 20px;
 	box-sizing: border-box;
 `;
+/* Se pone con props para que sean dinamicos los avatar */
 const ImgProfile = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
 box-sizing: border-box;
 vertical-align: middle;
