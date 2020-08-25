@@ -1,6 +1,6 @@
 import React from 'react';
 import logolinkw from '../../../public/imagenes/Logo-inc.png';
-import { colmd2 } from '../../../pages/styles';
+import { colmd2 } from '../../../styles/styles';
 import styled from 'styled-components';
 
 export default function Logo1() {

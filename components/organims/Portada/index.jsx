@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ButtonPortada from '../../atoms/ButtonPortada';
 import ImgPortada from '../../atoms/ImagenPortada';
-import { row, container } from '../../../pages/styles';
+import { row, container } from '../../../styles/styles';
 export default function index(props) {
 	return (
 		<React.Fragment>

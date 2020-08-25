@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../components/Layout';
-import Navbar from '../components/organims/Navbar';
+import HeaderLogged from '../components/organims/Navbar/HeaderLogged';
 import Footer from '../components/organims/Footer';
 import Category from '../components/organims/Category';
 
@@ -42,7 +42,7 @@ export default function category() {
 	return (
 		<Layout>
 			<AuthContext.Provider value={authData}>
-				<Navbar />
+				<HeaderLogged />
 				<Category />
 				<Footer />
 			</AuthContext.Provider>

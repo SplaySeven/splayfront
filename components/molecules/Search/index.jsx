@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import ImagenNoFound from '../../../public/imagenes/icon-avatar-default.png';
 
 import searchicon from '../../../public/icons/wall-profile/btnSearch.png';
-import { row, colmd4, colmd12, label } from '../../../pages/styles';
+import { row, colmd4, colmd12, label } from '../../../styles/styles.js';
 import { Search,Image } from 'semantic-ui-react';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from '../../../gql/user';
 import { size } from 'lodash';
-import './Search.css'
+import './Search.scss'
 export default function index() {
 	const [ search, setSearch ] = useState(null);
 	const [ results, setResults ] = useState([]);

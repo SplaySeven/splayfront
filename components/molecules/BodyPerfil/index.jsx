@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { row, col, Col3, Col6, colmd5, colmd7, colmd9, pr0 } from '../../../pages/styles';
+import { row, col, Col3, Col6, colmd5, colmd7, colmd9, pr0 } from '../../../styles/styles';
 import iconwall from '../../../public/icons/wall-profile/wall-on.png';
 import iconWallOff from '../../../public/icons/wall-profile/wall-off.png';
 import iconPostsOn from '../../../public/icons/wall-profile/posts-on.png';

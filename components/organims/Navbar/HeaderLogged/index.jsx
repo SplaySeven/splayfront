@@ -7,7 +7,7 @@ import WallOrganism from '../components/organims/Wall';
 import Layout from '../components/Layout';
 */
 
-import { row, py3, container, colmd1 } from '../../../../pages/styles';
+import { row, py3, container, colmd1 } from '../../../../styles/styles';
 import LogoCorto from '../../../atoms/LogoCorto';
 import Search from '../../../molecules/Search';
 import Avatar from '../../../atoms/Avatar';

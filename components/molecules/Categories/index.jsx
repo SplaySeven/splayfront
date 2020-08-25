@@ -14,7 +14,7 @@ import useAuth from '../../../hooks/useAuth';
 
 export default function index() {
 	const { auth } = useAuth();
-	console.log(auth);
+
 	function Categorias(e) {
 		e.preventDefault();
 	}

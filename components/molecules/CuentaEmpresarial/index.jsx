@@ -1,11 +1,16 @@
-import React from 'react'
-
+import React from 'react';
+import styled from 'styled-components';
 const index = () => {
-    return (
-        <div>
-        <h1>Estamos desde Cuenta Empresarial</h1> 
-        </div>
-    )
-}
+	return (
+		<ContainerCuentaEmpresarialStyled>
+			<h1>Estamos desde Cuenta Empresarial</h1>
+		</ContainerCuentaEmpresarialStyled>
+	);
+};
 
-export default index
+export default index;
+
+const ContainerCuentaEmpresarialStyled = styled.div`
+	background-color: red;
+	height: 150px;
+`;

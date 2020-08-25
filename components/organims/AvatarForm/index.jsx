@@ -1,55 +1,56 @@
 import React, { useCallback, useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import { useDropzone } from 'react-dropzone';
-import { useMutation } from '@apollo/client';
-import useAuth from '../../../../hooks/useAuth';
-import { UPDATE_PICTURE, GET_USER, DELETE_PICTURE } from '../../../../gql/user';
-import './index.scss';
 import { toast } from 'react-toastify';
+import './AvatarForm.scss';
+import useAuth from '../../../hooks/useAuth';
+import { useMutation } from '@apollo/client';
+import { UPDATE_AVATAR, GET_USER, DELETE_AVATAR } from '../../../gql/user';
 export default function index(props) {
-	const { auth } = useAuth();
 	const { setShowModal } = props;
 	const [ loading, setLoading ] = useState(false);
+	const { auth } = useAuth();
 
-	const [ updatePicture ] = useMutation(UPDATE_PICTURE, {
-		update(cache, { data: { updatePicture } }) {
+	const [ updateAvatar ] = useMutation(UPDATE_AVATAR, {
+		update(cache, { data: { updateAvatar } }) {
 			const { getUser } = cache.readQuery({
 				query: GET_USER,
 				variables: { id: auth.id }
 			});
+
 			cache.writeQuery({
 				query: GET_USER,
 				variables: { id: auth.id },
 				data: {
-					getUser: { ...getUser, picture: updatePicture.urlPicture }
+					getUser: { ...getUser, avatar: updateAvatar.urlAvatar }
 				}
 			});
 		}
 	});
 
-	const [ deletePicture ] = useMutation(DELETE_PICTURE, {
-		update(cache, { data: { updatePicture } }) {
+	const [ deleteAvatar ] = useMutation(DELETE_AVATAR, {
+		update(cache, { data: { updateAvatar } }) {
 			const { getUser } = cache.readQuery({
 				query: GET_USER,
 				variables: { id: auth.id }
 			});
+
 			cache.writeQuery({
 				query: GET_USER,
 				variables: { id: auth.id },
 				data: {
-					getUser: { ...getUser, picture: '' }
+					getUser: { ...getUser, avatar: '' }
 				}
 			});
 		}
 	});
-
 	const onDrop = useCallback(async (accepteFile) => {
 		const file = accepteFile[0];
 		try {
 			setLoading(true);
-			const result = await updatePicture({ variables: { file } });
+			const result = await updateAvatar({ variables: { file } });
 			const { data } = result;
-			if (!data.updatePicture.status) {
+			if (!data.updateAvatar.status) {
 				toast.warning('Error al actualizar el avatar');
 				setLoading(false);
 			} else {
@@ -62,18 +63,17 @@ export default function index(props) {
 	}, []);
 
 	const { getRootProps, getInputProps } = useDropzone({
-		accept: 'image/jpeg,image/png',
+		accept: 'image/jpeg,imge/png',
 		noKeyboard: true,
 		multiple: false,
 		onDrop
 	});
-
-	const onDeletePicture = async () => {
+	const onDeleteAvatar = async () => {
 		try {
-			const result = await deletePicture();
+			const result = await deleteAvatar();
 			const { data } = result;
-			if (!data.deletePicture) {
-				toast.warning('Error al borrar Foto');
+			if (!data.deleteAvatar) {
+				toast.warning('Error al borrar el avatar');
 			} else {
 				setShowModal(false);
 			}
@@ -81,12 +81,13 @@ export default function index(props) {
 			console.log(error);
 		}
 	};
+
 	return (
-		<div className="portada-form">
+		<div className="avatar_form">
 			<Button {...getRootProps()} loading={loading}>
-				Cargar una foto portada
+				Cargar Avatar
 			</Button>
-			<Button onClick={onDeletePicture}>Eliminar una foto portada</Button>
+			<Button onClick={onDeleteAvatar}>Eliminar Avatar</Button>
 			<Button onClick={() => setShowModal(false)}>Cancelar</Button>
 			<input {...getInputProps()} />
 		</div>
