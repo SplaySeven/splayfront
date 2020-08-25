@@ -3,14 +3,12 @@ import { ApolloProvider } from '@apollo/client';
 import { getToken, decodeToken, removeToken } from '../utils/token';
 import AuthContext from '../context/AuthContext';
 import 'semantic-ui-css/semantic.min.css';
-import '../styles/globals.css';
-import './styles.css';
+//import '../styles/globals.css';
+//import './styles.css';
 
 import client from '../config/apollo';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
 	const [ auth, setAuth ] = useState(undefined);
