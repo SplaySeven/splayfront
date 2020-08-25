@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 import React from 'react';
 import { Modal } from 'semantic-ui-react';
 export default function index(props) {

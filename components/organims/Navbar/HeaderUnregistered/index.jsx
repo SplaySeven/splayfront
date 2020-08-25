@@ -35,13 +35,3 @@ const ContainerLogoStyled = styled.div`
 	align-items: right;
 	top: 0;
 `;
-
-const ContainerLogoCortoStyled = styled.div`
-	margin-left: 14%;
-	width: 13%;
-	margin-top: auto;
-	margin-bottom: auto;
-	text-align: right;
-	align-items: right;
-	top: 0;
-`;
