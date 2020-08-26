@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Friends from '../SidebarLeftPerfil/Friends';
 import iconPeopleknowOn from '../../../public/icons/wall-profile/people-know-on.png';
 import iconprivateon from '../../../public/icons/wall-profile/private-on.png';
 import iconciudadactual from '../../../public/icons/wall-profile/city-on.png';
@@ -28,7 +29,6 @@ import walloff from '../../../public/icons/wall-profile/wall-off.png';
 import { colmd3, px0 } from '../../../styles/styles';
 export default function index(props) {
 	const { userId } = props.userId;
-	//console.log(userId);
 	return (
 		<React.Fragment>
 			<Colmd3A>
@@ -107,24 +107,7 @@ export default function index(props) {
 					<DivoptA1>
 						<ImgFriends2 /> Amigos
 					</DivoptA1>
-					<DivoptA1>
-						<ImgFriendBorder>
-							<ImgFriend1 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Marcos Rodriguez</FriendName>
-					</DivoptA1>
-					<DivoptA1>
-						<ImgFriendBorder>
-							<ImgFriend2 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Miguel Nuñez</FriendName>
-					</DivoptA1>
-					<DivoptA1>
-						<ImgFriendBorder>
-							<ImgFriend3 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Alejandro Bullón</FriendName>
-					</DivoptA1>
+					<Friends userId={userId} />
 					<DivoptA1>
 						<IconMoreOn /> Todos mis Amigos
 					</DivoptA1>
@@ -358,44 +341,7 @@ border-style: none;
 box-sizing: border-box;
 color: #fff !important;
 `;
-const ImgFriendBorder = styled.div`
-	background: url(${iconborder});
-	background-size: 60px 60px;
-	background-repeat: no-repeat;
-	padding: 5px;
-	float: left;
-`;
-const ImgFriend1 = styled.img.attrs({ src: imgMarcos })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-`;
-const ImgFriend2 = styled.img.attrs({ src: imgMiguel })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-`;
-const FriendName = styled.div`
-	float: left;
-	padding-top: 17px;
-`;
-const ImgFriend3 = styled.img.attrs({ src: imgAlejandro })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-`;
+
 const IconMoreOn = styled.img.attrs({ src: iconMoreOn })`
 width: 40px;
 margin-right: 10px;

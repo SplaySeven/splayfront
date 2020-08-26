@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonPortada from '../../atoms/ButtonPortada';
+import ContainerButtonsPortada from '../../molecules/ContainerButtonsPortada';
 import ImgPortada from '../../atoms/ImagenPortada';
 import { row, container } from '../../../styles/styles';
 export default function index(props) {
@@ -10,7 +10,7 @@ export default function index(props) {
 				<Container3>
 					<Row>
 						<ImgPortada userId={props} />
-						<ButtonPortada data={props} />
+						<ContainerButtonsPortada data={props} />
 					</Row>
 				</Container3>
 			</Row>
