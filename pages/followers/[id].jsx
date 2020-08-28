@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import HeaderLogged from '../../components/organims/Navbar/HeaderLogged';
 import Portada from '../../components/organims/Portada';
@@ -10,6 +11,9 @@ export default function index() {
 	// Se pone F para saver que son Seguidores
 	return (
 		<React.Fragment>
+			<Head>
+				<title>Splay7</title>
+			</Head>
 			<HeaderLogged />
 			<Portada userId={userId} origen={'F'} />
 			<ContainerPerfil userId={userId} origen={'F'} />

@@ -20,7 +20,6 @@ export default function index(props) {
 	if (loadingFriends) return null;
 
 	const { getFriends } = dataFriends;
-	console.log(getFriends);
 
 	const buttonFollow = () => {
 		if (data.isFriend) {
