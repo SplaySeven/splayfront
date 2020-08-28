@@ -4,14 +4,17 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
+import PantallaEstatica from '../../../imagenes/Pantalla_estatica.png';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
-import { NEW_ACCOUNT } from '../../../gql/user';
-
+import useAuth from '../../../hooks/useAuth';
+import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../gql/user';
 import ImagHelper from '../../../public/imagenes/icon-1.png';
 import { Colores } from '../../../styles/Colores';
+import IconoEmpresarial from '../../../public/imagenes/Iconoempresarial.png';
 
 import { Dias, Mes, Ano } from '../../../styles/Fecha';
+import { removeClientSetsFromDocument } from '@apollo/client/utilities';
 
 function useCoordenadas() {
 	const [ coordenadas, setCoordenadas ] = useState({
@@ -48,7 +51,6 @@ const index = () => {
 	//Mutation para crear nuevos usuarios
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
 
-	// Leer Posicion
 	const coordenadas = useCoordenadas();
 
 	//Routing
@@ -71,7 +73,8 @@ const index = () => {
 		}),
 
 		onSubmit: async (valores) => {
-			const { name, lastname, email, password, birthdayDay, birthdayMonth, birthdayYear, gender } = valores;
+			console.log(valores);
+			const { name, lastname, email, password, birthdayDay, birthdayMonth, birthdayYear, gender, type } = valores;
 
 			const { city, country_name, latitude, longitude, contycode } = coordenadas;
 			try {
@@ -90,14 +93,15 @@ const index = () => {
 							city: city,
 							latitude: latitude,
 							longitude: longitude,
-							type: 'P'
+							type
 						}
 					}
 				});
-				//Usuario Creado Correctamente
+
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
-				const id = '12456789788788';
-				route.push(`/categories?id=${id}`, `/categories/${id}`);
+				formik.resetForm({});
+
+				//	route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
 			}
@@ -163,9 +167,8 @@ const index = () => {
 						error={formik.errors.passwordRecinfirmar}
 					/>
 					{formik.errors.passwordReconfirmar ? <div>{formik.errors.passwordReconfirmar}</div> : null}
-
 					<VideoStyled>
-						<iframe width="90%" height="200%" src="https://www.youtube.com/embed/tgbNymZ7vqY" />
+						<img src={PantallaEstatica} width="350px" height="250px" />
 					</VideoStyled>
 				</ContainerIzquierdoSyled>
 				<ContainerDerechoSyled>
@@ -179,15 +182,15 @@ const index = () => {
 								onChange={formik.handleChange}
 							>
 								<option value=" ">Dia</option>
-								<option value="01">01</option>
-								<option value="02">02</option>
-								<option value="03">03</option>
-								<option value="04">04</option>
-								<option value="05">05</option>
-								<option value="06">06</option>
-								<option value="07">07</option>
-								<option value="08">08</option>
-								<option value="09">09</option>
+								<option value="1">01</option>
+								<option value="2">02</option>
+								<option value="3">03</option>
+								<option value="4">04</option>
+								<option value="5">05</option>
+								<option value="6">06</option>
+								<option value="7">07</option>
+								<option value="8">08</option>
+								<option value="9">09</option>
 								<option value="10">10</option>
 								<option value="11">11</option>
 								<option value="12">12</option>
@@ -221,15 +224,15 @@ const index = () => {
 								value={formik.values.birthdayMonth}
 							>
 								<option value="0">Mes</option>
-								<option value="01">ene</option>
-								<option value="02">feb</option>
-								<option value="03">mar</option>
-								<option value="04">abr</option>
-								<option value="05">may</option>
-								<option value="06">jun</option>
-								<option value="07">jul</option>
-								<option value="08">ago</option>
-								<option value="09">sep</option>
+								<option value="1">ene</option>
+								<option value="2">feb</option>
+								<option value="3">mar</option>
+								<option value="4">abr</option>
+								<option value="5">may</option>
+								<option value="6">jun</option>
+								<option value="7">jul</option>
+								<option value="8">ago</option>
+								<option value="9">sep</option>
 								<option value="10">oct</option>
 								<option value="11">nov</option>
 								<option value="12">dic</option>
@@ -328,7 +331,31 @@ const index = () => {
 						</ParrafoStyled>
 					</div>
 
-					<BotonSyled type="submit">Registrate</BotonSyled>
+					<BotonSyled
+						type="submit"
+						text="randomText"
+						onClick={(e) => {
+							formik.values.type = 'P';
+						}}
+					>
+						Registrate
+					</BotonSyled>
+
+					<NumeralItemsStyled>
+						<LogoSrcStyled />
+						<TituloFormSyled>Crea tu Cuenta Empresarial</TituloFormSyled>
+					</NumeralItemsStyled>
+					<ParrafoStyled>
+						Crea una pagina para tu empresa,negocio,personaje politico o grupo de música
+					</ParrafoStyled>
+					<BotonEmpresaStyle
+						type="submit"
+						onClick={(e) => {
+							formik.values.type = 'E';
+						}}
+					>
+						Registro empresarial
+					</BotonEmpresaStyle>
 				</ContainerDerechoSyled>
 			</FormRegistroStyled>
 		</ContainerGeneralSyled>
@@ -336,6 +363,7 @@ const index = () => {
 };
 
 export default index;
+const f = new Date();
 
 function initialValues() {
 	return {
@@ -344,9 +372,9 @@ function initialValues() {
 		email: '',
 		password: '',
 		passwordReconfirmar: '',
-		birthdayDay: '',
-		birthdayMonth: '',
-		birthdayYear: '',
+		birthdayDay: f.getDate(),
+		birthdayMonth: f.getMonth(),
+		birthdayYear: f.getFullYear() - 15,
 		gender: 'M'
 	};
 }
@@ -418,6 +446,7 @@ const VideoStyled = styled.div`
 	padding-bottom: 20%;
 	align-items: center;
 	position: relative;
+	height: 500px;
 `;
 
 //Lado derecho
@@ -522,4 +551,32 @@ const BotonSyled = styled.button`
 		cursor: pointer;
 		border: 3px solid ${Colores.grey_font};
 	}
+`;
+
+const BotonEmpresaStyle = styled(BotonSyled)`
+width: 350px;
+margin-top: 10px;
+`;
+
+const NumeralItemsStyled = styled.div`
+	margin-left: 2%;
+
+	display: flex;
+	font-size: 25px;
+	& label {
+		padding: 15px 0px;
+		text-align: left;
+		color: #595b5d;
+	}
+`;
+
+const LogoStyled = styled.div`
+	width: 75px;
+	padding: 8px;
+	text-align: center;
+`;
+const LogoSrcStyled = styled.img.attrs({ src: IconoEmpresarial })`
+	height: 50px;
+	margin-top:50px;
+  
 `;

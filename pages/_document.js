@@ -9,7 +9,13 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head />
+				<Head>
+					<link rel="shortcut icon" href="/imagenes/favicon.ico" />
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+					/>
+				</Head>
 				<body>
 					<Main />
 					<NextScript />

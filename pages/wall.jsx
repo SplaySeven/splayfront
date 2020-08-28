@@ -1,15 +1,14 @@
-import React from 'react';
 import styled from 'styled-components';
-import useAuth from '../hooks/useAuth';
-import Layout from '../components/Layout';
-import Navbar from '../components/organims/Navbar';
-export default function wall(props) {
-	const { id } = props;
 
+import HeaderLogged from '../components/organims/Navbar/HeaderLogged';
+
+export default function wall() {
 	return (
 		<React.Fragment>
-			<Navbar />
-			<MensajeMuroStyle>Bienvendio al Muro en unos minutos vermos mas sobre esto feliz dia...</MensajeMuroStyle>
+			<HeaderLogged />
+			<MensajeMuroStyle>
+				Bienvendio al Muro en unos miasasanutos vermos mas sobre esto feliz dia...
+			</MensajeMuroStyle>
 		</React.Fragment>
 	);
 }

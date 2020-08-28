@@ -45,6 +45,7 @@ export const GET_USER = gql`
 			latitude
 			longitude
 			avatar
+			picture
 			active
 			confirmed
 			created
@@ -61,13 +62,32 @@ export const UPDATE_AVATAR = gql`
 		}
 	}
 `;
+export const UPDATE_PICTURE = gql`
+	mutation updatePicture($file: Upload) {
+		updatePicture(file: $file) {
+			status
+			urlPicture
+		}
+	}
+`;
 export const SEARCH = gql`
 	query search($search: String) {
 		search(search: $search) {
 			name
 			lastname
-			email
+			id
 			avatar
 		}
+	}
+`;
+export const DELETE_AVATAR = gql`
+	mutation deleteAvatar {
+		deleteAvatar
+	}
+`;
+
+export const DELETE_PICTURE = gql`
+	mutation deletePicture {
+		deletePicture
 	}
 `;

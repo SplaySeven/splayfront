@@ -1,47 +1,151 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Lupa from '../../../public/imagenes/busqueda.png';
+import ImagenNoFound from '../../../public/imagenes/icon-avatar-default.png';
+
+import searchicon from '../../../public/icons/wall-profile/btnSearch.png';
+import { row, colmd4, colmd12, label } from '../../../styles/styles.js';
+import { Search,Image } from 'semantic-ui-react';
+import Link from 'next/link';
+import { useQuery } from '@apollo/client';
+import { SEARCH } from '../../../gql/user';
+import { size } from 'lodash';
+import './Search.scss'
 export default function index() {
+	const [ search, setSearch ] = useState(null);
+	const [ results, setResults ] = useState([]);
+	const { data, loading } = useQuery(SEARCH, {
+		variables: { search }
+	});
+    
+	
+	useEffect(() => {
+		
+		if (size(data?.search) > 0) {
+			const users = [];
+			data.search.forEach((user, index) => {
+				users.push({
+					key: index,
+					title: user.name,
+					lastname:user.lastname,
+					userid: user.id,
+					avatar: user.avatar
+				});
+			});
+			setResults(users);
+		} else {
+			setResults([]);
+		}
+	}, [data]);
+	
+	
+ 
+	const onChange = (e) => {
+		if (e.target.value) setSearch(e.target.value);
+		else setSearch(null);
+	};
+	const hendleResultSelect=()=>{
+		setSearch(null)
+		setResults([])
+	}
 	return (
-		<ContainerStyled>
-			<InputSearchStyled type="search" id="search" placeholder="Búsqueda de redes y Amigos..." />
-		</ContainerStyled>
+		<DivHeader2>
+			<Row>
+				<Colmd12>
+					<FriendSearch>Búsqueda de redes y amigos</FriendSearch>
+					<Search
+						className="search-users"
+						fluid
+						input={{ icon: 'search', iconPosition: 'left' }}
+						loading={loading}
+						value={search||""}
+						onSearchChange={onChange}
+						onResultSelect={hendleResultSelect}
+						results={results}
+						resultRenderer={(e)=><ResultSearch data={e}/>}
+					/>
+				</Colmd12>
+			</Row>
+		</DivHeader2>
 	);
 }
 
+
+function ResultSearch(props){
+	const{data}=props;
+	
+	return (
+		<Link href="/followers/[id]" as={`/followers/${data.userid}`}>
+        <a>
+		<Image className="img" src={data.avatar || ImagenNoFound}/>
+		<div>
+			
+			<p>{data.title}</p>
+	<p>{data.lastname}</p>
+			
+		</div>
+
+		</a>
+		
+		</Link>
+		
+	)
+}
+
+/*<div className="search-users__item">
+/*
+<DivInputsearch>
+<Inputsearch />
+<SearchIcon />
+</DivInputsearch>
+*/
+
 //Css
-
-const ContainerStyled = styled.div`
-	width: 28%;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-
-	white-space: nowrap;
+const DivHeader2 = styled.div`
+	${colmd4} -ms-flex: 0 0 28.333333%;
+	flex: 0 0 28.333333%;
+	max-width: 28.333333%;
+`;
+const Row = styled.div`
+	box-sizing: border-box;
+	${row};
 `;
 
-const InputSearchStyled = styled.input`
-	width: 90%;
-	margin-top: 20px;
-	height: 35px;
-	background: #ffffff;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+const Colmd12 = styled.div`${colmd12};`;
 
-	font-size: 10pt;
-	float: right;
-	color: #63717f;
-	padding-right: 45px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-input-placeholder {
-		color: #65737e;
-	}
-	border-radius: 5px;
-	img {
-		position: absolute;
-		left: 0;
-		top: 0;
-	}
+const FriendSearch = styled.label`${label} color: #fff !important;`;
+const DivInputsearch = styled.div`
+	background: #fff;
+	width: 310px;
+	padding: 3px 0px;
+	box-sizing: border-box;
+`;
+const Inputsearch = styled.input.attrs({ placeholder: 'Buscar' })`
+width: 270px;
+-webkit-text-decoration: none;
+text-decoration: none;
+border: 3px solid white;
+background: #fff;
+outline: none;
+color: #808080;
+border: 1px solid #fff;
+border-left-color: rgb(255, 255, 255);
+border-left-style: solid;
+border-left-width: 1px;
+border-left-color: rgb(225, 225, 225);
+border-left-style: solid;
+border-left-width: 1px;
+overflow: visible;
+margin: 0;
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+box-sizing: border-box;
+`;
+
+const SearchIcon = styled.img.attrs({ src: searchicon })`
+    box-sizing: border-box;
+    width: 100%;
+    vertical-align: middle;
+    border-style: none;
+    width: 33px;
 `;
