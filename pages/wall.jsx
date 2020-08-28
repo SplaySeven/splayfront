@@ -6,9 +6,7 @@ export default function wall() {
 	return (
 		<React.Fragment>
 			<HeaderLogged />
-			<MensajeMuroStyle>
-				Bienvendio al Muro en unos miasasanutos vermos mas sobre esto feliz dia...
-			</MensajeMuroStyle>
+			<MensajeMuroStyle>Bienvenido al Muro de Splay pronto en Produccion feliz dia...</MensajeMuroStyle>
 		</React.Fragment>
 	);
 }
