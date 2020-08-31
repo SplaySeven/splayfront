@@ -1,11 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { size, map } from 'lodash';
 import AvatarM from '../../../public/imagenes/AvatarMasculino.png';
 import iconborder from '../../../public/icons/wall-profile/border-photo-2.png';
-import imgMarcos from '../../../public/imagenes/marcos.jpg';
-import imgMiguel from '../../../public/imagenes/miguel.png';
-import imgAlejandro from '../../../public/imagenes/bullon.png';
 import { useQuery } from '@apollo/client';
 import { GET_FRIENDS } from '../../../gql/friend';
 export default function Friends(props) {
@@ -26,16 +24,40 @@ export default function Friends(props) {
 			) : (
 				map(getFriends, (user, index) => (
 					<DivoptA1 key={index}>
-						<ImgFriendBorder>
-							<ImgFriend1 img={user.avatar} />
-						</ImgFriendBorder>
-						<FriendName>{user.name}</FriendName>
+						<Link href="/followers/[id]" as={`/followers/${user.id}`}>
+							<a>
+								<ImgFriendBorder>
+									<ImgFriend1 img={user.avatar} />
+								</ImgFriendBorder>
+								<FriendName>{user.name}</FriendName>
+							</a>
+						</Link>
 					</DivoptA1>
 				))
 			)}
 		</React.Fragment>
 	);
 }
+
+/*
+	<Link href="/followers/[id]" as={`/followers/${comment.idUser.id}`}>
+						<a>
+							<Image className="img" src={comment.idUser.avatar || ImagenNoFound} avatar />
+							<div>
+								<p>{comment.idUser.name}</p>
+							</div>
+							<p>{comment.comment}</p>
+						</a>
+					</Link>
+
+
+
+
+
+
+
+
+
 
 /*
 		<DivoptA1>
