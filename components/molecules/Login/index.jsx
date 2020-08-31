@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
@@ -13,8 +11,6 @@ import { AUTHENTICATE_USER } from '../../../gql/user';
 import { route } from 'next/dist/next-server/server/router';
 
 const Index = () => {
-	//Router
-	const router = useRouter();
 	const { setUser } = useAuth();
 
 	//State para el mensaje

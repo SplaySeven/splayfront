@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import PantallaEstatica from '../../../imagenes/Pantalla_estatica.png';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import useAuth from '../../../hooks/useAuth';
+import { setToken } from '../../../utils/token';
 import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../gql/user';
 import ImagHelper from '../../../public/imagenes/icon-1.png';
 import { Colores } from '../../../styles/Colores';
 import IconoEmpresarial from '../../../public/imagenes/Iconoempresarial.png';
 
 import { Dias, Mes, Ano } from '../../../styles/Fecha';
-import { removeClientSetsFromDocument } from '@apollo/client/utilities';
 
 function useCoordenadas() {
 	const [ coordenadas, setCoordenadas ] = useState({
@@ -49,13 +48,14 @@ function useCoordenadas() {
 
 const index = () => {
 	//Mutation para crear nuevos usuarios
+	const { setUser } = useAuth();
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
+	//Mutation para crear nuevos usuarios en apollo
+	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 
 	const coordenadas = useCoordenadas();
 
 	//Routing
-
-	const route = useRouter();
 
 	//Validamos del formulario
 
@@ -99,8 +99,19 @@ const index = () => {
 				});
 
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
+				//Pasamamos email y paswwor para poder ingresar
+				const { data: dataAuth } = await authenticateUser({
+					variables: {
+						input: {
+							email,
+							password
+						}
+					}
+				});
 				formik.resetForm({});
-
+				const { token } = dataAuth.authenticateUser;
+				setToken(token);
+				setUser(token);
 				//	route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
