@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useTimeAgo from '../../../../../hooks/useTimeAgo';
 import Publication from '../../../../organims/Modal/ModalPublication';
 import { col, row } from '../../../../../styles/styles';
 import iconPhotovideoOn from '../../../../../public/imagenes/photovideo-on.png';
@@ -8,22 +9,22 @@ import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-o
 import iconLikeOn from '../../../../../public/icons/wall-profile/likeon.png';
 import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
 import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
+import Comment from '../../Publications/Comment';
+import Avatar from '../Avatar';
 
 export default function index(props) {
 	const { publication } = props;
+
 	const [ showModal, setShowModal ] = useState(false);
+	const timeago = useTimeAgo(publication.createAt);
 	return (
 		<React.Fragment>
 			<Postphoto>
 				<Headerpost>
 					<Row>
-						<HpostphotoCol1>
-							<HpostphotoCol1Img>
-								<AvatarPostAuthor src="/imagenes/marcos.jpg" />
-							</HpostphotoCol1Img>
-							<HpostphotoCol1Name>Miguel Cruzcaxas</HpostphotoCol1Name>
-						</HpostphotoCol1>
-						<HpostphotoCol2>{publication.createAt}</HpostphotoCol2>
+						<Avatar publication={publication} />
+
+						<HpostphotoCol2>{timeago}</HpostphotoCol2>
 						<HpostphotoCol3>
 							<HpostphotoCol3Div1>
 								<HpostphotoCol3Icon1 />
@@ -50,6 +51,7 @@ export default function index(props) {
 						<DivComment>
 							<DivIconComment>
 								<IconCommentOn onClick={() => setShowModal(true)} />
+								<Comment publication={publication} />
 							</DivIconComment>
 						</DivComment>
 						<DivDislike>
@@ -79,35 +81,14 @@ const DivComment = styled.div`
 	${col} border-left: 1px solid #fff;
 	border-right: 1px solid #fff;
 	text-align: center;
-	max-width: 10%;
+	max-width: 15%;
 	padding: 5px;
 	padding-top: 9px;
 `;
 
 const Headerpost = styled(Footerpost)`
 `;
-const HpostphotoCol1 = styled.div`${col};`;
-const HpostphotoCol1Img = styled.div`
-	float: left;
-	margin-right: 10px;
-	background: url(/icons/wall-profile/border-photo-2.png);
-	background-repeat: no-repeat;
-	width: 48px;
-	height: 48px;
-	background-size: 48px 48px;
-	padding-top: 4px;
-	padding-left: 4px;
-`;
-const AvatarPostAuthor = styled.img`
-	width: 40px;
-	border-radius: 50%;
-`;
-const HpostphotoCol1Name = styled.div`
-	float: left;
-	font-weight: bold;
-	color: #fff;
-	margin-top: 10px;
-`;
+
 const HpostphotoCol2 = styled.div`
 	${col} max-width: 20%;
 	color: #fff;
