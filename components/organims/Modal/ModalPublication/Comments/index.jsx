@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Image } from 'semantic-ui-react';
 import Link from 'next/link';
+import useTimeAgo from '../../../../../hooks/useTimeAgo';
 import { map } from 'lodash';
 import ImagenNoFound from '../../../../../public/imagenes/icon-avatar-default.png';
 import '../Comments/Comments.scss';
