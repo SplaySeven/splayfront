@@ -10,7 +10,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
 
 export default function index(props) {
-	const { userId } = props.userId;
+	const { userId, origen } = props.userId;
 	const [ showModal, setShowModal ] = useState(false);
 	const [ titleModal, setTitleModal ] = useState('');
 	const [ childrenModal, setChildrenModal ] = useState(null);
@@ -33,7 +33,6 @@ export default function index(props) {
 				break;
 		}
 	};
-	const { origen } = props.userId;
 
 	return (
 		<React.Fragment>

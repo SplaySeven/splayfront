@@ -1,35 +1,62 @@
 import React from 'react';
 import { size } from 'lodash';
 import imgaddasfriend from '../../../../public/icons/wall-profile/Invite-friend-on.png';
+import imgaddasfriend2 from '../../../../public/icons/wall-profile/closeWhite.png';
 import styled, { css } from 'styled-components';
 import { colmd2, textcenter } from '../../../../styles/styles';
 import { useQuery, useMutation } from '@apollo/client';
 import { IS_FRIEND, FRIEND, UN_FRIEND, GET_FRIENDS } from '../../../../gql/friend';
+import { IS_FOLLOW, FOLLOW, UN_FOLLOW, GET_FOLLOWERS } from '../../../../gql/follow';
 export default function index(props) {
 	const origen = props.data.data.data.origen;
 	const userId = props.data.data.data.userId;
+
+	//Amigos
 	const [ friend ] = useMutation(FRIEND);
 	const [ unfriend ] = useMutation(UN_FRIEND);
 	const { data, loading, refetch } = useQuery(IS_FRIEND, {
 		variables: { id: userId }
 	});
+	const [ follow ] = useMutation(FOLLOW);
+	const [ unfollow ] = useMutation(UN_FOLLOW);
+	const { data: dataFollow, loading: loadingFollow, refetch: refetchFollow } = useQuery(IS_FOLLOW, {
+		variables: { id: userId }
+	});
+
+	const { data: dataFollowers, loading: loadingFollowers } = useQuery(GET_FOLLOWERS, {
+		variables: { id: userId }
+	});
+	//if (loadingFollowers) return null;
 
 	const { data: dataFriends, loading: loadingFriends } = useQuery(GET_FRIENDS, {
 		variables: { id: userId }
 	});
-	if (loadingFriends) return null;
+
+	if (loadingFriends || loadingFollowers) return null;
 
 	const { getFriends } = dataFriends;
 
-	const buttonFollow = () => {
+	const buttonFriend = () => {
 		if (data.isFriend) {
-			return <BtnInfo onClick={onUnFollow}>Quitar Amigo</BtnInfo>;
+			return (
+				<BtnAddasfriend onClick={onUnFriend}>
+					<ImgAddasfriend2 />
+					<br />
+					Quitar como Amigo
+				</BtnAddasfriend>
+			);
 		} else {
-			return <BtnInfo onClick={onFollow}>Agregar Amigo</BtnInfo>;
+			return (
+				<BtnAddasfriend onClick={onFriend}>
+					<ImgAddasfriend />
+					<br />
+					Agregar como Amigo
+				</BtnAddasfriend>
+			);
 		}
 	};
 
-	const onFollow = async () => {
+	const onFriend = async () => {
 		try {
 			await friend({
 				variables: {
@@ -42,7 +69,7 @@ export default function index(props) {
 		}
 	};
 
-	const onUnFollow = async () => {
+	const onUnFriend = async () => {
 		try {
 			await unfriend({
 				variables: {
@@ -50,6 +77,42 @@ export default function index(props) {
 				}
 			});
 			refetch();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	//Seguir
+
+	const buttonFollow = () => {
+		if (dataFollow.isFollow) {
+			return <BtnInfo onClick={onUnFollow}>Dejar de Seguir</BtnInfo>;
+		} else {
+			return <BtnInfo onClick={onFollow}>Seguir</BtnInfo>;
+		}
+	};
+
+	const onFollow = async () => {
+		try {
+			await follow({
+				variables: {
+					id: userId
+				}
+			});
+			refetchFollow();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const onUnFollow = async () => {
+		try {
+			await unfollow({
+				variables: {
+					id: userId
+				}
+			});
+			refetchFollow();
 		} catch (error) {
 			console.log(error);
 		}
@@ -72,15 +135,10 @@ export default function index(props) {
 				</Colmd2A>
 			) : (
 				<Colmd2A>
+					{!loading && buttonFriend()}
 					{!loading && buttonFollow()}
-
-					<BtnFriends>Amigos</BtnFriends>
-					<BtnHistorial>Historial</BtnHistorial>
-					<BtnAddasfriend>
-						<ImgAddasfriend />
-						<br />
-						Agregar Amigo
-					</BtnAddasfriend>
+					<BtnFriends>Historial</BtnFriends>
+					<BtnFriends>Informacion</BtnFriends>
 				</Colmd2A>
 			)}
 		</React.Fragment>
@@ -98,6 +156,7 @@ const Name = styled.p`
 `;
 
 const Colmd2A = styled.div`${colmd2} ${textcenter};`;
+
 const BtnInfo = styled.a`
 	outline: none;
 	border: 3px solid white;
@@ -105,7 +164,7 @@ const BtnInfo = styled.a`
 	background-color: #00a79d;
 	padding: 0px 20px;
 	border-radius: 20px;
-	margin: 2px 2px;
+	margin: 10px 2px;
 	box-sizing: content-box;
 	display: inline-block;
 	-webkit-text-decoration: none;
@@ -153,6 +212,17 @@ const BtnAddasfriend = styled.a`
 `;
 
 const ImgAddasfriend = styled.img.attrs({ src: imgaddasfriend })`
+vertical-align: middle;
+border-style: none;
+box-sizing: border-box;
+color: #fff;
+white-space: normal;
+word-wrap: break-Word;
+text-align: center;
+cursor: pointer;
+width: 40px;
+`;
+const ImgAddasfriend2 = styled.img.attrs({ src: imgaddasfriend2 })`
 vertical-align: middle;
 border-style: none;
 box-sizing: border-box;

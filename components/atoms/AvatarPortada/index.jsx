@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
+
 import { GET_USER } from '../../../gql/user';
 import AvatarM from '../../../public/imagenes/AvatarMasculino.png';
 import Modalbasic from '../../organims/Modal/ModalBasic';
@@ -16,7 +17,11 @@ export default function Logo1(props) {
 
 	return (
 		<DivphotoProfile2>
-			<ImgProfile getUser={getUser} onClick={() => setShowModal(true)} />
+			{userId.origen === 'W' ? (
+				<ImgProfile getUser={getUser} onClick={() => setShowModal(true)} />
+			) : (
+				<ImgProfile getUser={getUser} />
+			)}
 			<Modalbasic show={showModal} setShow={setShowModal} title="Subir Foto de Avatar">
 				<AvatarForm setShowModal={setShowModal} />
 			</Modalbasic>
