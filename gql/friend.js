@@ -19,6 +19,7 @@ export const UN_FRIEND = gql`
 export const GET_FRIENDS = gql`
 	query getFriends($id: ID!) {
 		getFriends(id: $id) {
+			id
 			email
 			name
 			avatar
