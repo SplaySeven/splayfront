@@ -3,6 +3,7 @@ import { Modal, Grid } from 'semantic-ui-react';
 import '../ModalPublication/ModalPublication.scss';
 import Comments from '../ModalPublication/Comments';
 import CommentForm from '../ModalPublication/CommentForm';
+import Actions from '../ModalPublication/Actions';
 export default function index(props) {
 	const { show, setShow, publication } = props;
 	const onClose = () => setShow(false);
@@ -18,7 +19,7 @@ export default function index(props) {
 
 				<Grid.Column className="modal-publication__right" width={6}>
 					<Comments publication={publication} />
-					<div>Actions</div>
+					<Actions publication={publication} />
 					<CommentForm publication={publication} />
 				</Grid.Column>
 			</Grid>
