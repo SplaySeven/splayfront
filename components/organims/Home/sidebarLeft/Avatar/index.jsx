@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import AvatarM from '../../../../../public/imagenes/AvatarMasculino.png';
 export default function index(props) {
 	const { getUser } = props;
 	return (
