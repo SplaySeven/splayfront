@@ -20,7 +20,7 @@ import imgcerrar from '../../../../public/imagenes/closeWhite.png';
 
 import useAuth from '../../../../hooks/useAuth';
 
-const wall = () => {
+const index = () => {
 	const { auth, logout } = useAuth();
 	const router = useRouter();
 	const client = useApolloClient();
@@ -78,7 +78,7 @@ const wall = () => {
 		</React.Fragment>
 	);
 };
-export default wall;
+export default index;
 
 //css
 

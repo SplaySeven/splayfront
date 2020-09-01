@@ -13,7 +13,6 @@ export default function index(props) {
 	if (loading) return null;
 	const { countComments } = data;
 
-	console.log(countComments);
 	return (
 		<div>
 			<ParrafoStyled>{countComments} comentarios </ParrafoStyled>

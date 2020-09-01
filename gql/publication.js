@@ -20,3 +20,18 @@ export const GET_PUBLICATIONS = gql`
 		}
 	}
 `;
+
+export const GET_PUBLICATIONS_FOLLOWEDS_FRIENDS = gql`
+	query gePublicationsFollersFriend {
+		getPublicationsFollersFriends {
+			id
+			idUser {
+				name
+				avatar
+			}
+			file
+			typeFile
+			createAt
+		}
+	}
+`;
