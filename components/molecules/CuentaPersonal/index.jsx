@@ -389,7 +389,39 @@ function initialValues() {
 		gender: 'M'
 	};
 }
+const Container = styled.div`
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
 
+	@media (min-width: 360px) {
+		max-width: 720px;
+	}
+	@media (min-width: 768px) {
+		max-width: 720px;
+	}
+	@media (min-width: 992px) {
+		max-width: 1200px;
+	}
+	@media (min-width: 1200px) {
+		max-width: 1140px;
+	}
+`
+const Container1 = styled(Container)`
+	display: flex;
+	flex-direction: column;
+	@media (min-width: 360px) {
+		flex-direction: column;
+	}
+	@media (min-width: 768px) {
+		flex-direction: column;
+	}
+	@media (min-width: 992px) {
+		flex-direction: row;
+	}
+`
 const ContainerGeneralSyled = styled.div`
 	width: 100%;
 	margin: 0px;
@@ -398,18 +430,53 @@ const ContainerGeneralSyled = styled.div`
 `;
 
 const FormRegistroStyled = styled.form`
-	max-width: 70%;
-
-	margin: auto;
-	margin-top: 75px;
 	box-sizing: border-box;
 	display: flex;
+	display: -ms-flexbox;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	justify-content: space-between;
+
+	@media (min-width: 360px) {
+		max-width: 720px;
+	}
+	@media (min-width: 768px) {
+		max-width: 720px;
+	}
+	@media (min-width: 992px) {
+		max-width: 1200px;
+	}
+	@media (min-width: 1200px) {
+		max-width: 1140px;
+	}
 `;
 const ContainerIzquierdoSyled = styled.div`
-	width: 100%;
+	/*width: 100%;*/
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	display: block;
+	-ms-flex: 0 0 41.66666667%;
+	flex: 0 0 41.66666667%;
+	max-width: 41.66666667%;
+
+	@media (max-width: 576px) {
+		display: block;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+
+	@media (min-width: 768px) {
+
+	}
 `;
 
 const TituloFormSyled = styled.h1`
@@ -457,16 +524,27 @@ const VideoStyled = styled.div`
 	padding-bottom: 20%;
 	align-items: center;
 	position: relative;
-	height: 500px;
+	
 `;
 
 //Lado derecho
 
 const ContainerDerechoSyled = styled.div`
+	/*
 	padding: 12px;
 	margin-left: 30px;
-	margin-right: 8px;
-	width: 100%;
+	margin-right: 8px;*/
+
+	display: block;
+	-ms-flex: 0 0 45.83333333%;
+	flex: 0 0 45.83333333%;
+	max-width: 45.83333333%;
+	@media (max-width: 576px) {
+		display: block;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 `;
 const LabelFechaStyled = styled.p`
 	margin-top: 38px;
