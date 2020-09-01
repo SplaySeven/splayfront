@@ -58,8 +58,8 @@ const index = () => {
 						</Colmd1>
 						<Divbtncerrar>
 							<DivBtn0>
-								<BtnCerrar>
-									<ImgCerrar onClick={onLogout} type="submit" /> Cerrar
+								<BtnCerrar onClick={onLogout}>
+									<ImgCerrar type="submit" /> Cerrar
 								</BtnCerrar>
 							</DivBtn0>
 						</Divbtncerrar>
