@@ -9,6 +9,7 @@ import { useQuery } from '@apollo/client';
 import { GET_COMMENTS } from '../../../../../gql/comment';
 export default function index(props) {
 	const { publication } = props;
+
 	const { data, loading, startPolling, stopPolling } = useQuery(GET_COMMENTS, {
 		variables: {
 			idPublication: publication.id
