@@ -426,7 +426,7 @@ const ContainerGeneralSyled = styled.div`
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	height: 100vh;
+	/*height: 100vh;*/
 `;
 
 const FormRegistroStyled = styled.form`
