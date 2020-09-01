@@ -231,12 +231,24 @@ const InicarSescionStyled = styled.button`
 	word-wrap: break-Word;
 	text-align: center;
 	cursor: pointer;
+	
 	:hover {
 		background: white;
 		color: ${Colores.grey_font};
 		border: 3px solid ${Colores.grey_font};
 	}
-	
+	@media(min-width: 360px)
+	{
+		padding: 4px 4px;
+	}
+	@media(min-width: 768px)
+	{
+		padding: 4px 4px;
+	}
+	@media (min-width: 992px) {
+	{
+		padding: 4px 14px;
+	}
 `;
 const BotonLargo = styled(InicarSescionStyled)`
 `;

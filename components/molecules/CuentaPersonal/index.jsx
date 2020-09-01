@@ -496,7 +496,7 @@ const SubTituloFormSyled = styled.p`
 	width: 100%;
 `;
 const Input50Syled = styled.input`
-	width: 49%;
+	width: 50%;
 	outline: none;
 	font-size: 14px;
 	padding: 10px 16px;
@@ -524,6 +524,14 @@ const VideoStyled = styled.div`
 	padding-bottom: 20%;
 	align-items: center;
 	position: relative;
+	/*
+	@media (min-width: 576px) {
+		display: none;
+	}*/
+	@media (max-width: 768px)
+	{
+		display: none;
+	}
 	
 `;
 
@@ -627,7 +635,7 @@ const BotonSyled = styled.button`
 	padding: 10px;
 	width: 250px;
 	border-radius: 25px;
-	font-size: 28px;
+	font-size: 16px;
 	color: white;
 	border: 3px solid white;
 	background-color: #00a79d;
