@@ -18,7 +18,8 @@ import AvatarM from '../../../../public/imagenes/AvatarMasculino.png';
 import ModalUpload from '../../../organims/Modal/ModalUpload';
 export default function index(props) {
 	const [ showModal, setShowModal ] = useState(false);
-	const { userId } = props.userId.userId;
+
+	const { userId, origen } = props.userId.userId;
 
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: userId }
@@ -52,27 +53,27 @@ export default function index(props) {
 						</Colmd9Aabright>
 					</Colmd9Aab>
 					<Colmd9Aac>
-						<Colmd9Aac1>
-							<IconPostOn onClick={() => setShowModal(true)} /> Crear publicación
+						<Colmd9Aac1 origen={origen} onClick={() => setShowModal(true)}>
+							<IconPostOn /> Crear publicación
 						</Colmd9Aac1>
 						<Lineseparator />
-						<Colmd9Aac2>
+						<Colmd9Aac2 origen={origen}>
 							<IconPhotovideoOn />
 							Foto / Video
 						</Colmd9Aac2>
 						<Lineseparator />
-						<Colmd9Aac3>
+						<Colmd9Aac3 origen={origen}>
 							<IconLiveOn />
 							Video en vivo
 						</Colmd9Aac3>
 						<Lineseparator />
-						<Colmd9Aac4>
+						<Colmd9Aac4 origen={origen}>
 							<IconPlaceOn />
 							Lugar o acontecimiento
 						</Colmd9Aac4>
 					</Colmd9Aac>
 					<Colmd9Aad>
-						<Colmd9Aad1>
+						<Colmd9Aad1 origen={origen}>
 							<Link href="/">
 								<a>
 									<IconPostsOn /> Administración de Publicaciones
@@ -124,6 +125,7 @@ const Colmd9Aa = styled.div`
 `;
 const Colmd9A = styled.div`${colmd9} ${pr0};`;
 const Colmd9Aad1 = styled.div`
+	${(props) => (props.origen === 'F' ? `pointer-events: none` : `pointer-events: auto`)};
 	${colmd7} color: #fff !important;
 	text-align: center !important;
 	padding-bottom: 1rem !important;
@@ -155,6 +157,7 @@ const Colmd9Aad2 = styled.div`
 	}
 `;
 const Colmd9Aac1 = styled.div`
+	${(props) => (props.origen === 'F' ? `pointer-events: none` : `pointer-events: auto`)};
 	${col} color: #fff !important;
 	text-align: center !important;
 	padding-bottom: 1rem !important;
@@ -265,6 +268,7 @@ const Lineseparator = styled.div`
 
 const Colmd9Aac2 = styled(Colmd9Aac1)`
 ${col}
+${(props) => (props.origen === 'F' ? `pointer-events: none` : `pointer-events: auto`)};
 max-width: 180px;
 `;
 const Colmd9Aac3 = styled(Colmd9Aac1)`
@@ -272,6 +276,7 @@ ${col}
 max-width: 180px;
 `;
 const Colmd9Aac4 = styled(Colmd9Aac1)`
+${(props) => (props.origen === 'F' ? `pointer-events: none` : `pointer-events: auto`)};
 ${col}
 `;
 const IconPhotovideoOn = styled.img.attrs({ src: iconPhotovideoOn })`

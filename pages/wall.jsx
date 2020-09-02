@@ -1,18 +1,15 @@
-import styled from 'styled-components';
-
+import Home from '../components/organims/Home';
 import HeaderLogged from '../components/organims/Navbar/HeaderLogged';
 
-export default function wall() {
+export default function index(props) {
+	const { auth } = props;
+
 	return (
 		<React.Fragment>
 			<HeaderLogged />
-			<MensajeMuroStyle>
-				Bienvendio al Muro en unos miasasanutos vermos mas sobre esto feliz dia...
-			</MensajeMuroStyle>
+			<Home auth={auth} />
 		</React.Fragment>
 	);
 }
 
 //css
-
-const MensajeMuroStyle = styled.h1`margin-top: 140px;`;

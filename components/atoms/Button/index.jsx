@@ -9,8 +9,8 @@ function Index ({children,href}){
 
 export default Index
 
-
-const LinkStyled = styled.button`
+/*const LinkStyled = styled.button` backup*/
+const LinkStyled = styled.a`
 	border: 3px solid white;
 	color: #ffff;
 	background-color:#00A79D;

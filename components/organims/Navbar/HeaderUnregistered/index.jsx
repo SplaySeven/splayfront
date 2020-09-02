@@ -6,32 +6,95 @@ import Login from '../../../../components/molecules/Login';
 
 export default function index() {
 	return (
-		<NavbarStyled>
-			<ContainerLogoStyled>
-				<LogoOficial />
-			</ContainerLogoStyled>
-			<Login />
-		</NavbarStyled>
+			<NavbarStyled>
+				<Container1>
+					<ContainerLogoStyled>
+						<LogoOficial />
+					</ContainerLogoStyled>
+					<DivLogin>
+						<Login />
+					</DivLogin>
+				</Container1>
+			</NavbarStyled>
 	);
 }
+const DivLogin = styled.div`
+@media (min-width: 360px) {
+	width: 100%;
+}
+@media (min-width: 768px) {
+	width: 100%;
+}
 
+@media (min-width: 1200px) {
+	width: 70%;
+}
+`
+const Container = styled.div`
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+
+	@media (min-width: 360px) {
+		max-width: 720px;
+	}
+	@media (min-width: 768px) {
+		max-width: 720px;
+	}
+	@media (min-width: 992px) {
+		max-width: 1200px;
+	}
+	@media (min-width: 1200px) {
+		max-width: 1140px;
+	}
+`
+const Container1 = styled(Container)`
+	display: flex;
+	flex-direction: column;
+	@media (min-width: 360px) {
+		flex-direction: column;
+	}
+	@media (min-width: 768px) {
+		flex-direction: column;
+	}
+	@media (min-width: 992px) {
+		flex-direction: row;
+	}
+`
 const NavbarStyled = styled.header`
 	background: ${Colores.Primario};
 	width: 100%;
-	display: flex;
-	position: fixed;
-	height: 75px;
-	z-index: 100px;
+	position: flex;
+	/*flex-wrap: nowrap;*/
+	height: auto;
 	margin-top: auto;
 	top: 0;
 	right: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
 `;
 const ContainerLogoStyled = styled.div`
-	margin-left: 5%;
-	width: 30%;
+	
 	margin-top: auto;
 	margin-bottom: auto;
-	text-align: right;
+	text-align: left;
 	align-items: right;
-	top: 0;
+	@media (min-width: 360px) {
+		width: 100%;
+		text-align: center;
+	}
+	@media (min-width: 768px) {
+		width: 100%;
+		text-align: center;
+	}
+	@media (min-width: 992px) {
+		text-align: left;
+	}
+	@media (min-width: 1200px) {
+		width: 30%;
+		
+	}
+
 `;

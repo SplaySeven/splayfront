@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SideBarLeftPerfil from '../../molecules/SidebarLeftPerfil';
 import BodyPerfil from '../../molecules/BodyPerfil';
 import { row, container } from '../../../styles/styles';
+
 export default function index(props) {
 	return (
 		<React.Fragment>

@@ -20,7 +20,7 @@ import imgcerrar from '../../../../public/imagenes/closeWhite.png';
 
 import useAuth from '../../../../hooks/useAuth';
 
-const wall = () => {
+const index = () => {
 	const { auth, logout } = useAuth();
 	const router = useRouter();
 	const client = useApolloClient();
@@ -58,8 +58,8 @@ const wall = () => {
 						</Colmd1>
 						<Divbtncerrar>
 							<DivBtn0>
-								<BtnCerrar>
-									<ImgCerrar onClick={onLogout} type="submit" /> Cerrar
+								<BtnCerrar onClick={onLogout}>
+									<ImgCerrar type="submit" /> Cerrar
 								</BtnCerrar>
 							</DivBtn0>
 						</Divbtncerrar>
@@ -78,7 +78,7 @@ const wall = () => {
 		</React.Fragment>
 	);
 };
-export default wall;
+export default index;
 
 //css
 
