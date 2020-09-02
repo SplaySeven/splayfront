@@ -18,6 +18,7 @@ export default function index() {
 		[ startPolling, stopPolling ]
 	);
 	if (loading) return null;
+
 	const { getPublicationsFollersFriends } = data;
 
 	return (
