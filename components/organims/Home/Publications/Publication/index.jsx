@@ -11,6 +11,7 @@ import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.p
 import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
 import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
 import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
+import CommentForm from '../CommentForm';
 export default function index(props) {
 	const { publication } = props;
 
@@ -65,6 +66,10 @@ export default function index(props) {
 						</DivDislike>
 					</Row>
 				</Footerpost>
+				<hr />
+				<div>
+					<CommentForm />
+				</div>
 			</Postphoto>
 			<Publication show={showModal} setShow={setShowModal} publication={publication} />
 		</React.Fragment>
@@ -95,7 +100,11 @@ const HpostphotoCol1Name = styled.div`
 	margin-top: 10px;
 `;
 
-const Postphoto = styled.div`margin-bottom: 10px;`;
+const Postphoto = styled.div`
+	margin-bottom: 10px;
+	border: 2px solid #808080;
+	border-radius: 15px;
+`;
 const Footerpost = styled.div`
 	background: #00a79d;
 	padding: 10px 0px;
@@ -115,6 +124,8 @@ const DivComment = styled.div`
 `;
 
 const Headerpost = styled(Footerpost)`
+border-top-left-radius:15px;
+border-top-right-radius:15px;
 `;
 
 const HpostphotoCol2 = styled.div`

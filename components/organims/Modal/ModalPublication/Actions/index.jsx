@@ -4,7 +4,7 @@ import '../Actions/Actions.scss';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_LIKE, IS_LIKE, DELETE_LIKE, COUNT_LIKES } from '../../../../../gql/like';
 export default function index(props) {
-	console.log(props);
+	
 	const [ loadingAction, setLoadingAction ] = useState(false);
 	const { publication } = props;
 	const [ addLike ] = useMutation(ADD_LIKE);
