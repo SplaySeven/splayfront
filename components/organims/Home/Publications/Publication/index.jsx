@@ -68,7 +68,7 @@ export default function index(props) {
 				</Footerpost>
 				<hr />
 				<div>
-					<CommentForm />
+					<CommentForm publication={publication} />
 				</div>
 			</Postphoto>
 			<Publication show={showModal} setShow={setShowModal} publication={publication} />
