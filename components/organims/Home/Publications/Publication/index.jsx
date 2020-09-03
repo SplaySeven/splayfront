@@ -6,12 +6,13 @@ import Publication from '../../../../organims/Modal/ModalPublication';
 import iconPhotovideoOn from '../../../../../public/imagenes/photovideo-on.png';
 import iconwall from '../../../../../public/icons/wall-profile/Muro-Personal.png';
 import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-on.png';
-import iconLikeOn from '../../../../../public/icons/wall-profile/likeon.png';
 import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
 import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
 import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
 import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
 import CommentForm from '../CommentForm';
+import Like from '../../../../atoms/Like';
+import Footer from '../Publication/Footer';
 export default function index(props) {
 	const { publication } = props;
 
@@ -46,32 +47,13 @@ export default function index(props) {
 				<Bodypostphoto>
 					<Imgpost src={publication.file} />
 				</Bodypostphoto>
-				<Footerpost>
-					<Row>
-						<DivLike>
-							<DivIconLike>
-								<IconLikeOn />
-							</DivIconLike>
-						</DivLike>
-						<DivComment>
-							<DivIconComment>
-								<IconCommentOn onClick={() => setShowModal(true)} />
-								<Comment publication={publication} />
-							</DivIconComment>
-						</DivComment>
-						<DivDislike>
-							<DivIconDislike>
-								<IconDislikeOn />
-							</DivIconDislike>
-						</DivDislike>
-					</Row>
-				</Footerpost>
+
+				<Footer publication={publication} />
 				<hr />
 				<div>
 					<CommentForm publication={publication} />
 				</div>
 			</Postphoto>
-			<Publication show={showModal} setShow={setShowModal} publication={publication} />
 		</React.Fragment>
 	);
 }
@@ -105,27 +87,18 @@ const Postphoto = styled.div`
 	border: 2px solid #808080;
 	border-radius: 15px;
 `;
-const Footerpost = styled.div`
-	background: #00a79d;
-	padding: 10px 0px;
-`;
+
 const Imgpost = styled.img`width: 100%;`;
 const Row = styled.div`
 	box-sizing: border-box;
 	${row};
 `;
-const DivComment = styled.div`
-	${col} border-left: 1px solid #fff;
-	border-right: 1px solid #fff;
-	text-align: center;
-	max-width: 15%;
-	padding: 5px;
-	padding-top: 9px;
-`;
 
-const Headerpost = styled(Footerpost)`
-border-top-left-radius:15px;
-border-top-right-radius:15px;
+const Headerpost = styled.div`
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	background: #00a79d;
+	padding: 10px 0px;
 `;
 
 const HpostphotoCol2 = styled.div`
@@ -173,22 +146,9 @@ width: 40px;
 `;
 
 const Bodypostphoto = styled.div``;
-const DivLike = styled.div`
-	${col} text-align: right;
-	padding-left: 15px;
-	padding-top: 7px;
-`;
 
-const DivIconLike = styled.div``;
 const DivIconComment = styled.div``;
 const DivIconDislike = styled.div``;
-const IconLikeOn = styled.img.attrs({ src: iconLikeOn })`
-width: 40px;
-:hover {
-    filter: brightness(0.33); 
-    cursor: pointer;
-}
-`;
 
 const IconCommentOn = styled.img.attrs({ src: iconCommentOn })`
 width: 40px;
@@ -196,6 +156,11 @@ width: 40px;
     filter: brightness(0.33); 
     cursor: pointer;
 }
+`;
+
+const Footerpost = styled.div`
+	background: #00a79d;
+	padding: 10px 0px;
 `;
 
 const DivDislike = styled.div`

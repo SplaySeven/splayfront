@@ -9,23 +9,21 @@ export default function index(props) {
 	const { data, loading, startPolling, stopPolling } = useQuery(COUNT_COMMENTS, {
 		variables: { idPublication: publication.id }
 	});
-
 	useEffect(
 		() => {
 			startPolling(1000);
 			return () => {
-				stopPolling;
+				stopPolling();
 			};
 		},
-		[ startPolling, stopPolling ]
+		[ stopPolling, stopPolling ]
 	);
 
 	if (loading) return null;
 	const { countComments } = data;
-
 	return (
 		<div>
-			<ParrafoStyled>{countComments} comentarios </ParrafoStyled>
+			<ParrafoStyled>{countComments} Comentarios </ParrafoStyled>
 		</div>
 	);
 }

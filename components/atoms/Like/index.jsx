@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Icon } from 'semantic-ui-react';
-import '../Actions/Actions.scss';
+import styled from 'styled-components';
+import iconLikeOn from '../../../public/icons/wall-profile/likeon.png';
+import iconLikeOff from '../../../public/icons/wall-profile/like.png';
+import { col } from '../../../styles/styles';
 import { useMutation, useQuery } from '@apollo/client';
-import { ADD_LIKE, IS_LIKE, DELETE_LIKE, COUNT_LIKES } from '../../../../../gql/like';
+import { ADD_LIKE, IS_LIKE, DELETE_LIKE, COUNT_LIKES } from '../../../gql/like';
+
 export default function index(props) {
 	const [ loadingAction, setLoadingAction ] = useState(false);
 	const { publication } = props;
@@ -30,6 +33,7 @@ export default function index(props) {
 		}
 		setLoadingAction(false);
 	};
+
 	const onDeleteLike = async () => {
 		setLoadingAction(true);
 		try {
@@ -54,19 +58,39 @@ export default function index(props) {
 			}
 		}
 	};
-
 	if (loading || loadingCount) return null;
 	const { isLike } = data;
 	const { countLikes } = dataCount;
-
 	return (
-		<div className="actions">
-			<Icon
-				className={isLike ? 'like active' : 'like'}
-				name={isLike ? 'heart' : 'heart outline'}
-				onClick={isLike ? onDeleteLike : onAddLike}
-			/>
-			{countLikes} {countLikes === 1 ? 'Like' : 'Likes'}
-		</div>
+		<React.Fragment>
+			<DivLike>
+				<DivIconLike onClick={isLike ? onDeleteLike : onAddLike}>
+					{isLike ? <IconLikeOff /> : <IconLikeOn />}
+				</DivIconLike>
+			</DivLike>
+		</React.Fragment>
 	);
 }
+
+const DivLike = styled.div`
+	${col} text-align: right;
+	padding-left: 15px;
+	padding-top: 7px;
+`;
+const DivIconLike = styled.div``;
+
+const IconLikeOn = styled.img.attrs({ src: iconLikeOn })`
+width: 40px;
+:hover {
+    filter: brightness(0.33); 
+    cursor: pointer;
+}
+`;
+
+const IconLikeOff = styled.img.attrs({ src: iconLikeOff })`
+width: 40px;
+:hover {
+    filter: brightness(0.33); 
+    cursor: pointer;
+}
+`;
