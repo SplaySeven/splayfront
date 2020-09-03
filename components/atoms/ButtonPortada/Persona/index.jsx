@@ -136,7 +136,7 @@ export default function index(props) {
 			) : (
 				<Colmd2A>
 					{!loading && buttonFriend()}
-					{!loading && buttonFollow()}
+					<BtnFriends>Amigos</BtnFriends>
 					<BtnFriends>Historial</BtnFriends>
 					<BtnFriends>Informacion</BtnFriends>
 				</Colmd2A>

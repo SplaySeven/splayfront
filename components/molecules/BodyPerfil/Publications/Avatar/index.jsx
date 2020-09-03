@@ -41,7 +41,8 @@ const HpostphotoCol1Img = styled.div`
 
 const AvatarPostAuthor = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
     
-    width: 40px;
+	width: 40px;
+	height:40px;
 	border-radius: 50%;
 `;
 const HpostphotoCol1 = styled.div`${col};`;
