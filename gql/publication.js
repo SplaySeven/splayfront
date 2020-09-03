@@ -26,6 +26,7 @@ export const GET_PUBLICATIONS_FOLLOWEDS_FRIENDS = gql`
 		getPublicationsFollersFriends {
 			id
 			idUser {
+				id
 				name
 				avatar
 			}

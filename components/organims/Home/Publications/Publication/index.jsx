@@ -11,7 +11,8 @@ import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.p
 import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
 import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
 import CommentForm from '../CommentForm';
-import Like from '../../../../atoms/Like';
+import Link from 'next/link';
+
 import Footer from '../Publication/Footer';
 export default function index(props) {
 	const { publication } = props;
@@ -24,10 +25,14 @@ export default function index(props) {
 				<Headerpost>
 					<Row>
 						<HpostphotoCol1>
-							<HpostphotoCol1Img>
-								<AvatarPostAuthor src={publication.idUser.avatar} />
-							</HpostphotoCol1Img>
-							<HpostphotoCol1Name>{publication.idUser.name}</HpostphotoCol1Name>
+							<Link href="/followers/[id]" as={`/followers/${publication.idUser.id}`}>
+								<a>
+									<HpostphotoCol1Img>
+										<AvatarPostAuthor src={publication.idUser.avatar} />
+									</HpostphotoCol1Img>
+									<HpostphotoCol1Name>{publication.idUser.name}</HpostphotoCol1Name>
+								</a>
+							</Link>
 						</HpostphotoCol1>
 
 						<HpostphotoCol2>{timeago}</HpostphotoCol2>
