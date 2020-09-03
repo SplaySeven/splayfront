@@ -3,6 +3,7 @@ import { ApolloProvider } from '@apollo/client';
 import { getToken, decodeToken, removeToken } from '../utils/token';
 import AuthContext from '../context/AuthContext';
 import 'semantic-ui-css/semantic.min.css';
+import { useRouter } from 'next/router';
 //import '../styles/globals.css';
 //import './styles.css';
 
@@ -12,13 +13,21 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
 	const [ auth, setAuth ] = useState(undefined);
+	const router = useRouter();
 
 	useEffect(() => {
 		const token = getToken();
 		if (!token) {
 			setAuth(null);
 		} else {
-			setAuth(decodeToken(token));
+			const { exp } = decodeToken(token);
+			if (Date.now() >= exp * 1000) {
+				client.clearStore();
+				logout();
+				router.push('/');
+			} else {
+				setAuth(decodeToken(token));
+			}
 		}
 	}, []);
 
