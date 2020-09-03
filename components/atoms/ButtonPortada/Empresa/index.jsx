@@ -1,6 +1,7 @@
 import React from 'react';
 import { size } from 'lodash';
 import imgaddasfriend from '../../../../public/icons/wall-profile/Invite-friend-on.png';
+import imgaddasfriend2 from '../../../../public/icons/wall-profile/closeWhite.png';
 import styled, { css } from 'styled-components';
 import { colmd2, textcenter } from '../../../../styles/styles';
 import { useQuery, useMutation } from '@apollo/client';
@@ -25,9 +26,21 @@ export default function index(props) {
 
 	const buttonFollow = () => {
 		if (data.isFollow) {
-			return <BtnInfo onClick={onUnFollow}>Dejar de Seguir</BtnInfo>;
+			return (
+				<BtnAddasfriend onClick={onUnFollow}>
+					<ImgAddasfriend />
+					<br />
+					Dejar de Seguir
+				</BtnAddasfriend>
+			);
 		} else {
-			return <BtnInfo onClick={onFollow}>Seguir</BtnInfo>;
+			return (
+				<BtnAddasfriend onClick={onFollow}>
+					<ImgAddasfriend />
+					<br />
+					Seguir
+				</BtnAddasfriend>
+			);
 		}
 	};
 
@@ -77,12 +90,8 @@ export default function index(props) {
 					{!loading && buttonFollow()}
 
 					<BtnFriends>Me Gusta</BtnFriends>
-					<BtnHistorial>Historial</BtnHistorial>
-					<BtnAddasfriend>
-						<ImgAddasfriend />
-						<br />
-						Seguir
-					</BtnAddasfriend>
+					<BtnFriends>Fotos</BtnFriends>
+					<BtnFriends>Historial</BtnFriends>
 				</Colmd2A>
 			)}
 		</React.Fragment>
@@ -154,6 +163,18 @@ const BtnAddasfriend = styled.a`
 `;
 
 const ImgAddasfriend = styled.img.attrs({ src: imgaddasfriend })`
+vertical-align: middle;
+border-style: none;
+box-sizing: border-box;
+color: #fff;
+white-space: normal;
+word-wrap: break-Word;
+text-align: center;
+cursor: pointer;
+width: 40px;
+`;
+
+const ImgAddasfriend2 = styled.img.attrs({ src: imgaddasfriend2 })`
 vertical-align: middle;
 border-style: none;
 box-sizing: border-box;
