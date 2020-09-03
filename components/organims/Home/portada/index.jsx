@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import iconPostOn from '../../../../public/imagenes/icons/wall-profile/post-on.png';
@@ -8,11 +8,13 @@ import iconPlaceOn from '../../../../public/imagenes/icons/wall-profile/place-on
 import iconWallOff from '../../../../public/imagenes/icons/wall-profile/wall-off.png';
 import iconwall from '../../../../public/imagenes/icons/wall-profile/Muro-Personal.png';
 import AvatarM from '../../../../public/imagenes/AvatarMasculino.png';
+import ModalUpload from '../../../organims/Modal/ModalUpload';
 
 import { row, px0, pr0, col, Col3, Col6, colmd2, colmd3, colmd9, textcenter } from '../../../../styles/styles';
 
 export default function index(props) {
 	const { getUser } = props;
+	const [ showModal, setShowModal ] = useState(false);
 	return (
 		<React.Fragment>
 			<Colmd9Aaa>
@@ -37,7 +39,7 @@ export default function index(props) {
 				</Colmd9Aabright>
 			</Colmd9Aab>
 			<Colmd9Aac>
-				<Colmd9Aac1>
+				<Colmd9Aac1 onClick={() => setShowModal(true)}>
 					<IconPostOn /> Crear publicación
 				</Colmd9Aac1>
 				<Lineseparator />
@@ -56,6 +58,7 @@ export default function index(props) {
 					Lugar o acontecimiento
 				</Colmd9Aac4>
 			</Colmd9Aac>
+			<ModalUpload show={showModal} setShow={setShowModal} />
 		</React.Fragment>
 	);
 }
