@@ -3,14 +3,27 @@ import { Modal, Icon, Button, Dimmer, Loader } from 'semantic-ui-react';
 import { useDropzone } from 'react-dropzone';
 import {toast}from "react-toastify"
 import {useMutation} from '@apollo/client'
-import {PUBLISH} from '../../../../gql/publication'
+import {PUBLISH,GET_PUBLICATIONS_FOLLOWEDS_FRIENDS} from '../../../../gql/publication'
 import '../ModalUpload/ModalUpload.scss';
+
 
 export default function index(props) {
 	const { show, setShow } = props;
 	const [ fileUpload, setFileUpload ] = useState(null);
 	const [isLoading, setIsLoading] = useState(false)
-	const [publish]=useMutation(PUBLISH)
+	const [publish]=useMutation(PUBLISH,{
+		update(cache,{data:{publish}}){
+		 //obtener el obejeto de cache
+		 const {getPublicationsFollersFriends}=cache.readQuery({query:GET_PUBLICATIONS_FOLLOWEDS_FRIENDS})
+		 //reeecribir ese objeto
+		 cache.writeQuery({
+			query:GET_PUBLICATIONS_FOLLOWEDS_FRIENDS,
+			data:{
+				getPublicationsFollersFriends:[...getPublicationsFollersFriends,publish]
+			}
+		 })
+		}
+	})
 
 	const onDrop = useCallback((acceptedFile) => {
 		const file = acceptedFile[0];
