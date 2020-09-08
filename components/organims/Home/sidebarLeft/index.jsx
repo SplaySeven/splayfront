@@ -52,6 +52,7 @@ import iconCommentOn from '../../../../public/imagenes/icons/wall-profile/commen
 import iconDislikeOn from '../../../../public/imagenes/icons/wall-profile/dislike-on.png';
 import iconinvite from '../../../../public/imagenes/icons/wall-profile/Invite-friend-on.png';
 import Avatar from '../sidebarLeft/Avatar';
+import NotFriends from './NotFriends';
 
 export default function index(props) {
 	const { getUser } = props;
@@ -148,41 +149,7 @@ export default function index(props) {
 						</DivoptA1Text>
 					</Divseemore>
 				</DivoptB>
-				<DivoptA>
-					<Divpeoplemayknow>
-						<ImgoptA1t>
-							<ImgoptA1 />
-						</ImgoptA1t>
-						<ImgoptA1t2>
-							Personas que<br />quizás conozcas
-						</ImgoptA1t2>
-					</Divpeoplemayknow>
-					<DivoptA11>
-						<ImgFriendBorder>
-							<ImgFriend3 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Alejandro Bullón</FriendName>
-					</DivoptA11>
-					<DivoptA11>
-						<ImgFriendBorder>
-							<ImgFriend1 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Marcos Rodriguez</FriendName>
-					</DivoptA11>
-					<DivoptA1>
-						<ImgFriendBorder>
-							<ImgFriend2 />
-						</ImgFriendBorder>{' '}
-						<FriendName>Miguel Nuñez</FriendName>
-					</DivoptA1>
-
-					<Divseemore>
-						<DivoptA1Icon>
-							<IconMoreOn />
-						</DivoptA1Icon>
-						<FriendName2>Más Personas</FriendName2>
-					</Divseemore>
-				</DivoptA>
+				<NotFriends getUser={getUser} />
 				<DivoptC>
 					<DivoptCd>
 						<DivoptCo1>

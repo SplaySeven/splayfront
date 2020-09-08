@@ -3,11 +3,12 @@ import { Form, Button } from 'semantic-ui-react';
 import { useFormik, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
-import { ADD_COMMENT } from '../../../../../gql/comment';
+import { ADD_COMMENT, COUNT_COMMENTS } from '../../../../../gql/comment';
 import '../CommentForm/CommentForm.scss';
 export default function index(props) {
 	const { publication } = props;
 	const [ addComment ] = useMutation(ADD_COMMENT);
+
 	const formik = useFormik({
 		initialValues: {
 			comment: ''

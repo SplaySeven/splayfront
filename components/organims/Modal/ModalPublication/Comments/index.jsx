@@ -15,14 +15,15 @@ export default function index(props) {
 			idPublication: publication.id
 		}
 	});
+
 	useEffect(
 		() => {
-			startPolling(1000);
+			startPolling(2000);
 			return () => {
 				stopPolling();
 			};
 		},
-		[ stopPolling, stopPolling ]
+		[ startPolling, stopPolling ]
 	);
 
 	if (loading) return null;
