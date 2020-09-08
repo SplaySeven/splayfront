@@ -32,7 +32,7 @@ export default function index(props) {
 					</DivAvatar3>
 				</Colmd9Aableft>
 				<Colmd9Aabcenter>
-					<Colmd9AabcenterP>¿ Que Piensas ?</Colmd9AabcenterP>
+					<Colmd9AabcenterP onClick={() => setShowModal(true)}>¿ Que Piensas ?</Colmd9AabcenterP>
 				</Colmd9Aabcenter>
 				<Colmd9Aabright>
 					<Colmd9AabrightImg />
@@ -141,7 +141,7 @@ border-style: none;
 
 `;
 
-const Colmd9AabcenterP = styled.p`
+const Colmd9AabcenterP = styled.div`
 	border-left: 2px solid #ccc;
 	color: #646363;
 	padding-left: 1rem !important;
@@ -152,6 +152,10 @@ const Colmd9AabcenterP = styled.p`
 	font-weight: 500;
 	line-height: 1.2;
 	margin-top: 0;
+	:hover {
+		filter: brightness(0.33);
+		cursor: pointer;
+	}
 `;
 
 const Colmd9AableftImg = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`

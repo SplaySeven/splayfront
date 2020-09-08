@@ -14,9 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
 	const [ auth, setAuth ] = useState(undefined);
 	const router = useRouter();
-
 	useEffect(() => {
 		const token = getToken();
+
 		if (!token) {
 			setAuth(null);
 		} else {

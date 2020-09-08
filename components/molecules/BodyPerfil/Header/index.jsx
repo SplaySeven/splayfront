@@ -46,7 +46,9 @@ export default function index(props) {
 						</Colmd9Aableft>
 
 						<Colmd9Aabcenter>
-							<Colmd9AabcenterP>¿ Que Piensas ?</Colmd9AabcenterP>
+							<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
+								¿ Que Piensas ?
+							</Colmd9AabcenterP>
 						</Colmd9Aabcenter>
 						<Colmd9Aabright>
 							<Colmd9AabrightImg />
@@ -234,6 +236,10 @@ const Colmd9AabcenterP = styled.p`
 	font-weight: 500;
 	line-height: 1.2;
 	margin-top: 0;
+	:hover {
+		filter: brightness(0.33);
+		cursor: pointer;
+	}
 `;
 const Colmd9Aab = styled.div`
 	${row} background: #fff;
