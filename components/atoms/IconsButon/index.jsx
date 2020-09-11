@@ -12,16 +12,15 @@ export default function index(props) {
 }
 
 const DivBtn0 = styled.div`
-	position: absolute;
-	bottom: 10px;
-	box-sizing: border-box;
+	
 `;
 
 const ImgFriends = styled.img.attrs((props) => ({ src: props.img ? props.img : imgFriends }))`
     vertical-align: middle;
     border-style: none;
     box-sizing: border-box;
-    width:100%;
+	width:100%;
+	max-width: 40px;
     :hover {
         filter: brightness(0.33);
         cursor: pointer;

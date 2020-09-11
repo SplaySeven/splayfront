@@ -101,9 +101,15 @@ function ResultSearch(props){
 
 //Css
 const DivHeader2 = styled.div`
-	${colmd4} -ms-flex: 0 0 28.333333%;
-	flex: 0 0 28.333333%;
-	max-width: 28.333333%;
+	-ms-flex: 0 0 83.333333%;
+	flex: 0 0 83.333333%;
+	max-width: 83.333333%;
+
+	@media(max-width: 768px) {
+		-ms-flex: 0 0 83.333333%;
+		flex: 0 0 83.333333%;
+		max-width: 83.333333%;
+	}
 `;
 const Row = styled.div`
 	box-sizing: border-box;
