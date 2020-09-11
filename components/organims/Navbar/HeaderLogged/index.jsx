@@ -107,6 +107,7 @@ const ForthGroup1 = styled.div`
 -ms-flex: 0 0 41.666667%;
 flex: 0 0 41.666667%;
 max-width: 41.666667%;
+display: none;
 `
 const ForthGroupRow = styled.div`
 display: -ms-flexbox;
@@ -115,7 +116,6 @@ display: flex;
 flex-wrap: wrap;
 `
 const ForthGroup = styled.div`
-display:none;
 -ms-flex: 0 0 20.666667%;
 flex: 0 0 20.666667%;
 max-width: 20.666667%;

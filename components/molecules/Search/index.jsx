@@ -51,7 +51,6 @@ export default function index() {
 		<DivHeader2>
 			<Row>
 				<Colmd12>
-					<FriendSearch>Búsqueda de redes y amigos</FriendSearch>
 					<Search
 						className="search-users"
 						fluid
@@ -62,6 +61,7 @@ export default function index() {
 						onResultSelect={hendleResultSelect}
 						results={results}
 						resultRenderer={(e)=><ResultSearch data={e}/>}
+						placeholder="Búsqueda de redes y amigos"
 					/>
 				</Colmd12>
 			</Row>
