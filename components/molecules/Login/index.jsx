@@ -62,13 +62,14 @@ export default function demo2() {
 	return (
 		<React.Fragment>
 			{uid === 'isActive' ? (
-				<div>
+				<Form>
 					<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
 					<SubTituloFormSyled>En simples y cortos pasos..</SubTituloFormSyled>
+
 					<Grid textAlign="center" style={{ height: '62vh' }} verticalAlign="middle">
 						<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
 					</Grid>
-				</div>
+				</Form>
 			) : (
 				<Accounts data={uid} />
 			)}
