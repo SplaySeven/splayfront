@@ -12,7 +12,7 @@ export default function index2() {
 	return (
 		<Layout>
 			{auth === null && <Auth />}
-			{auth && <Wall />}
+			{auth && <Wall auth={auth} />}
 		</Layout>
 	);
 }

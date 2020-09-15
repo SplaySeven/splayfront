@@ -8,8 +8,7 @@ const Index = () => {
 export default Index;
 
 const LogoSrcStyled = styled.img.attrs({ src: logo })`
-padding:10px;
-width: 60%;
+height: 40px;
 text-align:center;
 align-items:center;
 `;

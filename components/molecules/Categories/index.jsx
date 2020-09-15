@@ -48,7 +48,6 @@ export default function index() {
 			} else {
 				toast.success('Se cargo con Exito Fotografia');
 			}
-			console.log(data);
 		} catch (error) {
 			console.log(error);
 		}

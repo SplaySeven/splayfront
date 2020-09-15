@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import PantallaEstatica from '../../../imagenes/Pantalla_estatica.png';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import useAuth from '../../../hooks/useAuth';
+import { setToken } from '../../../utils/token';
 import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../gql/user';
 import ImagHelper from '../../../public/imagenes/icon-1.png';
 import { Colores } from '../../../styles/Colores';
 import IconoEmpresarial from '../../../public/imagenes/Iconoempresarial.png';
 
 import { Dias, Mes, Ano } from '../../../styles/Fecha';
-import { removeClientSetsFromDocument } from '@apollo/client/utilities';
 
 function useCoordenadas() {
 	const [ coordenadas, setCoordenadas ] = useState({
@@ -49,13 +48,14 @@ function useCoordenadas() {
 
 const index = () => {
 	//Mutation para crear nuevos usuarios
+	const { setUser } = useAuth();
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
+	//Mutation para crear nuevos usuarios en apollo
+	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 
 	const coordenadas = useCoordenadas();
 
 	//Routing
-
-	const route = useRouter();
 
 	//Validamos del formulario
 
@@ -99,8 +99,19 @@ const index = () => {
 				});
 
 				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
+				//Pasamamos email y paswwor para poder ingresar
+				const { data: dataAuth } = await authenticateUser({
+					variables: {
+						input: {
+							email,
+							password
+						}
+					}
+				});
 				formik.resetForm({});
-
+				const { token } = dataAuth.authenticateUser;
+				setToken(token);
+				setUser(token);
 				//	route.push(`/categories?id=${id}`, `/categories/${id}`);
 			} catch (error) {
 				toast.error(error.message.replace('GraphQL error:', ''));
@@ -378,27 +389,94 @@ function initialValues() {
 		gender: 'M'
 	};
 }
+const Container = styled.div`
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
 
+	@media (min-width: 360px) {
+		max-width: 720px;
+	}
+	@media (min-width: 768px) {
+		max-width: 720px;
+	}
+	@media (min-width: 992px) {
+		max-width: 1200px;
+	}
+	@media (min-width: 1200px) {
+		max-width: 1140px;
+	}
+`
+const Container1 = styled(Container)`
+	display: flex;
+	flex-direction: column;
+	@media (min-width: 360px) {
+		flex-direction: column;
+	}
+	@media (min-width: 768px) {
+		flex-direction: column;
+	}
+	@media (min-width: 992px) {
+		flex-direction: row;
+	}
+`
 const ContainerGeneralSyled = styled.div`
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	height: 100vh;
+	/*height: 100vh;*/
 `;
 
 const FormRegistroStyled = styled.form`
-	max-width: 70%;
-
-	margin: auto;
-	margin-top: 75px;
 	box-sizing: border-box;
 	display: flex;
+	display: -ms-flexbox;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	justify-content: space-between;
+
+	@media (min-width: 360px) {
+		max-width: 720px;
+	}
+	@media (min-width: 768px) {
+		max-width: 720px;
+	}
+	@media (min-width: 992px) {
+		max-width: 1200px;
+	}
+	@media (min-width: 1200px) {
+		max-width: 1140px;
+	}
 `;
 const ContainerIzquierdoSyled = styled.div`
-	width: 100%;
+	/*width: 100%;*/
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	display: block;
+	-ms-flex: 0 0 41.66666667%;
+	flex: 0 0 41.66666667%;
+	max-width: 41.66666667%;
+
+	@media (max-width: 576px) {
+		display: block;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+
+	@media (min-width: 768px) {
+
+	}
 `;
 
 const TituloFormSyled = styled.h1`
@@ -418,7 +496,7 @@ const SubTituloFormSyled = styled.p`
 	width: 100%;
 `;
 const Input50Syled = styled.input`
-	width: 49%;
+	width: 50%;
 	outline: none;
 	font-size: 14px;
 	padding: 10px 16px;
@@ -446,16 +524,35 @@ const VideoStyled = styled.div`
 	padding-bottom: 20%;
 	align-items: center;
 	position: relative;
-	height: 500px;
+	/*
+	@media (min-width: 576px) {
+		display: none;
+	}*/
+	@media (max-width: 768px)
+	{
+		display: none;
+	}
+	
 `;
 
 //Lado derecho
 
 const ContainerDerechoSyled = styled.div`
+	/*
 	padding: 12px;
 	margin-left: 30px;
-	margin-right: 8px;
-	width: 100%;
+	margin-right: 8px;*/
+
+	display: block;
+	-ms-flex: 0 0 45.83333333%;
+	flex: 0 0 45.83333333%;
+	max-width: 45.83333333%;
+	@media (max-width: 576px) {
+		display: block;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 `;
 const LabelFechaStyled = styled.p`
 	margin-top: 38px;
@@ -538,7 +635,7 @@ const BotonSyled = styled.button`
 	padding: 10px;
 	width: 250px;
 	border-radius: 25px;
-	font-size: 28px;
+	font-size: 16px;
 	color: white;
 	border: 3px solid white;
 	background-color: #00a79d;
