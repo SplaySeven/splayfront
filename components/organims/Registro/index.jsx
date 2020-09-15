@@ -2,6 +2,7 @@ import React from 'react';
 import CuentaPersonal from '../../molecules/CuentaPersonal';
 import styled from 'styled-components';
 import CuentaEmpresarial from '../../molecules/CuentaEmpresarial';
+import Login from '../../molecules/Login';
 import logofondo from '../../../public/imagenes/Logo-bg.png';
 
 const SectionStyled = styled.main`
@@ -17,7 +18,7 @@ const SectionStyled = styled.main`
 const index = () => {
 	return (
 		<SectionStyled>
-			<CuentaPersonal />
+			<Login />
 		</SectionStyled>
 	);
 };

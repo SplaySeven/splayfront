@@ -6,30 +6,28 @@ import Login from '../../../../components/molecules/Login';
 
 export default function index() {
 	return (
-			<NavbarStyled>
-				<Container1>
-					<ContainerLogoStyled>
-						<LogoOficial />
-					</ContainerLogoStyled>
-					<DivLogin>
-						<Login />
-					</DivLogin>
-				</Container1>
-			</NavbarStyled>
+		<NavbarStyled>
+			<Container1>
+				<ContainerLogoStyled>
+					<LogoOficial />
+				</ContainerLogoStyled>
+				<DivLogin />
+			</Container1>
+		</NavbarStyled>
 	);
 }
 const DivLogin = styled.div`
-@media (min-width: 360px) {
-	width: 100%;
-}
-@media (min-width: 768px) {
-	width: 100%;
-}
+	@media (min-width: 360px) {
+		width: 100%;
+	}
+	@media (min-width: 768px) {
+		width: 100%;
+	}
 
-@media (min-width: 1200px) {
-	width: 70%;
-}
-`
+	@media (min-width: 1200px) {
+		width: 70%;
+	}
+`;
 const Container = styled.div`
 	width: 100%;
 	padding-right: 15px;
@@ -49,7 +47,7 @@ const Container = styled.div`
 	@media (min-width: 1200px) {
 		max-width: 1140px;
 	}
-`
+`;
 const Container1 = styled(Container)`
 	display: flex;
 	flex-direction: column;
@@ -62,7 +60,7 @@ const Container1 = styled(Container)`
 	@media (min-width: 992px) {
 		flex-direction: row;
 	}
-`
+`;
 const NavbarStyled = styled.header`
 	background: ${Colores.Primario};
 	width: 100%;
@@ -76,7 +74,6 @@ const NavbarStyled = styled.header`
 	padding-bottom: 10px;
 `;
 const ContainerLogoStyled = styled.div`
-	
 	margin-top: auto;
 	margin-bottom: auto;
 	text-align: left;
@@ -94,7 +91,5 @@ const ContainerLogoStyled = styled.div`
 	}
 	@media (min-width: 1200px) {
 		width: 30%;
-		
 	}
-
 `;
