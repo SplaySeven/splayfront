@@ -116,7 +116,7 @@ export default function index(props) {
 		<React.Fragment>
 			<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
 			<SubTituloFormSyled>En simples y cortos pasos..</SubTituloFormSyled>
-			<Grid textAlign="center" style={{ height: '62vh' }} verticalAlign="middle">
+			<Grid textAlign="center" style={{ height: '120vh' }} verticalAlign="middle">
 				<Form onSubmit={formik.handleSubmit}>
 					<Form.Field>
 						<label>Nombres</label>
@@ -285,7 +285,14 @@ export default function index(props) {
 					<Form.Field>
 						<Checkbox name="term" label="Estoy de acuerdo con los términos y condiciones" />
 					</Form.Field>
-					<Button type="submit">Enviar</Button>
+					<div>
+						<hr />
+					</div>
+					<div>
+						<Button color="teal" fluid size="large" type="submit">
+							Registar
+						</Button>
+					</div>
 				</Form>
 			</Grid>
 		</React.Fragment>
