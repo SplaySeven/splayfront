@@ -11,8 +11,9 @@ const FooterStyled = styled.footer`
 	text-align: center;
 	color: write;
 	margin-top: 0px;
-	/*position: fixed;
-	bottom: 0;*/
+
+	position: fixed;
+	bottom: 0;
 `;
 
 const Footer1 = () => {

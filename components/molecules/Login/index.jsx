@@ -1,254 +1,95 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import styled from 'styled-components';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useMutation } from '@apollo/client';
-import { setToken } from '../../../utils/token';
-import { Colores } from '../../../styles/Colores';
-import useAuth from '../../../hooks/useAuth';
-import { AUTHENTICATE_USER } from '../../../gql/user';
-import { route } from 'next/dist/next-server/server/router';
-
-const Index = () => {
-	const { setUser } = useAuth();
-
-	//State para el mensaje
-	const [ mensaje, guardarMensaje ] = useState(null);
-	//Mutation para crear nuevos usuarios en apollo
-	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
-
-	const formik = useFormik({
-		initialValues: {
-			email: '',
-			password: ''
-		},
-		validationSchema: Yup.object({
-			email: Yup.string().email('El email no es valido').required('El email no puede ir vacio'),
-			password: Yup.string().required('El password es obligarorio')
-		}),
-		onSubmit: async (valores) => {
-			const { email, password } = valores;
-
-			try {
-				const { data } = await authenticateUser({
-					variables: {
-						input: {
-							email,
-							password
-						}
-					}
-				});
-				guardarMensaje('Autenticado......');
-				//Guardar el token en localstorage
-				const { token } = data.authenticateUser;
-				//localStorage.setItem('token', token);
-				setToken(token);
-				setUser(token);
-			} catch (error) {
-				toast.error(error.message.replace('GraphQL error:', ''));
-			}
-		}
-	});
-	const mostrarMensaje = () => {
-		return (
-			<div>
-				<p>{mensaje}</p>
-			</div>
-		);
-	};
-
-	return (
-		<FormStyle onSubmit={formik.handleSubmit}>
-			<DivInputsLogin>
-				<ItemStyled>
-					<div>{mensaje && mostrarMensaje()}</div>
-					<LabelStyled>Correo o telefono</LabelStyled>
-					<InputSyled
-						type="text"
-						placeholder="Email o Telefono"
-						name="email"
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.email}
-					/>
-				</ItemStyled>
-				<ItemStyled>
-					<LabelStyled>Password</LabelStyled>
-					<InputSyled
-						type="password"
-						placeholder="Password"
-						name="password"
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.password}
-					/>
-				</ItemStyled>
-			</DivInputsLogin>
-			<DivBtnIniciar>
-				<InicarSescionStyled type="submit">Iniciar Sesión</InicarSescionStyled>
-			</DivBtnIniciar>
-			<DivbtnFortgot>
-				<BotonLargo>¿Olvidaste Tu Cuenta?</BotonLargo>
-			</DivbtnFortgot>
-		</FormStyle>
-	);
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'semantic-ui-react';
+import { ISUSER_FIREBASE, GET_USER } from '../../../gql/user';
+import { useMutation, useQuery } from '@apollo/client';
+import Accounts from '../../atoms/Accounts';
+const config = {
+	apiKey: 'AIzaSyB6Z3nS7j1TuWcJQQEQ9TWUsSXTYLTg2-0',
+	authDomain: 'splay7-8f0b9.firebaseapp.com',
+	databaseURL: 'https://splay7-8f0b9.firebaseio.com',
+	projectId: 'splay7-8f0b9',
+	storageBucket: 'splay7-8f0b9.appspot.com',
+	messagingSenderId: '665609040430',
+	appId: '1:665609040430:web:ea5fd0fb32da95d3b1e5bf',
+	measurementId: 'G-CWW5V9EXGN'
 };
 
-export default Index;
-
-/* estilos css */
-const DivbtnFortgot = styled.div`
-@media (min-width: 360px) {
-	-ms-flex: 0 0 60.333333%;
-	flex: 0 0 60.333333%;
-	max-width: 60.333333%;
-	align-self: flex-start;
-	padding-top: 10px;
-}
-@media (min-width: 768px) {
-	-ms-flex: 0 0 60.333333%;
-	flex: 0 0 60.333333%;
-	max-width: 60.333333%;
-	align-self: flex-start;
-	padding-top: 10px;
+if (!firebase.apps.length) {
+	firebase.initializeApp(config);
 }
 
-@media (min-width: 992px) {
-	align-self: flex-end;
-}
-`
-const DivInputsLogin = styled.div`
+export default function demo2() {
+	const [ uid, setUid ] = useState('isActive');
 
-@media (min-width: 360px) {
-	-ms-flex: 0 0 60.333333%;
-	flex: 0 0 60.333333%;
-	max-width: 60.333333%;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-flow: row wrap;
-	flex-flow: row wrap;
-}
-@media (min-width: 768px) {
-	-ms-flex: 0 0 60.333333%;
-	flex: 0 0 60.333333%;
-	max-width: 60.333333%;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-flow: row wrap;
-	flex-flow: row wrap;
+	const uiConfig = {
+		// Popup signin flow rather than redirect flow.
+		signInFlow: 'popup',
+		// We will display Google and Facebook as auth providers.
+		signInOptions: [
+			{
+				provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
+			},
+			{
+				provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
+			},
+			{
+				provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID
+			},
+			{
+				provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+				requireDisplayName: false
+			}
+		],
+
+		callbacks: {
+			// Avoid redirects after sign-in.
+			signInSuccessWithAuthResult: () => false
+		}
+	};
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				setUid(user);
+			}
+			firebase.auth().signOut();
+		});
+	}, []);
+
+	return (
+		<React.Fragment>
+			{uid === 'isActive' ? (
+				<div>
+					<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
+					<SubTituloFormSyled>En simples y cortos pasos..</SubTituloFormSyled>
+					<Grid textAlign="center" style={{ height: '62vh' }} verticalAlign="middle">
+						<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+					</Grid>
+				</div>
+			) : (
+				<Accounts data={uid} />
+			)}
+		</React.Fragment>
+	);
 }
 
-@media (min-width: 992px) {
-	flex-flow: row;
-}
-`
-const DivBtnIniciar = styled.div`
--ms-flex: 0 0 20.333333%;
-flex: 0 0 20.333333%;
-max-width: 20.333333%;
-@media (min-width: 360px) {
-	align-self: flex-start;
-	padding-top: 18px;
-	-ms-flex: 0 0 35.333333%;
-    -webkit-flex: 0 0 35.333333%;
-    -ms-flex: 0 0 35.333333%;
-    flex: 0 0 35.333333%;
-    max-width: 35.333333%;
-}
-@media (min-width: 768px) {
-	align-self: flex-start;
-	padding-top: 18px;
-	-ms-flex: 0 0 35.333333%;
-    -webkit-flex: 0 0 35.333333%;
-    -ms-flex: 0 0 35.333333%;
-    flex: 0 0 35.333333%;
-    max-width: 35.333333%;
-}
-@media (min-width: 992px) {
-	align-self: flex-end;
-	-ms-flex: 0 0 20.333333%;
-    -webkit-flex: 0 0 20.333333%;
-    -ms-flex: 0 0 20.333333%;
-    flex: 0 0 20.333333%;
-    max-width: 20.333333%;
-}
-`
-const LabelStyled = styled.div`color: ${Colores.white_color};`;
-
-const FormStyle = styled.form`
-	/*float: right;*/
-	display: flex;
-	margin: 0;
-	align-items: center;
-	@media (min-width: 360px) {
-		flex-direction: row;
-		flex-flow: row wrap;
-	}
-	@media (min-width: 768px) {
-		flex-direction: row;
-		flex-flow: row wrap;
-	}
-	@media (min-width: 992px) {
-		flex-direction: row;
-		flex-flow: row;
-	}
-`;
-
-const ItemStyled = styled.div`
-	padding: 3px;
-	margin-left: 2%;
-	width: 95%;
-`;
-const InputSyled = styled.input`
-	height: 25px;
-	width: 100%;
-	border-top: 2px;
-	text-decoration: none;
-	border: 3px solid ${Colores.white_color};
-	outline: none;
-	color: black;
-	text-align: left;
-	::hover {
-		background-color: ${Colores.white_color};
-		color: ${Colores.white_color};
-		border: 3px solid ${Colores.grey_font};
-	}
-`;
-const InicarSescionStyled = styled.button`
-	outline: none;
-	/*margin-top: 15px;*/
-	border: 3px solid white;
-	color: ${Colores.white_color};
-	background-color: ${Colores.Primario};
-	padding: 4px 14px;
-	border-radius: 15px;
-	margin-left: 2%;
-	box-sizing: content-box;
-	display: inline-block;
-	text-decoration: none;
-	white-space: normal;
-	word-wrap: break-Word;
+const TituloFormSyled = styled.h1`
+	padding-top: 3%;
 	text-align: center;
-	cursor: pointer;
-	
-	:hover {
-		background: white;
-		color: ${Colores.grey_font};
-		border: 3px solid ${Colores.grey_font};
-	}
-	@media(min-width: 360px)
-	{
-		padding: 4px 4px;
-	}
-	@media(min-width: 768px)
-	{
-		padding: 4px 4px;
-	}
-	@media (min-width: 992px) {
-	{
-		padding: 4px 14px;
-	}
+	font-size: 50px;
+	color: #5a5b5d;
+	margin: 0;
 `;
-const BotonLargo = styled(InicarSescionStyled)`
+
+const SubTituloFormSyled = styled.p`
+	color: #5a5b5d;
+	font-size: 18px;
+	margin-top: 0px;
+	margin-bottom: 15px;
+	text-align: center;
+
+	width: 100%;
 `;
