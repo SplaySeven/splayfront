@@ -5,22 +5,20 @@ import imgFriends from '../../../public/imagenes/friends-on.png';
 export default function index(props) {
 	const { src } = props;
 	return (
-		<DivBtn0>
+		<React.Fragment>
 			<ImgFriends img={src} />
-		</DivBtn0>
+		</React.Fragment>
 	);
 }
 
-const DivBtn0 = styled.div`
-	
-`;
 
 const ImgFriends = styled.img.attrs((props) => ({ src: props.img ? props.img : imgFriends }))`
-    vertical-align: middle;
-    border-style: none;
+   
+	border-style: none;
+	padding: 0px 12px;
     box-sizing: border-box;
-	width:100%;
-	max-width: 40px;
+    width:65px;
+
     :hover {
         filter: brightness(0.33);
         cursor: pointer;

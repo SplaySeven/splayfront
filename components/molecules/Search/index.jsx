@@ -48,10 +48,11 @@ export default function index() {
 		setResults([])
 	}
 	return (
-		<DivHeader2>
-			<Row>
-				<Colmd12>
-					<Search
+
+	<React.Fragment>			
+				<ContSearch>
+				<Search
+					    placeholder="Busqueda de redes y amigos"
 						className="search-users"
 						fluid
 						input={{ icon: 'search', iconPosition: 'left' }}
@@ -63,9 +64,9 @@ export default function index() {
 						resultRenderer={(e)=><ResultSearch data={e}/>}
 						placeholder="Búsqueda de redes y amigos"
 					/>
-				</Colmd12>
-			</Row>
-		</DivHeader2>
+					</ContSearch>
+					
+		</React.Fragment>
 	);
 }
 
@@ -91,62 +92,13 @@ function ResultSearch(props){
 	)
 }
 
-/*<div className="search-users__item">
-/*
-<DivInputsearch>
-<Inputsearch />
-<SearchIcon />
-</DivInputsearch>
-*/
 
-//Css
-const DivHeader2 = styled.div`
-	-ms-flex: 0 0 83.333333%;
-	flex: 0 0 83.333333%;
-	max-width: 83.333333%;
-
-	@media(max-width: 768px) {
-		-ms-flex: 0 0 83.333333%;
-		flex: 0 0 83.333333%;
-		max-width: 83.333333%;
-	}
-`;
-const Row = styled.div`
-	box-sizing: border-box;
-	${row};
+const ContSearch =styled.div`
+ margin-top:12px;
+ margin-right:10px;
 `;
 
-const Colmd12 = styled.div`${colmd12};`;
 
-const FriendSearch = styled.label`${label} color: #fff !important;`;
-const DivInputsearch = styled.div`
-	background: #fff;
-	width: 310px;
-	padding: 3px 0px;
-	box-sizing: border-box;
-`;
-const Inputsearch = styled.input.attrs({ placeholder: 'Buscar' })`
-width: 270px;
--webkit-text-decoration: none;
-text-decoration: none;
-border: 3px solid white;
-background: #fff;
-outline: none;
-color: #808080;
-border: 1px solid #fff;
-border-left-color: rgb(255, 255, 255);
-border-left-style: solid;
-border-left-width: 1px;
-border-left-color: rgb(225, 225, 225);
-border-left-style: solid;
-border-left-width: 1px;
-overflow: visible;
-margin: 0;
-font-family: inherit;
-font-size: inherit;
-line-height: inherit;
-box-sizing: border-box;
-`;
 
 const SearchIcon = styled.img.attrs({ src: searchicon })`
     box-sizing: border-box;

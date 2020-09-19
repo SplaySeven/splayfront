@@ -6,7 +6,6 @@ export default function index(props) {
 
 	return (
 		<React.Fragment>
-			<HeaderLogged />
 			<Home auth={auth} />
 		</React.Fragment>
 	);

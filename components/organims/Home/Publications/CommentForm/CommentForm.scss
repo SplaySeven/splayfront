@@ -17,6 +17,9 @@
 				border-radius: 25px;
 				padding-right: 80px;
 			}
+			@media (max-width: 768px) {
+				height: 35px;
+			}
 		}
 	}
 	.ui.button {

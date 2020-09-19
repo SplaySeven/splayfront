@@ -16,7 +16,7 @@ export default function index(props) {
 	const { getUser } = props;
 	const [ showModal, setShowModal ] = useState(false);
 	return (
-		<React.Fragment>
+		<Encabezado>
 			<Colmd9Aaa>
 				<Link href="/wall/[wall]" as={`/wall/${getUser.id}`}>
 					<a>
@@ -40,28 +40,42 @@ export default function index(props) {
 			</Colmd9Aab>
 			<Colmd9Aac>
 				<Colmd9Aac1 onClick={() => setShowModal(true)}>
-					<IconPostOn /> Crear publicación
+					<IconPostOn />
+					<A>Crear publicación</A>
 				</Colmd9Aac1>
 				<Lineseparator />
-				<Colmd9Aac2>
-					<IconPhotovideoOn />
-					Foto / Video
+				<Colmd9Aac2 title="Foto/Video">
+					<IconPhotovideoOn alt="Foto / Video" />
+					<A>Foto / Video</A>
 				</Colmd9Aac2>
 				<Lineseparator />
 				<Colmd9Aac3>
 					<IconLiveOn />
-					Video en vivo
+					<A href="">Video en vivo</A>
 				</Colmd9Aac3>
 				<Lineseparator />
 				<Colmd9Aac4>
 					<IconPlaceOn />
-					Lugar o acontecimiento
+					<A href="">Lugar o acontecimiento</A>
 				</Colmd9Aac4>
 			</Colmd9Aac>
 			<ModalUpload show={showModal} setShow={setShowModal} />
-		</React.Fragment>
+		</Encabezado>
 	);
 }
+
+const A = styled.a`
+	font-weight: bold;
+	@media (max-width: 768px) {
+		display: none;
+		font-size: 8px;
+	}
+`;
+
+const Encabezado = styled.section`
+	background: #00a79d;
+	border: 2px solid white;
+`;
 
 const IconPostOn = styled.img.attrs({ src: iconPostOn })`
 height: 30px;
@@ -138,6 +152,9 @@ vertical-align: middle;
 border-style: none;
 vertical-align: middle;
 border-style: none;
+@media (max-width: 768px) {
+	width:65px;
+	}
 
 `;
 
@@ -156,6 +173,9 @@ const Colmd9AabcenterP = styled.div`
 		filter: brightness(0.33);
 		cursor: pointer;
 	}
+	@media (max-width: 768px) {
+		font-size: 15px;
+	}
 `;
 
 const Colmd9AableftImg = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
@@ -166,6 +186,13 @@ vertical-align: middle;
 border-style: none;
 box-sizing: border-box;
 text-align: center !important;
+@media (max-width: 768px) {
+		width: 50px;
+		height: 50px;
+		text-align:left;
+		
+		
+	}
 `;
 
 const Colmd9Aableft = styled.div`
@@ -200,9 +227,15 @@ const DivAvatar3 = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	padding: 12px;
+	@media (max-width: 768px) {
+		background-size: 60px 60px;
+		text-align: left;
+		padding: 8px;
+	}
 `;
 
 const Colmd9Aaa = styled.div`
+	background-color: #00a79d;
 	color: #fff !important;
 	text-align: center !important;
 	font-size: 2rem;
@@ -220,6 +253,10 @@ margin-right: 10px;
 vertical-align: middle;
 border-style: none;
 box-sizing: border-box;
+@media (max-width: 768px) {
+	    width:45px;
+	
+	}
 `;
 
 const Colmd3A = styled.div`${colmd3} ${px0} background: #00a79d;`;

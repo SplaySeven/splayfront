@@ -85,6 +85,9 @@ width: 40px;
     filter: brightness(0.33); 
     cursor: pointer;
 }
+@media (max-width: 768px) {
+	width: 20px;
+	}
 `;
 
 const IconLikeOff = styled.img.attrs({ src: iconLikeOff })`
@@ -93,4 +96,7 @@ width: 40px;
     filter: brightness(0.33); 
     cursor: pointer;
 }
+@media (max-width: 768px) {
+	width: 20px;
+	}
 `;
