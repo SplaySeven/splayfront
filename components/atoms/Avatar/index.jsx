@@ -33,7 +33,9 @@ const DivphotoProfile = styled.div`
 	background-repeat: repeat;
 	background-size: auto;
 	background-repeat: no-repeat;
+
 	background-size: 54px 54px;
+
 	padding: 6px;
 `;
 const Photoprofile = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
@@ -46,6 +48,7 @@ border-style: none;
 box-sizing: border-box;
 width:40px;
 height:40px;
+
 :hover {
     cursor: pointer;
 }

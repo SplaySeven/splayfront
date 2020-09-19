@@ -48,14 +48,10 @@ export default function index() {
 		setResults([])
 	}
 	return (
-		<React.Fragment>
-		
-			    
-				
-				
-					<ContSearch>
-				
-					<Search
+
+	<React.Fragment>			
+				<ContSearch>
+				<Search
 					    placeholder="Busqueda de redes y amigos"
 						className="search-users"
 						fluid
@@ -66,6 +62,7 @@ export default function index() {
 						onResultSelect={hendleResultSelect}
 						results={results}
 						resultRenderer={(e)=><ResultSearch data={e}/>}
+						placeholder="Búsqueda de redes y amigos"
 					/>
 					</ContSearch>
 					
@@ -99,7 +96,6 @@ function ResultSearch(props){
 const ContSearch =styled.div`
  margin-top:12px;
  margin-right:10px;
-
 `;
 
 
