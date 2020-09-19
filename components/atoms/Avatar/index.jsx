@@ -15,28 +15,57 @@ export default function Logo1() {
 	const { getUser } = data;
 
 	return (
-		<DivphotoProfile>
-			<Photoprofile getUser={getUser} />
-		</DivphotoProfile>
+		<Container>
+			<DivphotoProfile>
+				<Photoprofile getUser={getUser} />
+			</DivphotoProfile>
+			<DivName>
+				<Name>{getUser.name}</Name>
+			</DivName>
+		</Container>
 	);
 }
 
+const Container = styled.div`display: flex;`;
 const DivphotoProfile = styled.div`
+	text-align: left;
 	background: url(/icons/wall-profile/border-photo-2.png);
 	background-repeat: repeat;
 	background-size: auto;
 	background-repeat: no-repeat;
-	background-size: 64px 64px;
+	background-size: 54px 54px;
 	padding: 6px;
 `;
 const Photoprofile = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
 border-radius: 50%;
+-webkit-border-radius: 50%; /*Safari-Chrome*/
+-moz-border-radius: 50%; /*Firefox*/
 vertical-align: middle;
+text-align: left;
 border-style: none;
 box-sizing: border-box;
-width:52px;
-height:52px;
+width:40px;
+height:40px;
 :hover {
     cursor: pointer;
 }
+`;
+
+const DivName = styled.div`
+	bottom: 0;
+	display: inline;
+	text-align: center;
+	@media (max-width: 768px) {
+		display: none;
+	}
+`;
+
+const Name = styled.h1`
+	color: #fff !important;
+	font-size: 1.25rem;
+	margin-bottom: .5rem;
+	font-weight: 500;
+	line-height: 1.2;
+	padding: 10px;
+	box-sizing: border-box;
 `;

@@ -24,7 +24,7 @@ export default function index(props) {
 	const { countComments } = data;
 	return (
 		<React.Fragment>
-			<ParrafoStyled>{countComments} Comentarios </ParrafoStyled>
+			<ParrafoStyled> Comentarios {countComments} </ParrafoStyled>
 		</React.Fragment>
 	);
 }

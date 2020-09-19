@@ -44,18 +44,32 @@ export default function index(props) {
 
 const DetalleStyled = styled.div`
 	color: white;
-	display: flex;
+	width: 100%;
+
+	display: inline-flex;
 `;
 const DetalleLeft = styled.div`
-	margin-left: 25px;
+	width: 50%;
+	text-align: left;
+	margin-left: 20px;
 	color: white;
 	font-weight: bold;
+	@media (max-width: 768px) {
+		margin-left: 5px;
+		width: 50%;
+		text-align: left;
+	}
 `;
 const DetalleRigth = styled.div`
-	margin-left: 600px;
+	width: 50%;
+	text-align: right;
+	margin-right: 20px;
 	:hover {
 		filter: brightness(0.33);
 		cursor: pointer;
+	}
+	@media (max-width: 768px) {
+		margin-left: 80px;
 	}
 `;
 const IconDislikeOn = styled.img.attrs({ src: iconDislikeOn })`
@@ -64,8 +78,16 @@ width: 40px;
     filter: brightness(0.33); 
     cursor: pointer;
 }
+@media (max-width: 768px) {
+	width: 20px;
+	}
 `;
-const DivIconDislike = styled.div``;
+const DivIconDislike = styled.div`
+	color: white;
+	@media (max-width: 768px) {
+		width: 20px;
+	}
+`;
 const Row = styled.div`
 	box-sizing: border-box;
 	${row};
@@ -82,15 +104,29 @@ const DivComment = styled.div`
 	max-width: 15%;
 	padding: 5px;
 	padding-top: 9px;
+	@media (max-width: 768px) {
+		max-width: 10%;
+		text-align: center;
+	}
 `;
-const DivIconComment = styled.div``;
+const DivIconComment = styled.div`
+	color: white;
+	@media (max-width: 768px) {
+		width: 20px;
+		text-align: center;
+	}
+`;
 
 const IconCommentOn = styled.img.attrs({ src: iconCommentOn })`
 width: 40px;
 :hover {
     filter: brightness(0.33); 
-    cursor: pointer;
+	cursor: pointer;
+	
 }
+@media (max-width: 768px) {
+	width: 20px;
+	}
 `;
 
 const DivDislike = styled.div`

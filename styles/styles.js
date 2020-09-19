@@ -22,7 +22,7 @@ position: relative;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-`
+`;
 export const Col1 = `
 -ms-flex: 0 0 8.333333%;
   flex: 0 0 8.333333%;
@@ -144,8 +144,8 @@ export const colmd1 = `
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd2 = `
+  `;
+export const colmd2 = `
     -ms-flex: 0 0 16.666667%;
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
@@ -153,8 +153,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd3 = `
+  `;
+export const colmd3 = `
     -ms-flex: 0 0 25%;
     flex: 0 0 25%;
     max-width: 25%;
@@ -162,8 +162,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd4 = `
+  `;
+export const colmd4 = `
     -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
@@ -171,8 +171,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd5 = `
+  `;
+export const colmd5 = `
     -ms-flex: 0 0 41.666667%;
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
@@ -180,8 +180,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd6 = `
+  `;
+export const colmd6 = `
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
@@ -189,8 +189,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd7 = `
+  `;
+export const colmd7 = `
     -ms-flex: 0 0 58.333333%;
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
@@ -198,8 +198,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd8 = `
+  `;
+export const colmd8 = `
     -ms-flex: 0 0 66.666667%;
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
@@ -207,8 +207,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd9 = `
+  `;
+export const colmd9 = `
     -ms-flex: 0 0 75%;
     flex: 0 0 75%;
     max-width: 75%;
@@ -216,8 +216,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd10 = `
+  `;
+export const colmd10 = `
     -ms-flex: 0 0 83.333333%;
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
@@ -225,8 +225,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd11 = `
+  `;
+export const colmd11 = `
     -ms-flex: 0 0 91.666667%;
     flex: 0 0 91.666667%;
     max-width: 91.666667%;
@@ -234,8 +234,8 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const colmd12 = `
+  `;
+export const colmd12 = `
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
@@ -243,30 +243,30 @@ padding-left: 15px;
 width: 100%;
 padding-right: 15px;
 padding-left: 15px;
-  `
-  export const py3 = `
+  `;
+export const py3 = `
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
-  `
-  export const pt3 = `
+  `;
+export const pt3 = `
     padding-top: 1rem !important;
-  `
-  export const pb3 = `
+  `;
+export const pb3 = `
     padding-bottom: 1rem !important;
-  `
-  export const pt4 = `
+  `;
+export const pt4 = `
   text-align: center !important;
-  `
-  export const px0 = `
+  `;
+export const px0 = `
   padding-left: 0px;
   padding-right: 0px;
-  `
+  `;
 
-  export const pr0 = `
+export const pr0 = `
   padding-right: 0px;
-  `
+  `;
 
-  export const container = `
+export const container = `
     min-width: 992px !important;
     width: 100%;
     padding-right: 15px;
@@ -288,14 +288,13 @@ padding-left: 15px;
     @media (min-width: 1200px) {
         max-width: 1140px;
     }
-  `
-  export const label = `
+  `;
+export const label = `
   display: inline-block;
   margin-bottom: .5rem;
   box-sizing: border-box;
-  `
+  `;
 
-  export const textcenter = `
+export const textcenter = `
   text-align: center !important;
- `
-  
+ `;

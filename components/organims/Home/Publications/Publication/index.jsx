@@ -63,7 +63,15 @@ export default function index(props) {
 	);
 }
 
-const HpostphotoCol1 = styled.div`${col};`;
+const HpostphotoCol1 = styled.div`
+	${col};
+
+	@media (max-width: 768px) {
+		width: 70%;
+		margin-right: 0px;
+		padding-left: 0px;
+	}
+`;
 const HpostphotoCol1Img = styled.div`
 	float: left;
 	margin-right: 10px;
@@ -74,11 +82,20 @@ const HpostphotoCol1Img = styled.div`
 	background-size: 48px 48px;
 	padding-top: 4px;
 	padding-left: 4px;
+	@media (max-width: 768px) {
+		margin-left: 10px;
+		padding-left: 0px;
+	}
 `;
 const AvatarPostAuthor = styled.img`
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	@media (max-width: 768px) {
+		margin-right: 0px;
+		padding-left: 0px;
+		text-align: left;
+	}
 `;
 const HpostphotoCol1Name = styled.div`
 	float: left;
@@ -87,10 +104,16 @@ const HpostphotoCol1Name = styled.div`
 	margin-top: 10px;
 `;
 
-const Postphoto = styled.div`
+const Postphoto = styled.section`
+	float: right;
+	text-align: right;
+	width: 69%;
 	margin-bottom: 10px;
 	border: 2px solid #808080;
 	border-radius: 15px;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 `;
 
 const Imgpost = styled.img`width: 100%;`;
@@ -113,8 +136,20 @@ const HpostphotoCol2 = styled.div`
 	border-left: 1px solid #fff;
 	border-right: 1px solid #fff;
 	padding-top: 10px;
+	@media (max-width: 768px) {
+		${col} max-width: 20%;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 `;
-const HpostphotoCol3 = styled.div`${col};`;
+const HpostphotoCol3 = styled.div`
+	${col};
+	@media (max-width: 768px) {
+		padding-left: 0px;
+		padding-right: 5px;
+		max-width: 30%;
+	}
+`;
 
 const HpostphotoCol3Div1 = styled.div`
 	float: right;
@@ -133,7 +168,10 @@ const HpostphotoCol3Icon1 = styled.img.attrs({ src: iconPhotovideoOn })`
     :hover {
         filter: brightness(0.33);
         cursor: pointer;
-    }
+	}
+	@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 const HpostphotoCol3Icon2 = styled.img.attrs({ src: iconwall })`
 width: 40px;
@@ -141,6 +179,9 @@ width: 40px;
     filter: brightness(0.33);
     cursor: pointer;
 }
+@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 const HpostphotoCol3Icon3 = styled.img.attrs({ src: iconinvite })`
 width: 40px;
@@ -148,6 +189,9 @@ width: 40px;
     filter: brightness(0.33);
     cursor: pointer;
 }
+@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 
 const Bodypostphoto = styled.div``;

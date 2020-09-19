@@ -50,6 +50,7 @@ export default function demo2() {
 			signInSuccessWithAuthResult: () => false
 		}
 	};
+
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {

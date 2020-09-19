@@ -14,7 +14,7 @@ export default function index(props) {
 
 	return (
 		<React.Fragment>
-			{countLikes} {countLikes === 1 ? 'Like' : 'Likes'}
+			{countLikes === 1 ? 'Like' : 'Likes'} {countLikes}
 		</React.Fragment>
 	);
 }
