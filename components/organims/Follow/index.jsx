@@ -19,7 +19,7 @@ export default function index(props) {
 		<React.Fragment>
 			<HeaderLogged />
 			<Container>
-				<section>
+				<Section>
 					<Portada data={props} />
 					<Aside>
 						<AsideSection1 />
@@ -38,7 +38,7 @@ export default function index(props) {
 					</section>
 
 					<ClearFix />
-				</section>
+				</Section>
 				<Footer>
 					<LogoMarcaRegistrada />
 				</Footer>
@@ -46,7 +46,7 @@ export default function index(props) {
 		</React.Fragment>
 	);
 }
-
+const Section = styled.section`padding-top: 65px;`;
 const Container = styled.div`
 	width: 62%;
 	background: #c4e0dd;

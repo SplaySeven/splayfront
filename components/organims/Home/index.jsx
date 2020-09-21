@@ -27,14 +27,14 @@ export default function demo() {
 		<React.Fragment>
 			<HeaderLogged />
 			<Container>
-				<section>
+				<Section>
 					<Aside>
 						<SidebarLeft getUser={getUser} />
 					</Aside>
 					<Portada getUser={getUser} />
 					<Publications getUser={getUser} />
 					<ClearFix />
-				</section>
+				</Section>
 				<Footer>
 					<LogoMarcaRegistrada />
 				</Footer>
@@ -42,6 +42,8 @@ export default function demo() {
 		</React.Fragment>
 	);
 }
+
+const Section = styled.section`padding-top: 65px;`;
 
 const Container = styled.div`
 	width: 62%;

@@ -21,6 +21,7 @@ const index = () => {
 		router.push('/');
 	};
 
+	if (auth === null) return '0';
 	return (
 		<React.Fragment>
 			<Nav>
@@ -50,6 +51,8 @@ export default index;
 //css
 const Nav = styled.nav`
 	display: flex;
+	position: fixed;
+	z-index: 100;
 	background-color: #00a79d;
 	width: 100%;
 	height: 69px;
