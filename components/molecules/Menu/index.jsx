@@ -29,6 +29,9 @@ const LineaStyled = styled.div`
 		border: 3px solid #808080;
 		/*cursor: pointer;*/
 	}
+	@media (max-width: 768px) {
+		display: none;
+	}
 	@media (max-width: 576px) {
 		a {
 			display: none;

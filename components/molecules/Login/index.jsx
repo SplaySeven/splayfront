@@ -7,6 +7,9 @@ import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'seman
 import { ISUSER_FIREBASE, GET_USER } from '../../../gql/user';
 import { useMutation, useQuery } from '@apollo/client';
 import Accounts from '../../atoms/Accounts';
+import '../Login/login.scss';
+import LoginForm from '../Login/LoginForm';
+
 const config = {
 	apiKey: 'AIzaSyB6Z3nS7j1TuWcJQQEQ9TWUsSXTYLTg2-0',
 	authDomain: 'splay7-8f0b9.firebaseapp.com',
@@ -63,14 +66,21 @@ export default function demo2() {
 	return (
 		<React.Fragment>
 			{uid === 'isActive' ? (
-				<Form>
-					<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
-					<SubTituloFormSyled>En simples y cortos pasos..</SubTituloFormSyled>
-
-					<Grid textAlign="center" style={{ height: '62vh' }} verticalAlign="middle">
-						<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+				<section>
+					<Grid textAlign="center" style={{ height: '78vh' }} verticalAlign="middle">
+						<Grid.Column style={{ maxWidth: 450 }}>
+							<Form size="large">
+								<Segment stacked>
+									<TituloFormSyled>Crea tu Cuenta</TituloFormSyled>
+									<SubTituloFormSyled>En simples y cortos pasos..</SubTituloFormSyled>
+									<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+									<hr />
+									<LoginForm />
+								</Segment>
+							</Form>
+						</Grid.Column>
 					</Grid>
-				</Form>
+				</section>
 			) : (
 				<Accounts data={uid} />
 			)}
@@ -79,7 +89,7 @@ export default function demo2() {
 }
 
 const TituloFormSyled = styled.h1`
-	padding-top: 3%;
+	padding-top: 10%;
 	text-align: center;
 	font-size: 50px;
 	color: #5a5b5d;
