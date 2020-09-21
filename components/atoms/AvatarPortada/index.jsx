@@ -7,17 +7,19 @@ import AvatarM from '../../../public/imagenes/AvatarMasculino.png';
 import Modalbasic from '../../organims/Modal/ModalBasic';
 import AvatarForm from '../../organims/AvatarForm';
 export default function Logo1(props) {
+	const { origen } = props.userId;
+
 	const [ showModal, setShowModal ] = useState(false);
 	const { userId } = props.userId;
 	const { data, loading, error } = useQuery(GET_USER, {
-		variables: { id: userId.userId }
+		variables: { id: userId }
 	});
 	if (loading || error) return null;
 	const { getUser } = data;
 
 	return (
 		<DivphotoProfile2>
-			{userId.origen === 'W' ? (
+			{origen === 'W' ? (
 				<ImgProfile getUser={getUser} onClick={() => setShowModal(true)} />
 			) : (
 				<ImgProfile getUser={getUser} />
@@ -39,18 +41,33 @@ const DivphotoProfile2 = styled.div`
 	background-size: 150px 150px;
 	padding: 6px;
 	position: absolute;
-	top: 20px;
-	box-sizing: border-box;
+	top: 90px;
+	@media (max-width: 768px) {
+		height: 55px;
+		width: 55px;
+		background-size: 51px 51px;
+		padding: 0px;
+		top: 90px;
+	}
 `;
 /* Se pone con props para que sean dinamicos los avatar */
 const ImgProfile = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
 box-sizing: border-box;
-vertical-align: middle;
 border-style: none;
 border-radius: 50%;
+line-height:100px;
 width:100%;
 height:100%;
+top: 80px;
 :hover{
 	cursor: pointer;
 }
+@media (max-width: 768px) {
+	:hover{
+	cursor: pointer;
+}
+
+	}
+
+
 `;

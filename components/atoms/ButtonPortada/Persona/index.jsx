@@ -7,6 +7,7 @@ import { colmd2, textcenter } from '../../../../styles/styles';
 import { useQuery, useMutation } from '@apollo/client';
 import { IS_FRIEND, FRIEND, UN_FRIEND, GET_FRIENDS } from '../../../../gql/friend';
 import { IS_FOLLOW, FOLLOW, UN_FOLLOW, GET_FOLLOWERS } from '../../../../gql/follow';
+
 export default function index(props) {
 	const origen = props.data.data.data.origen;
 	const userId = props.data.data.data.userId;
@@ -42,7 +43,7 @@ export default function index(props) {
 				<BtnAddasfriend onClick={onUnFriend}>
 					<ImgAddasfriend2 />
 					<br />
-					Quitar como Amigo
+					<A>Quitar como Amigo</A>
 				</BtnAddasfriend>
 			);
 		} else {
@@ -50,7 +51,7 @@ export default function index(props) {
 				<BtnAddasfriend onClick={onFriend}>
 					<ImgAddasfriend />
 					<br />
-					Agregar como Amigo
+					<A>Agregar como Amigo</A>
 				</BtnAddasfriend>
 			);
 		}
@@ -145,58 +146,72 @@ export default function index(props) {
 	);
 }
 
+const A = styled.a`@media (max-width: 768px) {font-size: 7px;}`;
 const Name = styled.p`
 	color: #fff !important;
 	font-size: 1.25rem;
 	margin-bottom: .5rem;
 	font-weight: 500;
-	line-height: 1.2;
 	margin-top: 0;
-	box-sizing: border-box;
+	@media (max-width: 768px) {
+		font-size: 8px;
+	}
 `;
 
-const Colmd2A = styled.div`${colmd2} ${textcenter};`;
+const Colmd2A = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 200px;
+	text-align: center;
+	@media (max-width: 768px) {
+		height: 100px;
+	}
+`;
 
-const BtnInfo = styled.a`
-	outline: none;
+const BtnInfo = styled.button`
 	border: 3px solid white;
 	color: #fff;
 	background-color: #00a79d;
 	padding: 0px 20px;
 	border-radius: 20px;
 	margin: 10px 2px;
-	box-sizing: content-box;
-	display: inline-block;
-	-webkit-text-decoration: none;
-	text-decoration: none;
-	white-space: normal;
-	word-wrap: break-Word;
-	text-align: center;
+	height: 30px;
+	width: 130px;
+	margin-left: 50%;
+	transform: translateX(-50%);
+
+	white-space: nowrap;
+
 	cursor: pointer;
 	:hover {
 		background: #fff;
 		color: #00a79d;
 	}
-/*	${(props) => (props.disabled ? css`background: red;` : css`background: green;`)};*/
+	@media (max-width: 768px) {
+		height: 15px;
+		width: 60px;
+		font-size: 8px;
+		margin: 0px;
+		margin-left: 35px;
+		padding: 1px;
+		margin-top: 4px;
+		border: 1px solid white;
+	}
 `;
 const BtnFriends = styled(BtnInfo)`
-width: 85px;
-margin: 10px 2px;
 `;
 const BtnHistorial = styled(BtnInfo)`
-width: 85px;
-
 `;
-const BtnAddasfriend = styled.a`
+const BtnAddasfriend = styled.button`
 	outline: none;
+	border: 0px solid;
 	color: #fff;
 	background-color: #00a79d;
 	padding: 0px 5px;
 	margin: 2px 2px;
-	margin-top: 2px;
 	margin-top: 27px;
 	box-sizing: content-box;
-	display: inline-block;
+
 	-webkit-text-decoration: none;
 	text-decoration: none;
 	white-space: normal;
@@ -208,6 +223,11 @@ const BtnAddasfriend = styled.a`
 	}
 	:hover {
 		color: #595b61 !important;
+	}
+	@media (max-width: 768px) {
+		margin: 0px;
+		margin-top: 2px;
+		padding: 0px;
 	}
 `;
 
@@ -221,6 +241,10 @@ word-wrap: break-Word;
 text-align: center;
 cursor: pointer;
 width: 40px;
+@media (max-width: 768px) {
+	width:20px;	
+	}
+
 `;
 const ImgAddasfriend2 = styled.img.attrs({ src: imgaddasfriend2 })`
 vertical-align: middle;
@@ -232,4 +256,7 @@ word-wrap: break-Word;
 text-align: center;
 cursor: pointer;
 width: 40px;
+@media (max-width: 768px) {
+	width:20px;	
+	}
 `;

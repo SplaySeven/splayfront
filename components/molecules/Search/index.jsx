@@ -49,13 +49,8 @@ export default function index() {
 	}
 	return (
 		<React.Fragment>
-		
-			    
-				
-				
 					<ContSearch>
-				
-					<Search
+						<Search
 					    placeholder="Busqueda de redes y amigos"
 						className="search-users"
 						fluid

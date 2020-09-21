@@ -243,8 +243,12 @@ const Colmd9Aaa = styled.div`
 	font-weight: 500;
 	line-height: 1.2;
 	box-sizing: border-box;
+	margin-left: 31%;
 	:hover {
 		filter: brightness(0.33);
+	}
+	@media (max-width: 768px) {
+		margin-left: 0%;
 	}
 `;
 const Colmd9Aaaimg = styled.img.attrs({ src: iconwall })`

@@ -24,7 +24,9 @@ export default function index(props) {
 	const { countComments } = data;
 	return (
 		<React.Fragment>
-			<ParrafoStyled> Comentarios {countComments} </ParrafoStyled>
+			<ParrafoStyled>
+				<A>{countComments} Comentarios </A>
+			</ParrafoStyled>
 		</React.Fragment>
 	);
 }
@@ -32,4 +34,6 @@ export default function index(props) {
 const ParrafoStyled = styled.span`
 	color: white;
 	font-weight: bold;
+	padding-left: 3px;
 `;
+const A = styled.a`@media (max-width: 768px) {font-size: 8px;}`;
