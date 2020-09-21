@@ -16,7 +16,7 @@ export default function index() {
 				</Divoptfriendconnected>
 				<Div>
 					<div>
-						<Link href="/marco">
+						<Link href="#">
 							<a>
 								<DivoptA1>
 									<ImgFriendBorder>
@@ -28,7 +28,7 @@ export default function index() {
 						</Link>
 					</div>
 					<div>
-						<Link href="/miguel">
+						<Link href="#">
 							<a>
 								<DivoptA1>
 									<ImgFriendBorder>
@@ -40,7 +40,7 @@ export default function index() {
 						</Link>
 					</div>
 					<div>
-						<Link href="/alejandro">
+						<Link href="#">
 							<a>
 								<DivoptA1>
 									<ImgFriendBorder>
