@@ -21,8 +21,20 @@ const index = () => {
 		router.push('/');
 	};
 
+	const forMobile = (e) => {
+		const w = window.innerWidth
+		
+		if (w < 769)
+		{
+			e.preventDefault();
+			
+			//prueba();
+		}
+	}
+
 	return (
 		<React.Fragment>
+
 			<Nav>
 				<Logo>
 					<LogoSrcStyled />
@@ -46,6 +58,7 @@ const index = () => {
 	);
 };
 export default index;
+
 
 //css
 const Nav = styled.nav`
@@ -100,6 +113,9 @@ const ContAvatar = styled.div`
 	padding-top: 6px;
 	@media (max-width: 768px) {
 		width: 14%;
+	}
+	:hover img {
+		filter: brightness(0.33);
 	}
 `;
 

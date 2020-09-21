@@ -48,6 +48,7 @@ export default function index() {
 		setResults([])
 	}
 	return (
+
 		<React.Fragment>
 					<ContSearch>
 						<Search
@@ -61,6 +62,7 @@ export default function index() {
 						onResultSelect={hendleResultSelect}
 						results={results}
 						resultRenderer={(e)=><ResultSearch data={e}/>}
+						placeholder="Búsqueda de redes y amigos"
 					/>
 					</ContSearch>
 					
@@ -94,7 +96,6 @@ function ResultSearch(props){
 const ContSearch =styled.div`
  margin-top:12px;
  margin-right:10px;
-
 `;
 
 
