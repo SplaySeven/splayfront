@@ -9,6 +9,7 @@ import { useMutation } from '@apollo/client';
 import useAuth from '../../../../hooks/useAuth';
 import { setToken } from '../../../../utils/token';
 import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../../gql/user';
+import { FOLLOW } from '../../../../gql/follow';
 
 function useCoordenadas() {
 	const [ coordenadas, setCoordenadas ] = useState({
@@ -48,6 +49,7 @@ export default function index(props) {
 
 	const { setUser } = useAuth();
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
+	const [ follow ] = useMutation(FOLLOW);
 	//Mutation para crear nuevos usuarios en apollo
 	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 	const coordenadas = useCoordenadas();
@@ -72,7 +74,7 @@ export default function index(props) {
 			const { city, country_name, latitude, longitude, contycode } = coordenadas;
 
 			try {
-				const { data } = await newUser({
+				const { data: dataUserNew } = await newUser({
 					variables: {
 						input: {
 							name,
@@ -92,7 +94,7 @@ export default function index(props) {
 						}
 					}
 				});
-				toast.success(`Se creo correctamente el Usuario :${data.newUser.name}`);
+				toast.success(`Se creo correctamente el Usuario :${dataUserNew.newUser.name}`);
 				//Pasamamos email y paswwor para poder ingresar
 				const { data: dataAuth } = await authenticateUser({
 					variables: {
@@ -102,10 +104,17 @@ export default function index(props) {
 						}
 					}
 				});
+				// Realacionamos el usuario creado con splay7 para que por defaul lo tenga como seguidor
+
 				formik.resetForm({});
 				const { token } = dataAuth.authenticateUser;
 				setToken(token);
 				setUser(token);
+				await follow({
+					variables: {
+						id: '5f67e6e3047e370017d22dbf'
+					}
+				});
 			} catch (error) {
 				toast.error(error.message.replace('GraphGL error:', ''));
 			}
