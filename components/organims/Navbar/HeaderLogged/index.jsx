@@ -21,17 +21,8 @@ const index = () => {
 		router.push('/');
 	};
 
-	const forMobile = (e) => {
-		const w = window.innerWidth
-		
-		if (w < 769)
-		{
-			e.preventDefault();
-			
-			//prueba();
-		}
-	}
 
+	if (auth === null) return '0';
 	return (
 		<React.Fragment>
 
@@ -63,6 +54,8 @@ export default index;
 //css
 const Nav = styled.nav`
 	display: flex;
+	position: fixed;
+	z-index: 100;
 	background-color: #00a79d;
 	width: 100%;
 	height: 69px;
