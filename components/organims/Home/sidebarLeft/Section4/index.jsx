@@ -11,8 +11,12 @@ export default function index(props) {
 }
 
 const Section4 = styled.section`
-	height: 220px;
+	height: 400px;
 	border-right: 15px solid #c4e0dd;
+	overflow: auto;
+	::-webkit-scrollbar-thumb::horizontal {
+		border-radius: 10px;
+	}
 	background-color: #00a79d;
 	@media (max-width: 768px) {
 		display: none;

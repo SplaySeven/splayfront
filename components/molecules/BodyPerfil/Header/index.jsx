@@ -10,7 +10,6 @@ import iconPostOn from '../../../../public/icons/wall-profile/post-on.png';
 import iconPhotovideoOn from '../../../../public/icons/wall-profile/photovideo-on.png';
 import iconLiveOn from '../../../../public/icons/wall-profile/live-on.png';
 import iconPlaceOn from '../../../../public/icons/wall-profile/place-on.png';
-import Publications from '../Publications';
 
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../../gql/user';
@@ -27,89 +26,103 @@ export default function index(props) {
 	if (loading || error) return null;
 	const { getUser } = data;
 	return (
-		<React.Fragment>
+		<Section>
 			<Colmd9A>
-				<Colmd9Aa>
-					<Colmd9Aaa>
-						<Link href="/">
-							<a>
-								<Colmd9Aaaimg />
-								Muro Social
-							</a>
-						</Link>
-					</Colmd9Aaa>
-					<Colmd9Aab>
-						<Colmd9Aableft>
-							<div>
-								<Colmd9AableftImg getUser={getUser} />
-							</div>
-						</Colmd9Aableft>
+				<Colmd9Aaa>
+					<Link href="/">
+						<A>
+							<Colmd9Aaaimg />
+							Muro Social
+						</A>
+					</Link>
+				</Colmd9Aaa>
+				<Colmd9Aab>
+					<Colmd9Aableft>
+						<div>
+							<Colmd9AableftImg getUser={getUser} />
+						</div>
+					</Colmd9Aableft>
 
-						<Colmd9Aabcenter>
-							<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
-								¿ Que Piensas ?
-							</Colmd9AabcenterP>
-						</Colmd9Aabcenter>
-						<Colmd9Aabright>
-							<Colmd9AabrightImg />
-						</Colmd9Aabright>
-					</Colmd9Aab>
-					<Colmd9Aac>
-						<Colmd9Aac1 origen={origen} onClick={() => setShowModal(true)}>
-							<IconPostOn /> Crear publicación
-						</Colmd9Aac1>
-						<Lineseparator />
-						<Colmd9Aac2 origen={origen}>
-							<IconPhotovideoOn />
-							Foto / Video
-						</Colmd9Aac2>
-						<Lineseparator />
-						<Colmd9Aac3 origen={origen}>
-							<IconLiveOn />
-							Video en vivo
-						</Colmd9Aac3>
-						<Lineseparator />
-						<Colmd9Aac4 origen={origen}>
-							<IconPlaceOn />
-							Lugar o acontecimiento
-						</Colmd9Aac4>
-					</Colmd9Aac>
-					<Colmd9Aad>
-						<Colmd9Aad1 origen={origen}>
-							<Link href="/">
-								<a>
-									<IconPostsOn /> Administración de Publicaciones
-								</a>
-							</Link>
-						</Colmd9Aad1>
-						<Colmd9Aad2>
-							<Link href="/">
-								<a>
-									<IconWall /> Muro Social
-								</a>
-							</Link>
-						</Colmd9Aad2>
-					</Colmd9Aad>
-					<hr />
-					<Publications getUser={getUser} />
-				</Colmd9Aa>
+					<Colmd9Aabcenter>
+						<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
+							<A>¿ Que Piensas ?</A>
+						</Colmd9AabcenterP>
+					</Colmd9Aabcenter>
+					<Colmd9Aabright>
+						<Colmd9AabrightImg />
+					</Colmd9Aabright>
+				</Colmd9Aab>
+				<Colmd9Aac>
+					<Colmd9Aac1 origen={origen} onClick={() => setShowModal(true)}>
+						<IconPostOn />
+						<A1>Crear publicación</A1>
+					</Colmd9Aac1>
+					<Lineseparator />
+					<Colmd9Aac2 origen={origen}>
+						<IconPhotovideoOn />
+						<A1>Foto / Video</A1>
+					</Colmd9Aac2>
+					<Lineseparator />
+					<Colmd9Aac3 origen={origen}>
+						<IconLiveOn />
+						<A1>Video en vivo</A1>
+					</Colmd9Aac3>
+					<Lineseparator />
+					<Colmd9Aac4 origen={origen}>
+						<IconPlaceOn />
+						<A1>Lugar o acontecimiento</A1>
+					</Colmd9Aac4>
+				</Colmd9Aac>
+				<Colmd9Aad>
+					<Colmd9Aad1 origen={origen}>
+						<Link href="/">
+							<A>
+								<IconPostsOn />
+								Administración de Publicaciones
+							</A>
+						</Link>
+					</Colmd9Aad1>
+					<Colmd9Aad2>
+						<Link href="/">
+							<A>
+								<IconWall /> Muro Social
+							</A>
+						</Link>
+					</Colmd9Aad2>
+				</Colmd9Aad>
+				<hr />
 			</Colmd9A>
 			<ModalUpload show={showModal} setShow={setShowModal} />
-		</React.Fragment>
+		</Section>
 	);
 }
+
+const A1 = styled.a`@media (max-width: 768px) {display: none;}`;
+
+const A = styled.a`@media (max-width: 768px) {font-size: 15px;}`;
+const Section = styled.section`
+	background: #00a79d;
+	border: 2px solid white;
+`;
 
 const IconWall = styled.img.attrs({ src: iconwall })`
 height: 40px;
 margin-right: 10px;
 vertical-align: middle;
 border-style: none;
+@media (max-width: 768px) {
+	height:20px;
+}
 `;
 const IconPostsOn = styled.img.attrs({ src: iconPostsOn })`
 height: 40px;
 margin-right: 10px;
 vertical-align: middle;
 border-style: none;
+
+@media (max-width: 768px) {
+	height:20px;
+}
 `;
 
 const Colmd9Aac = styled.div`
@@ -125,7 +138,7 @@ const Colmd9Aa = styled.div`
 	margin-top: .5rem !important;
 	box-sizing: border-box;
 `;
-const Colmd9A = styled.div`${colmd9} ${pr0};`;
+const Colmd9A = styled.section`width: 100%;`;
 const Colmd9Aad1 = styled.div`
 	${(props) => (props.origen === 'F' ? `pointer-events: none` : `pointer-events: auto`)};
 	${colmd7} color: #fff !important;
@@ -182,9 +195,18 @@ margin-right: 10px;
 vertical-align: middle;
 border-style: none;
 box-sizing: border-box;
+
+
+@media (max-width: 768px) {
+width:25px
+
+
+}
+
 `;
 
 const Colmd9Aaa = styled.div`
+	background-color: #00a79d;
 	color: #fff !important;
 	text-align: center !important;
 	font-size: 2rem;
@@ -194,6 +216,10 @@ const Colmd9Aaa = styled.div`
 	box-sizing: border-box;
 	:hover {
 		filter: brightness(0.33);
+	}
+	margin-left: 31%;
+	@media (max-width: 768px) {
+		margin-left: 0%;
 	}
 `;
 
@@ -206,6 +232,10 @@ vertical-align: middle;
 border-style: none;
 box-sizing: border-box;
 text-align: center !important;
+@media (max-width: 768px) {
+	width: 50px;
+height:50px;
+}
 `;
 
 const Colmd9Aableft = styled.div`
@@ -258,6 +288,9 @@ vertical-align: middle;
 border-style: none;
 vertical-align: middle;
 border-style: none;
+@media (max-width: 768px) {
+	width:50px;
+}
 
 `;
 

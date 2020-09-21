@@ -37,18 +37,32 @@ const HpostphotoCol1Img = styled.div`
 	background-size: 48px 48px;
 	padding-top: 4px;
 	padding-left: 4px;
+	@media (max-width: 768px) {
+		margin-left: 10px;
+		padding-left: 0px;
+	}
 `;
 
 const AvatarPostAuthor = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
-    
 	width: 40px;
 	height:40px;
 	border-radius: 50%;
+	@media (max-width: 768px) {
+		margin-right: 0px;
+		padding-left: 0px;
+		text-align: left;
+	}
 `;
-const HpostphotoCol1 = styled.div`${col};`;
+const HpostphotoCol1 = styled.div`
+	${col};
+	@media (max-width: 768px) {
+		width: 70%;
+		margin-right: 0px;
+		padding-left: 0px;
+	}
+`;
 const HpostphotoCol1Name = styled.div`
 	float: left;
-	width: 100px;
 	font-weight: bold;
 	color: #fff;
 	margin-top: 10px;

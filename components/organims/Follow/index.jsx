@@ -1,38 +1,42 @@
 import React from 'react';
-
 import styled from 'styled-components';
 
 import HeaderLogged from '../Navbar/HeaderLogged';
-import Portada from '../Home/portada';
-import Publications from '../Home/Publications';
-import SidebarLeft from '../Home/sidebarLeft';
-
-import { useQuery } from '@apollo/client';
-import { GET_USER } from '../../../gql/user';
-import useAuth from '../../../hooks/useAuth';
 import LogoMarcaRegistrada from '../../atoms/LogoMarcaRegistrada';
-
-export default function demo() {
-	const { auth } = useAuth();
-	if (auth === null) {
-		console.log(auth);
-	}
-	const { data, loading, error } = useQuery(GET_USER, {
-		variables: { id: auth.id }
-	});
-	if (loading || error) return null;
-	const { getUser } = data;
+import AsideSection1 from '../Wall/SidebarLeft/Section1';
+import AsideSection2 from '../Wall/SidebarLeft/Section2';
+import AsideSection3 from '../Wall/SidebarLeft/Section3';
+import AsideSection4 from '../Wall/SidebarLeft/Section4';
+import AsideSection5 from '../Wall/SidebarLeft/Section5';
+import AsideSection6 from '../Wall/SidebarLeft/Section6';
+import Portada from '../Wall/Portada';
+import Portada2 from '../Wall/Portada2';
+import Publications from '../Wall/Publications';
+export default function index(props) {
+	const { userId } = props;
 
 	return (
 		<React.Fragment>
 			<HeaderLogged />
 			<Container>
 				<section>
+					<Portada data={props} />
 					<Aside>
-						<SidebarLeft getUser={getUser} />
+						<AsideSection1 />
+						<AsideSection2 />
+						<AsideSection3 />
+						<AsideSection4 userId={userId} />
+						<AsideSection5 />
+						<AsideSection6 />
 					</Aside>
-					<Portada getUser={getUser} />
-					<Publications getUser={getUser} />
+					<section>
+						<Portada2 data={props} />
+					</section>
+
+					<section>
+						<Publications data={props} />
+					</section>
+
 					<ClearFix />
 				</section>
 				<Footer>
@@ -60,6 +64,7 @@ const Aside = styled.aside`
 	float: left;
 	background: #c4e0dd;
 	text-align: center;
+	border-right: 15px solid #c4e0dd;
 
 	@media (max-width: 768px) {
 		float: none;
@@ -70,6 +75,7 @@ const Aside = styled.aside`
 		padding-right: 2px;
 		padding-top: 2px;
 		padding-bottom: 2px;
+		border-right: 0px;
 	}
 `;
 const ClearFix = styled.div`

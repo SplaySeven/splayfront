@@ -51,54 +51,6 @@ export default function index() {
 							</a>
 						</Link>
 					</div>
-					<div>
-						<Link href="/alejandro">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend3 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Alejandro Bullón</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<Link href="/alejandro">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend3 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Alejandro Bullón</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<Link href="/alejandro">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend3 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Alejandro Bullón</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<Link href="/alejandro">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend3 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Alejandro Bullón</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
 				</Div>
 
 				<Divseemore>

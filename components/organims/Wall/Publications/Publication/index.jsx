@@ -9,9 +9,9 @@ import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-o
 import iconLikeOn from '../../../../../public/icons/wall-profile/likeon.png';
 import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
 import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
-import Comment from '../../Publications/Comment';
-import Avatar from '../Avatar';
-import CommentForm from '../CommentForm';
+import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
+import CommentForm from '../../../../molecules/BodyPerfil/Publications/CommentForm';
+import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
 
 export default function index(props) {
 	const { publication } = props;
@@ -24,7 +24,6 @@ export default function index(props) {
 				<Headerpost>
 					<Row>
 						<Avatar publication={publication} />
-
 						<HpostphotoCol2>{timeago}</HpostphotoCol2>
 						<HpostphotoCol3>
 							<HpostphotoCol3Div1>
@@ -63,6 +62,7 @@ export default function index(props) {
 					</Row>
 				</Footerpost>
 				<hr />
+
 				<div>
 					<CommentForm publication={publication} />
 				</div>
@@ -73,13 +73,20 @@ export default function index(props) {
 }
 
 const Postphoto = styled.div`
+	margin-left: 31%;
 	margin-bottom: 10px;
 	border: 2px solid #808080;
 	border-radius: 15px;
+	@media (max-width: 768px) {
+		margin-left: 0%;
+	}
 `;
 const Footerpost = styled.div`
 	background: #00a79d;
 	padding: 10px 0px;
+	@media (max-width: 768px) {
+		padding: 5px 0px;
+	}
 `;
 const Imgpost = styled.img`width: 100%;`;
 const Row = styled.div`
@@ -93,6 +100,9 @@ const DivComment = styled.div`
 	max-width: 15%;
 	padding: 5px;
 	padding-top: 9px;
+	@media (max-width: 768px) {
+		max-width: 35%;
+	}
 `;
 
 const Headerpost = styled(Footerpost)`
@@ -140,6 +150,9 @@ const HpostphotoCol3Icon1 = styled.img.attrs({ src: iconPhotovideoOn })`
         filter: brightness(0.33);
         cursor: pointer;
     }
+	@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 const HpostphotoCol3Icon2 = styled.img.attrs({ src: iconwall })`
 width: 40px;
@@ -147,6 +160,9 @@ width: 40px;
     filter: brightness(0.33);
     cursor: pointer;
 }
+@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 const HpostphotoCol3Icon3 = styled.img.attrs({ src: iconinvite })`
 width: 40px;
@@ -154,6 +170,9 @@ width: 40px;
     filter: brightness(0.33);
     cursor: pointer;
 }
+@media (max-width: 768px) {
+		width: 25px;
+	}
 `;
 
 const Bodypostphoto = styled.div``;
@@ -161,6 +180,9 @@ const DivLike = styled.div`
 	${col} text-align: right;
 	padding-left: 15px;
 	padding-top: 7px;
+	@media (max-width: 768px) {
+		padding-left: 1px;
+	}
 `;
 
 const DivIconLike = styled.div``;
@@ -172,6 +194,14 @@ width: 40px;
     filter: brightness(0.33); 
     cursor: pointer;
 }
+@media (max-width: 768px) {
+	width: 20px;
+:hover {
+    filter: brightness(0.33); 
+    cursor: pointer;
+}
+
+}
 `;
 
 const IconCommentOn = styled.img.attrs({ src: iconCommentOn })`
@@ -179,6 +209,15 @@ width: 40px;
 :hover {
     filter: brightness(0.33); 
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+	width: 20px;
+:hover {
+    filter: brightness(0.33); 
+    cursor: pointer;
+}
+
 }
 `;
 
@@ -193,5 +232,13 @@ width: 40px;
 :hover {
     filter: brightness(0.33); 
     cursor: pointer;
+}
+@media (max-width: 768px) {
+	width: 20px;
+:hover {
+    filter: brightness(0.33); 
+    cursor: pointer;
+}
+
 }
 `;
