@@ -42,14 +42,14 @@ export default function index() {
 				icon="user"
 				iconPosition="left"
 				onChange={(ev) => setEmail(ev.target.value)}
-				placeholder="E-mail address"
+				placeholder="Direccion de Correo"
 			/>
 			<Form.Input
 				fluid
 				icon="lock"
 				iconPosition="left"
 				onChange={(ev) => setPassword(ev.target.value)}
-				placeholder="Password"
+				placeholder="Contraseña"
 				type="password"
 			/>
 

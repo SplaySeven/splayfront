@@ -7,16 +7,24 @@ import Icons from '../../../../atoms/IconsButon';
 import imgcerrar from '../../../../../public/imagenes/closeWhite.png';
 import useAuth from '../../../../../hooks/useAuth';
 import { useRouter } from 'next/router';
-import { useApolloClient } from '@apollo/client';
-
+import { useApolloClient, useMutation } from '@apollo/client';
+import { USER_CONNECTD } from '../../../../../gql/user';
 export default function index({ open }) {
 	const { auth, logout } = useAuth();
+	const [ userconnectd ] = useMutation(USER_CONNECTD);
 	const router = useRouter();
 	const client = useApolloClient();
 	const onLogout = () => {
-		client.clearStore();
-		logout();
-		router.push('/');
+		(async () => {
+			await userconnectd({
+				variables: {
+					connected: 'N'
+				}
+			});
+			client.clearStore();
+			logout();
+			router.push('/');
+		})();
 	};
 	return (
 		<React.Fragment>
