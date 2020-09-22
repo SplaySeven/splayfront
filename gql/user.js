@@ -51,6 +51,7 @@ export const GET_USER = gql`
 			confirmed
 			created
 			type
+			connected
 		}
 	}
 `;
@@ -96,5 +97,21 @@ export const DELETE_PICTURE = gql`
 export const ISUSER_FIREBASE = gql`
 	query isUserFirebase($uidFirebase: String!) {
 		isUserFirebase(uidFirebase: $uidFirebase)
+	}
+`;
+
+export const USER_CONNECTD = gql`
+	mutation connecteUser($connected: String) {
+		connectedUser(connected: $connected)
+	}
+`;
+
+export const GETUSER_CONNECT = gql`
+	query getUserConnect($connected: String) {
+		getUserConnect(connected: $connected) {
+			id
+			avatar
+			name
+		}
 	}
 `;

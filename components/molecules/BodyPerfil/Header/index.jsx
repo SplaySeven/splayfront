@@ -44,9 +44,15 @@ export default function index(props) {
 					</Colmd9Aableft>
 
 					<Colmd9Aabcenter>
-						<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
-							<A>¿ Que Piensas ?</A>
-						</Colmd9AabcenterP>
+						{origen === 'W' ? (
+							<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
+								<A>¿ Que Piensas ?</A>
+							</Colmd9AabcenterP>
+						) : (
+							<Colmd9AabcenterP>
+								<A>{getUser.name}</A>
+							</Colmd9AabcenterP>
+						)}
 					</Colmd9Aabcenter>
 					<Colmd9Aabright>
 						<Colmd9AabrightImg />

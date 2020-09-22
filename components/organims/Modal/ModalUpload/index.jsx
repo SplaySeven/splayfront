@@ -7,6 +7,7 @@ import {PUBLISH,GET_PUBLICATIONS_FOLLOWEDS_FRIENDS} from '../../../../gql/public
 import '../ModalUpload/ModalUpload.scss';
 
 
+
 export default function index(props) {
 	const { show, setShow } = props;
 	const [ fileUpload, setFileUpload ] = useState(null);

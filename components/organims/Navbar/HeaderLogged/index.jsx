@@ -8,17 +8,26 @@ import Search from '../../../molecules/Search';
 import Avatar from '../../../atoms/Avatar';
 
 import Burger from '../../../atoms/Burger';
-
+import { useMutation } from '@apollo/client';
 import useAuth from '../../../../hooks/useAuth';
-
+import { USER_CONNECTD } from '../../../../gql/user';
 const index = () => {
 	const { auth, logout } = useAuth();
+	const [ userconnectd ] = useMutation(USER_CONNECTD);
 	const router = useRouter();
 	const client = useApolloClient();
+
 	const onLogout = () => {
-		client.clearStore();
-		logout();
-		router.push('/');
+		(async () => {
+			await userconnectd({
+				variables: {
+					connected: 'N'
+				}
+			});
+			client.clearStore();
+			logout();
+			router.push('/');
+		})();
 	};
 
 

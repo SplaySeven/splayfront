@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+
 import imgFriends from '../../../../../public/imagenes/icons/wall-profile/friends-on.png';
 import iconborder from '../../../../../public/imagenes/icons/wall-profile/border-photo-2.png';
-import imgMarcos from '../../../../../public/imagenes/marcos.jpg';
-import imgMiguel from '../../../../../public/imagenes/miguel.png';
-import imgAlejandro from '../../../../../public/imagenes/bullon.png';
+
 import iconMoreOn from '../../../../../public/imagenes/icons/wall-profile/more-on.png';
+import UserConnect from '../UserConnect';
 export default function index() {
 	return (
 		<Section3>
@@ -14,44 +13,9 @@ export default function index() {
 				<Divoptfriendconnected>
 					<ImgFriends2 /> Amigos Conectados
 				</Divoptfriendconnected>
-				<Div>
-					<div>
-						<Link href="#">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend1 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Marcos Rodriguez</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<Link href="#">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend2 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Miguel Nuñez</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<Link href="#">
-							<a>
-								<DivoptA1>
-									<ImgFriendBorder>
-										<ImgFriend3 />
-									</ImgFriendBorder>{' '}
-									<FriendName>Alejandro Bullón</FriendName>
-								</DivoptA1>
-							</a>
-						</Link>
-					</div>
-				</Div>
+				<SectionImg>
+					<UserConnect />
+				</SectionImg>
 
 				<Divseemore>
 					<DivoptA1Icon>
@@ -66,16 +30,20 @@ export default function index() {
 	);
 }
 
-const Div = styled.div`
+const SectionImg = styled.div`
 	@media (max-width: 768px) {
 		overflow: auto;
 		margin: 0 auto;
 		display: flex;
 		align-items: stretch;
+		::-webkit-scrollbar-thumb::horizontal {
+			background-color: red;
+			border-radius: 10px;
+		}
 	}
 `;
 const Section3 = styled.section`
-	height: 400px;
+	height: 250px;
 	border-right: 15px solid #c4e0dd;
 	overflow: auto;
 
@@ -161,45 +129,6 @@ const ImgFriendBorder = styled.div`
 	float: left;
 `;
 
-const ImgFriend1 = styled.img.attrs({ src: imgMarcos })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-`;
-const ImgFriend2 = styled.img.attrs({ src: imgMiguel })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-
-
-`;
-const ImgFriend3 = styled.img.attrs({ src: imgAlejandro })`
-width: 50px;
-margin-right: 10px;
-vertical-align: middle;
-border-style: none;
-box-sizing: border-box;
-color: #fff !important;
-border-radius: 50%;
-
-`;
-
-const FriendName = styled.div`
-	float: left;
-	padding-top: 17px;
-	@media (max-width: 768px) {
-		display: none;
-	}
-`;
-
 const Divseemore = styled(DivoptA1)`
 :hover div:first-child {
     background: none;
@@ -225,6 +154,7 @@ color: #fff !important;
 	}
 `;
 const DivoptA1Text = styled.div`
+	padding-top: 100px;
 	float: left;
 	padding-left: 10px;
 	@media (max-width: 768px) {

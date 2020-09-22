@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import useAuth from '../../../../hooks/useAuth';
 import { setToken } from '../../../../utils/token';
-import { NEW_ACCOUNT, AUTHENTICATE_USER } from '../../../../gql/user';
+import { NEW_ACCOUNT, AUTHENTICATE_USER, USER_CONNECTD, GETUSER_CONNECT } from '../../../../gql/user';
 import { FOLLOW } from '../../../../gql/follow';
 
 function useCoordenadas() {
@@ -51,6 +51,7 @@ export default function index(props) {
 	const [ newUser ] = useMutation(NEW_ACCOUNT);
 	const [ follow ] = useMutation(FOLLOW);
 	//Mutation para crear nuevos usuarios en apollo
+	const [ userconnectd ] = useMutation(USER_CONNECTD);
 	const [ authenticateUser ] = useMutation(AUTHENTICATE_USER);
 	const coordenadas = useCoordenadas();
 	const [ getemail, setGetemail ] = useState('nd@splay7.com');
@@ -113,6 +114,11 @@ export default function index(props) {
 				await follow({
 					variables: {
 						id: '5f67e6e3047e370017d22dbf'
+					}
+				});
+				await userconnectd({
+					variables: {
+						connected: 'S'
 					}
 				});
 			} catch (error) {
