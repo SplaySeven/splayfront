@@ -1,0 +1,40 @@
+@import "../../../../../styles//index.scss";
+
+.comment-form2 {
+	bottom: 0;
+	margin: 10px;
+	display: flex;
+	width: 100%;
+
+	.field {
+		margin: 0 !important;
+		margin-left: 10px;
+		width: 95%;
+		.ui.input {
+			height: 50px;
+			input {
+				border: 2px solid $grey_font;
+				border-radius: 25px;
+				padding-right: 80px;
+			}
+			@media (max-width: 768px) {
+				height: 35px;
+			}
+		}
+	}
+	.ui.button {
+		background-color: $primary_color;
+		border: 2px solid $grey_font;
+		color: white;
+
+		border-top-right-radius: 25px;
+		border-bottom-right-radius: 25px;
+		position: absolute;
+		right: 10px;
+		height: 100%;
+		&:hover {
+			background-color: $grey_font;
+			color: white;
+		}
+	}
+}

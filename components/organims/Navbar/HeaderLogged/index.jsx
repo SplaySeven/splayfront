@@ -2,194 +2,129 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useApolloClient } from '@apollo/client';
-/*
-import WallOrganism from '../components/organims/Wall';
-import Layout from '../components/Layout';
-*/
 
-import { row, py3, container, colmd1 } from '../../../../styles/styles';
-import LogoCorto from '../../../atoms/LogoCorto';
+import logolinkw from '../../../../public/imagenes/Logo-inc.png';
 import Search from '../../../molecules/Search';
 import Avatar from '../../../atoms/Avatar';
-import Icons from '../../../atoms/IconsButon';
 
-import imgFriends from '../../../../public/imagenes/friends-on.png';
-import imginfo from '../../../../public/imagenes/info-on.png';
-import imgNotifications from '../../../../public/imagenes/notifications-on.png';
-import imgcerrar from '../../../../public/imagenes/closeWhite.png';
-
+import Burger from '../../../atoms/Burger';
+import { useMutation } from '@apollo/client';
 import useAuth from '../../../../hooks/useAuth';
-
+import { USER_CONNECTD } from '../../../../gql/user';
 const index = () => {
 	const { auth, logout } = useAuth();
+	const [ userconnectd ] = useMutation(USER_CONNECTD);
 	const router = useRouter();
 	const client = useApolloClient();
+
 	const onLogout = () => {
-		client.clearStore();
-		logout();
-		router.push('/');
+		(async () => {
+			await userconnectd({
+				variables: {
+					connected: 'N'
+				}
+			});
+			client.clearStore();
+			logout();
+			router.push('/');
+		})();
 	};
 
+
+	if (auth === null) return '0';
 	return (
 		<React.Fragment>
-			<Header>
-				<ContainerHeader>
-					<Row>
-						<LogoCorto />
-						<Search />
-						<Colmd1>
-							<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
-								<a>
-									<Avatar />
-								</a>
-							</Link>
-						</Colmd1>
-						<Colmd1>
-							<DivName>
-								<Name>{auth.name}</Name>
-							</DivName>
-						</Colmd1>
-						<Colmd1>
-							<DivBtn0>
-								<Link href="/">
-									<BtnInicio>Inicio</BtnInicio>
-								</Link>
-							</DivBtn0>
-						</Colmd1>
-						<Divbtncerrar>
-							<DivBtn0>
-								<BtnCerrar onClick={onLogout}>
-									<ImgCerrar type="submit" /> Cerrar
-								</BtnCerrar>
-							</DivBtn0>
-						</Divbtncerrar>
-						<Divbtnsright>
-							<Icons src={imgFriends} />
-						</Divbtnsright>
-						<Divbtnsright>
-							<Icons src={imginfo} />
-						</Divbtnsright>
-						<Divbtnsright>
-							<Icons src={imgNotifications} />
-						</Divbtnsright>
-					</Row>
-				</ContainerHeader>
-			</Header>
+
+			<Nav>
+				<Logo>
+					<LogoSrcStyled />
+				</Logo>
+				<Buscar>
+					<Search />
+				</Buscar>
+				<ContAvatar>
+					<Link href="/wall/[wall]" as={`/wall/${auth.id}`}>
+						<a>
+							<Avatar />
+						</a>
+					</Link>
+				</ContAvatar>
+
+				<Hambuguesa>
+					<Burger />
+				</Hambuguesa>
+			</Nav>
 		</React.Fragment>
 	);
 };
 export default index;
 
+
 //css
-
-const Header = styled.div`
-	box-sizing: border-box;
-	${row} ${py3} background: #00a79d;
-`;
-const ContainerHeader = styled.div`
-	box-sizing: border-box;
-	${container} @media (min-width: 1200px) {
-		max-width: 1220px;
-	}
-`;
-
-const Row = styled.div`
-	box-sizing: border-box;
-	${row};
-`;
-
-const Colmd1 = styled.div`${colmd1};`;
-
-const Divbtncerrar = styled.div`
-	-ms-flex: 0 0 14%;
-	flex: 0 0 auto;
-	max-width: 14%;
-	position: relative;
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-	box-sizing: border-box;
-`;
-const Divbtnsright = styled.div`
-	flex: 0 0 6.333333%;
-	flex: 0 0 6.333333%;
-	max-width: 6.333333%;
-	position: relative;
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-`;
-const DivBtn0 = styled.div`
-	position: absolute;
-	bottom: 10px;
-	box-sizing: border-box;
-`;
-
-const DivName = styled.div`
-	position: absolute;
-	bottom: 0;
-`;
-
-const Name = styled.h1`
-	color: #fff !important;
-	font-size: 1.25rem;
-	margin-bottom: .5rem;
-	font-weight: 500;
-	line-height: 1.2;
-	margin-top: 0;
-	box-sizing: border-box;
-`;
-
-const BtnInicio = styled.a`
-	outline: none;
-	border: 3px solid white;
-	color: #fff;
+const Nav = styled.nav`
+	display: flex;
+	position: fixed;
+	z-index: 100;
 	background-color: #00a79d;
-	padding: 0px 20px;
-	border-radius: 20px;
-	margin: 2px 2px;
-	box-sizing: content-box;
-	display: inline-block;
-	-webkit-text-decoration: none;
-	text-decoration: none;
-	white-space: normal;
-	word-wrap: break-Word;
-	text-align: center;
-	cursor: pointer;
-	:hover {
-		background-color: #fff;
-		color: #00a79d;
+	width: 100%;
+	height: 69px;
+`;
+const Logo = styled.div`
+	width: 26%;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: right;
+	color: white;
+	padding: 10px;
+	margin: 1px;
+	@media (max-width: 768px) {
+		width: 15%;
+		text-align: left;
+		padding: 0px;
+		margin: 0px;
 	}
 `;
 
-const BtnCerrar = styled.a`
-	outline: none;
-	border: 3px solid white;
-	color: #fff;
-	background-color: #00a79d;
-	padding: 0px 20px;
-	border-radius: 20px;
-	margin: 2px 2px;
-	box-sizing: content-box;
-	display: inline-block;
-	-webkit-text-decoration: none;
-	text-decoration: none;
-	white-space: normal;
-	word-wrap: break-Word;
-	text-align: center;
-	cursor: pointer;
-	:hover {
-		background-color: #fff;
-		color: #00a79d;
+const LogoSrcStyled = styled.img.attrs({ src: logolinkw })`
+    width: 135px;
+    @media (max-width: 768px) {
+        width: 55px;
+        padding-top: 20px;
+        padding-left: 0px;
+        margin:0;
+        
 	}
 `;
-const ImgCerrar = styled.img.attrs({ src: imgcerrar })`
-width: 20px;
-vertical-align: middle;
-border-style: none;
-color: #fff;
-white-space: normal;
-word-wrap: break-Word;
-text-align: center;
-cursor: pointer;
+
+const Buscar = styled.div`
+	width: 28%;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+	margin: 1px;
+	@media (max-width: 768px) {
+		width: 60%;
+	}
+`;
+const ContAvatar = styled.div`
+	width: 10%;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+	padding-top: 6px;
+	@media (max-width: 768px) {
+		width: 14%;
+	}
+	:hover img {
+		filter: brightness(0.33);
+	}
+`;
+
+const Hambuguesa = styled.div`
+	@media (max-width: 768px) {
+		display: block;
+		text-align: right;
+		width: 11%;
+	}
 `;

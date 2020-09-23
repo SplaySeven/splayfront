@@ -26,3 +26,14 @@ export const GET_FRIENDS = gql`
 		}
 	}
 `;
+export const GET_NOTFRIEND = gql`
+	query getNotFriends {
+		getNotFriends {
+			id
+			name
+			lastname
+			avatar
+			country
+		}
+	}
+`;

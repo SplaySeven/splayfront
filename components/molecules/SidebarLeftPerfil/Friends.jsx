@@ -19,7 +19,7 @@ export default function Friends(props) {
 		<React.Fragment>
 			{size(getFriends) === 0 ? (
 				<DivoptA1>
-					<h1>No tiene Amigos</h1>
+					<H>No tiene Amigos o Seguidores</H>
 				</DivoptA1>
 			) : (
 				map(getFriends, (user, index) => (
@@ -39,41 +39,7 @@ export default function Friends(props) {
 	);
 }
 
-/*
-	<Link href="/followers/[id]" as={`/followers/${comment.idUser.id}`}>
-						<a>
-							<Image className="img" src={comment.idUser.avatar || ImagenNoFound} avatar />
-							<div>
-								<p>{comment.idUser.name}</p>
-							</div>
-							<p>{comment.comment}</p>
-						</a>
-					</Link>
-
-
-
-
-
-
-
-
-
-
-/*
-		<DivoptA1>
-				<ImgFriendBorder>
-					<ImgFriend2 />
-				</ImgFriendBorder>{' '}
-				<FriendName>Miguel Nuñez</FriendName>
-			</DivoptA1>
-			<DivoptA1>
-				<ImgFriendBorder>
-					<ImgFriend3 />
-				</ImgFriendBorder>{' '}
-				<FriendName>Alejandro Bullón</FriendName>
-			</DivoptA1>
-	*/
-
+const H = styled.h1`@media (max-width: 768px) {font-size: 15px;}`;
 const DivoptA1 = styled.div`
 	color: #fff !important;
 	box-sizing: border-box;
@@ -82,6 +48,10 @@ const DivoptA1 = styled.div`
 	padding-top: 1rem !important;
 	padding-bottom: 1rem !important;
 	overflow: hidden;
+	@media (max-width: 768px) {
+		padding: 0px !important;
+		margin: 2px !important;
+	}
 `;
 const ImgFriendBorder = styled.div`
 	background: url(${iconborder});
@@ -89,6 +59,9 @@ const ImgFriendBorder = styled.div`
 	background-repeat: no-repeat;
 	padding: 5px;
 	float: left;
+	@media (max-width: 768px) {
+		background-size: 45px 45px;
+	}
 `;
 const ImgFriend1 = styled.img.attrs((props) => ({ src: props.img ? props.img : AvatarM }))`            
 width: 50px;
@@ -99,9 +72,20 @@ border-style: none;
 box-sizing: border-box;
 color: #fff !important;
 border-radius: 50%;
+@media (max-width: 768px) {
+		width:35px;
+		height:35px;
+		margin-right: 2px;
+	}
 `;
 
 const FriendName = styled.div`
 	float: left;
 	padding-top: 17px;
+	@media (max-width: 768px) {
+		display: none;
+		text-align: center;
+		font-size: 10px;
+		padding-top: 0px;
+	}
 `;

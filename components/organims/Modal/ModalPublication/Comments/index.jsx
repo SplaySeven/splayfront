@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { Image } from 'semantic-ui-react';
 import Link from 'next/link';
 import useTimeAgo from '../../../../../hooks/useTimeAgo';
+import Moment from 'react-moment';
 import { map } from 'lodash';
 import ImagenNoFound from '../../../../../public/imagenes/icon-avatar-default.png';
 import '../Comments/Comments.scss';
 import { useQuery } from '@apollo/client';
 import { GET_COMMENTS } from '../../../../../gql/comment';
+import { date } from 'yup';
 export default function index(props) {
 	const { publication } = props;
 
@@ -15,14 +17,15 @@ export default function index(props) {
 			idPublication: publication.id
 		}
 	});
+
 	useEffect(
 		() => {
-			startPolling(1000);
+			startPolling(2000);
 			return () => {
 				stopPolling();
 			};
 		},
-		[ stopPolling, stopPolling ]
+		[ startPolling, stopPolling ]
 	);
 
 	if (loading) return null;
@@ -34,11 +37,14 @@ export default function index(props) {
 				<div key={index} className="comment">
 					<Link href="/followers/[id]" as={`/followers/${comment.idUser.id}`}>
 						<a>
-							<Image className="img" src={comment.idUser.avatar || ImagenNoFound} avatar />
-							<div>
-								<p>{comment.idUser.name}</p>
+							<div className="imagen">
+								<Image className="img" src={comment.idUser.avatar || ImagenNoFound} avatar />
 							</div>
-							<p>{comment.comment}</p>
+
+							<div className="coments2">
+								<p>{comment.idUser.name}</p>
+								<p>{comment.comment}</p>
+							</div>
 						</a>
 					</Link>
 				</div>

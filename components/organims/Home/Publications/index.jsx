@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useQuery } from '@apollo/client';
 import { GET_PUBLICATIONS_FOLLOWEDS_FRIENDS } from '../../../../gql/publication';
@@ -8,16 +8,8 @@ import Publication from './Publication';
 export default function index() {
 	const { data, loading, startPolling, stopPolling } = useQuery(GET_PUBLICATIONS_FOLLOWEDS_FRIENDS);
 
-	useEffect(
-		() => {
-			startPolling(1000);
-			return () => {
-				stopPolling;
-			};
-		},
-		[ startPolling, stopPolling ]
-	);
 	if (loading) return null;
+
 	const { getPublicationsFollersFriends } = data;
 
 	return (

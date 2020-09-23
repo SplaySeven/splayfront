@@ -22,6 +22,7 @@ const Divavatar2 = styled.div`
 	padding-top: 3rem !important;
 	padding-bottom: 1rem !important;
 	overflow: hidden;
+
 	text-align: center;
 	background: #c4e0dd;
 `;

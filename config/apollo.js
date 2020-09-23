@@ -2,7 +2,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'node-fetch';
 import { setContext } from 'apollo-link-context';
-
+//Cambiasmos conecxion
 const httpLink = createUploadLink({
 	//uri: 'http://localhost:4000/graphql',
 	uri: 'https://splayserver.herokuapp.com/',

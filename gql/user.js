@@ -16,6 +16,7 @@ export const NEW_ACCOUNT = gql`
 			longitude
 			gender
 			type
+			uidFirebase
 		}
 	}
 `;
@@ -29,8 +30,8 @@ export const AUTHENTICATE_USER = gql`
 `;
 
 export const GET_USER = gql`
-	query getUser($id: ID, $email: String) {
-		getUser(id: $id, email: $email) {
+	query getUser($id: ID, $email: String, $uidFirebase: String) {
+		getUser(id: $id, email: $email, uidFirebase: $uidFirebase) {
 			id
 			email
 			phone
@@ -50,6 +51,7 @@ export const GET_USER = gql`
 			confirmed
 			created
 			type
+			connected
 		}
 	}
 `;
@@ -89,5 +91,27 @@ export const DELETE_AVATAR = gql`
 export const DELETE_PICTURE = gql`
 	mutation deletePicture {
 		deletePicture
+	}
+`;
+
+export const ISUSER_FIREBASE = gql`
+	query isUserFirebase($uidFirebase: String!) {
+		isUserFirebase(uidFirebase: $uidFirebase)
+	}
+`;
+
+export const USER_CONNECTD = gql`
+	mutation connecteUser($connected: String) {
+		connectedUser(connected: $connected)
+	}
+`;
+
+export const GETUSER_CONNECT = gql`
+	query getUserConnect($connected: String) {
+		getUserConnect(connected: $connected) {
+			id
+			avatar
+			name
+		}
 	}
 `;
