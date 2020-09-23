@@ -12,6 +12,7 @@ export default function index(props) {
 	const { show, setShow } = props;
 	const [ fileUpload, setFileUpload ] = useState(null);
 	const [isLoading, setIsLoading] = useState(false)
+	const [comentarios, setComentarios] = useState('')
 	const [publish]=useMutation(PUBLISH,{
 		update(cache,{data:{publish}}){
 		 //obtener el obejeto de cache
@@ -44,17 +45,20 @@ export default function index(props) {
 		onDrop
 	});
 
+
 	const onClose = () => {
 		setIsLoading(false)
 		setFileUpload(null)
 		setShow(false);
     };
     const onPublish= async()=>{
+		
 		try {
 			setIsLoading(true)
 		   const result =await publish({
 			   variables:{
-				   file:fileUpload.file
+				   file:fileUpload.file,
+				   comments:comentarios
 			   }
 		   });
 		   const {data} =result;
@@ -72,6 +76,7 @@ export default function index(props) {
     };
 	return (
 		<Modal size="small" open={show} onClose={onClose} className="modal-upload">
+			
 			<div {...getRootProps()} className="dropzone" style={fileUpload &&{border:0} } >
 				{!fileUpload &&(
                  <React.Fragment>  
@@ -86,9 +91,15 @@ export default function index(props) {
 				<div className="image" style={{ backgroundImage: `url("${fileUpload.preview}")` }} />
 			)}
             {fileUpload &&(
-                <Button className="btn-upload" onClick={onPublish} >
+				<section>
+					<textarea  className='comentarios' placeholder='¿Qué estás pensando?' onChange={(e)=>setComentarios(e.target.value)} />
+ <Button className="btn-upload"  onClick={onPublish} >
                 Publicar
                 </Button>
+				</section>
+				
+				  		
+				
             )}
 			{isLoading &&(
 				<Dimmer active className="publishing">
