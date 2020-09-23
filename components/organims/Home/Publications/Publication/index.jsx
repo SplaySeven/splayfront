@@ -8,8 +8,7 @@ import iconwall from '../../../../../public/icons/wall-profile/Muro-Personal.png
 import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-on.png';
 import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
 import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
-import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
-import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
+import Comments from '../../../Modal/ModalPublication/Comments';
 import CommentForm from '../CommentForm';
 import Link from 'next/link';
 
@@ -30,12 +29,14 @@ export default function index(props) {
 									<HpostphotoCol1Img>
 										<AvatarPostAuthor src={publication.idUser.avatar} />
 									</HpostphotoCol1Img>
-									<HpostphotoCol1Name>{publication.idUser.name}</HpostphotoCol1Name>
+									<HpostphotoCol1Name>
+										{publication.idUser.name}
+										<div>{timeago}</div>
+									</HpostphotoCol1Name>
 								</a>
 							</Link>
 						</HpostphotoCol1>
 
-						<HpostphotoCol2>{timeago}</HpostphotoCol2>
 						<HpostphotoCol3>
 							<HpostphotoCol3Div1>
 								<HpostphotoCol3Icon1 />
@@ -48,13 +49,18 @@ export default function index(props) {
 							</HpostphotoCol3Div3>
 						</HpostphotoCol3>
 					</Row>
+					<ComentHeader>
+						<p>{publication.comments}</p>
+					</ComentHeader>
 				</Headerpost>
+
 				<Bodypostphoto>
 					<Imgpost src={publication.file} />
 				</Bodypostphoto>
 
 				<Footer publication={publication} />
 				<hr />
+				<Comments publication={publication} />
 				<div>
 					<CommentForm publication={publication} />
 				</div>
@@ -99,6 +105,7 @@ const AvatarPostAuthor = styled.img`
 `;
 const HpostphotoCol1Name = styled.div`
 	float: left;
+	text-align: left;
 	font-weight: bold;
 	color: #fff;
 	margin-top: 10px;
@@ -116,7 +123,10 @@ const Postphoto = styled.section`
 	}
 `;
 
-const Imgpost = styled.img`width: 100%;`;
+const Imgpost = styled.img`
+	width: 100%;
+	height: 100%;
+`;
 const Row = styled.div`
 	box-sizing: border-box;
 	${row};
@@ -129,8 +139,16 @@ const Headerpost = styled.div`
 	padding: 10px 0px;
 `;
 
+const ComentHeader = styled.div`
+	color: #fff;
+	padding: 2px;
+	margin-left: 15px;
+	text-align: left;
+	font-weight: normal;
+`;
+
 const HpostphotoCol2 = styled.div`
-	${col} max-width: 20%;
+	max-width: 20%;
 	color: #fff;
 	text-align: center;
 	border-left: 1px solid #fff;

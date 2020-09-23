@@ -12,7 +12,7 @@ import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.p
 import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
 import CommentForm from '../../../../molecules/BodyPerfil/Publications/CommentForm';
 import Avatar from '../../../../molecules/BodyPerfil/Publications/Avatar';
-
+import Comments from '../../../Modal/ModalPublication/Comments';
 export default function index(props) {
 	const { publication } = props;
 
@@ -63,6 +63,7 @@ export default function index(props) {
 				</Footerpost>
 				<hr />
 
+				<Comments publication={publication} />
 				<div>
 					<CommentForm publication={publication} />
 				</div>
