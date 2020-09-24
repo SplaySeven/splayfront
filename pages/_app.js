@@ -20,14 +20,14 @@ function MyApp({ Component, pageProps }) {
 		if (!token) {
 			setAuth(null);
 		} else {
-			const { exp } = decodeToken(token);
-			if (Date.now() >= exp * 1000) {
-				client.clearStore();
-				logout();
-				router.push('/');
-			} else {
-				setAuth(decodeToken(token));
-			}
+			//const { exp } = decodeToken(token);
+			//if (Date.now() >= exp * 1000) {
+			//	client.clearStore();
+			//		logout();
+			//		router.push('/');
+			//	} else {
+			setAuth(decodeToken(token));
+			//	}
 		}
 	}, []);
 
