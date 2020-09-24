@@ -9,7 +9,7 @@ export default function index() {
 			<Head>
 				<title>Splay7 Wall</title>
 			</Head>
-			<Wall userId={userId} />
+			<Wall userId={userId} origen={'W'} />
 		</React.Fragment>
 	);
 }

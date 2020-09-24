@@ -3,7 +3,6 @@ import ImgPortada from '../../../../atoms/ImagenPortada';
 import styled from 'styled-components';
 export default function index(props) {
 	const { data } = props;
-
 	return (
 		<PortSection1>
 			<ImgPortada data={data} />

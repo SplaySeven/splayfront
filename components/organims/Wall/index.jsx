@@ -25,12 +25,12 @@ export default function index(props) {
 						<AsideSection1 />
 						<AsideSection2 />
 						<AsideSection3 />
-						<AsideSection4 userId={userId} />
+						<AsideSection4 userId={userId} origen={'W'} />
 						<AsideSection5 />
 						<AsideSection6 />
 					</Aside>
 					<section>
-						<Portada2 data={props} />
+						<Portada2 data={props} origen={'W'} />
 					</section>
 
 					<section>

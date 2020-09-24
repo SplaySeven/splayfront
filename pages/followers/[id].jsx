@@ -13,7 +13,7 @@ export default function index() {
 			<Head>
 				<title>Splay7</title>
 			</Head>
-			<Follow userId={userId} />
+			<Follow userId={userId} origen={'F'} />
 		</React.Fragment>
 	);
 }
