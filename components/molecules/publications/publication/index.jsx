@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { col, row } from '../../../../styles/styles';
 import useTimeAgo from '../../../../hooks/useTimeAgo';
@@ -11,7 +11,7 @@ import Comments from '../../../organims/Modal/ModalPublication/Comments';
 import CommentForm from '../../publications/CommentForm';
 import Link from 'next/link';
 import Avatar from '../../../molecules/BodyPerfil/Publications/Avatar';
-import Footer from '../Publication/Footer';
+import Footer from '../publication/Footer';
 export default function index(props) {
 	const { publication } = props;
 	const { origen } = props;
