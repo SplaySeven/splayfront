@@ -1,12 +1,9 @@
 import Home from '../components/organims/Home';
-import HeaderLogged from '../components/organims/Navbar/HeaderLogged';
 
-export default function index(props) {
-	const { auth } = props;
-
+export default function index() {
 	return (
 		<React.Fragment>
-			<Home auth={auth} />
+			<Home />
 		</React.Fragment>
 	);
 }

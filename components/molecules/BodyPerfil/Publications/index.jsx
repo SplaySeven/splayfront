@@ -23,6 +23,7 @@ export default function index(props) {
 		},
 		[ startPolling, stopPolling ]
 	);
+
 	if (loading) return null;
 	const { getPublications } = data;
 

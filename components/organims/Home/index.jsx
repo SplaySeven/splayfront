@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import HeaderLogged from '../Navbar/HeaderLogged';
 import Portada from '../Home/portada';
-import Publications from '../Home/Publications';
+import Publications from '../../molecules/publications';
 import SidebarLeft from '../Home/sidebarLeft';
 
 import { useQuery } from '@apollo/client';
@@ -20,6 +20,7 @@ export default function demo() {
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: auth.id }
 	});
+
 	if (loading || error) return null;
 	const { getUser } = data;
 
@@ -32,7 +33,7 @@ export default function demo() {
 						<SidebarLeft getUser={getUser} />
 					</Aside>
 					<Portada getUser={getUser} />
-					<Publications getUser={getUser} />
+					<Publications data={getUser} origen="H" />
 					<ClearFix />
 				</Section>
 				<Footer>

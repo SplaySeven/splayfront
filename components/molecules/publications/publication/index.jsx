@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { col, row } from '../../../../../styles/styles';
-import useTimeAgo from '../../../../../hooks/useTimeAgo';
-import Publication from '../../../../organims/Modal/ModalPublication';
-import iconPhotovideoOn from '../../../../../public/imagenes/photovideo-on.png';
-import iconwall from '../../../../../public/icons/wall-profile/Muro-Personal.png';
-import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-on.png';
-import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
-import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
-import Comments from '../../../Modal/ModalPublication/Comments';
-import CommentForm from '../CommentForm';
+import { col, row } from '../../../../styles/styles';
+import useTimeAgo from '../../../../hooks/useTimeAgo';
+import iconPhotovideoOn from '../../../../public/imagenes/photovideo-on.png';
+import iconwall from '../../../../public/icons/wall-profile/Muro-Personal.png';
+import iconinvite from '../../../../public/icons/wall-profile/Invite-friend-on.png';
+import iconCommentOn from '../../../../public/icons/wall-profile/comment-on.png';
+import iconDislikeOn from '../../../../public/icons/wall-profile/dislike-on.png';
+import Comments from '../../../organims/Modal/ModalPublication/Comments';
+import CommentForm from '../../publications/CommentForm';
 import Link from 'next/link';
-
+import Avatar from '../../../molecules/BodyPerfil/Publications/Avatar';
 import Footer from '../Publication/Footer';
 export default function index(props) {
 	const { publication } = props;
-
+	const { origen } = props;
 	const timeago = useTimeAgo(publication.createAt);
-	const [ showModal, setShowModal ] = useState(false);
+
 	return (
 		<React.Fragment>
 			<Postphoto>
 				<Headerpost>
 					<Row>
-						<HpostphotoCol1>
-							<Link href="/followers/[id]" as={`/followers/${publication.idUser.id}`}>
-								<a>
-									<HpostphotoCol1Img>
-										<AvatarPostAuthor src={publication.idUser.avatar} />
-									</HpostphotoCol1Img>
-									<HpostphotoCol1Name>
-										{publication.idUser.name}
-										<div>{timeago}</div>
-									</HpostphotoCol1Name>
-								</a>
-							</Link>
-						</HpostphotoCol1>
+						{origen === 'H' && (
+							<HpostphotoCol1>
+								<Link href="/followers/[id]" as={`/followers/${publication.idUser.id}`}>
+									<a>
+										<HpostphotoCol1Img>
+											<AvatarPostAuthor src={publication.idUser.avatar} />
+										</HpostphotoCol1Img>
+										<HpostphotoCol1Name>
+											{publication.idUser.name}
+											<div>{timeago}</div>
+										</HpostphotoCol1Name>
+									</a>
+								</Link>
+							</HpostphotoCol1>
+						)}
+						{origen === 'W' && <Avatar publication={publication} />}
 
 						<HpostphotoCol3>
 							<HpostphotoCol3Div1>
