@@ -14,7 +14,7 @@ export default function index() {
 			connected: 'S'
 		}
 	});
-
+	/*
 	useEffect(
 		() => {
 			startPolling(2000);
@@ -24,7 +24,7 @@ export default function index() {
 		},
 		[ startPolling, stopPolling ]
 	);
-
+*/
 	if (loading) return null;
 	const { getUserConnect } = data;
 	return (

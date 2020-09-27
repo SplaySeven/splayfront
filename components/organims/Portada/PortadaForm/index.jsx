@@ -7,6 +7,7 @@ import { UPDATE_PICTURE, GET_USER, DELETE_PICTURE } from '../../../../gql/user';
 import './index.scss';
 import { toast } from 'react-toastify';
 export default function index(props) {
+	console.log(props);
 	const { auth } = useAuth();
 	const { setShowModal } = props;
 	const [ loading, setLoading ] = useState(false);
