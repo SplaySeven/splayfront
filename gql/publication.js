@@ -18,6 +18,7 @@ export const GET_PUBLICATIONS = gql`
 			typeFile
 			createAt
 			comments
+			state
 		}
 	}
 `;
@@ -36,5 +37,10 @@ export const GET_PUBLICATIONS_FOLLOWEDS_FRIENDS = gql`
 			createAt
 			comments
 		}
+	}
+`;
+export const DELETE_PUBLICATION = gql`
+	mutation deletePublish($id: ID!) {
+		deletePublish(id: $id)
 	}
 `;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Publication from '../../../../../organims/Modal/ModalPublication';
-import Like from '../../../../../atoms/Like';
-import { col, row } from '../../../../../../styles/styles';
-import iconCommentOn from '../../../../../../public/icons/wall-profile/comment-on.png';
-import iconDislikeOn from '../../../../../../public/icons/wall-profile/dislike-on.png';
-import Comment from '../../../../../molecules/BodyPerfil/Publications/Comment';
-import LikeCount from '../../../../../molecules/BodyPerfil/Publications/Like';
+import Publication from '../../../../organims/Modal/ModalPublication';
+import Like from '../../../../atoms/Like';
+import { col, row } from '../../../../../styles/styles';
+import iconCommentOn from '.././../../../../public/icons/wall-profile/comment-on.png';
+import iconDislikeOn from '.././../../../../public/icons/wall-profile/dislike-on.png';
+import Comment from '../../../../molecules/BodyPerfil/Publications/Comment';
+import LikeCount from '../../../../molecules/BodyPerfil/Publications/Like';
 export default function index(props) {
 	const { publication } = props;
 	const [ showModal, setShowModal ] = useState(false);

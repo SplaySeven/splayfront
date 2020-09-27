@@ -9,6 +9,8 @@ import useAuth from '../../../../../hooks/useAuth';
 import { useRouter } from 'next/router';
 import { useApolloClient, useMutation } from '@apollo/client';
 import { USER_CONNECTD } from '../../../../../gql/user';
+import 'firebase/auth';
+import * as firebase from 'firebase/app';
 export default function index({ open }) {
 	const { auth, logout } = useAuth();
 	const [ userconnectd ] = useMutation(USER_CONNECTD);
@@ -21,6 +23,7 @@ export default function index({ open }) {
 					connected: 'N'
 				}
 			});
+			firebase.auth().signOut();
 			client.clearStore();
 			logout();
 			router.push('/');

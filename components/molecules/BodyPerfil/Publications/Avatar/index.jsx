@@ -1,13 +1,17 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
-import { col, row } from '../../../../../styles/styles';
+import { col } from '../../../../../styles/styles';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../../../gql/user';
+import useTimeAgo from '../../../../../hooks/useTimeAgo';
 import AvatarM from '../../../../../public/imagenes/AvatarMasculino.png';
 import '../Avatar/Avatar.scss';
 
 export default function index(props) {
 	const { idUser } = props.publication;
+	const { publication } = props;
+	const timeago = useTimeAgo(publication.createAt);
 
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: idUser }
@@ -18,10 +22,17 @@ export default function index(props) {
 	return (
 		<React.Fragment>
 			<HpostphotoCol1>
-				<HpostphotoCol1Img>
-					<AvatarPostAuthor getUser={getUser} />
-				</HpostphotoCol1Img>
-				<HpostphotoCol1Name>{getUser.name}</HpostphotoCol1Name>
+				<Link href="/followers/[id]" as={`/followers/${getUser.id}`}>
+					<a>
+						<HpostphotoCol1Img>
+							<AvatarPostAuthor src={getUser.avatar} />
+						</HpostphotoCol1Img>
+						<HpostphotoCol1Name>
+							{getUser.name}
+							<div>{timeago}</div>
+						</HpostphotoCol1Name>
+					</a>
+				</Link>
 			</HpostphotoCol1>
 		</React.Fragment>
 	);
@@ -43,9 +54,9 @@ const HpostphotoCol1Img = styled.div`
 	}
 `;
 
-const AvatarPostAuthor = styled.img.attrs((props) => ({ src: props.getUser.avatar ? props.getUser.avatar : AvatarM }))`
+const AvatarPostAuthor = styled.img`
 	width: 40px;
-	height:40px;
+	height: 40px;
 	border-radius: 50%;
 	@media (max-width: 768px) {
 		margin-right: 0px;

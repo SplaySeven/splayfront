@@ -1,42 +1,67 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { col, row } from '../../../../../styles/styles';
-import useTimeAgo from '../../../../../hooks/useTimeAgo';
-import Publication from '../../../../organims/Modal/ModalPublication';
-import iconPhotovideoOn from '../../../../../public/imagenes/photovideo-on.png';
-import iconwall from '../../../../../public/icons/wall-profile/Muro-Personal.png';
-import iconinvite from '../../../../../public/icons/wall-profile/Invite-friend-on.png';
-import iconCommentOn from '../../../../../public/icons/wall-profile/comment-on.png';
-import iconDislikeOn from '../../../../../public/icons/wall-profile/dislike-on.png';
-import Comments from '../../../Modal/ModalPublication/Comments';
-import CommentForm from '../CommentForm';
+import ReactPlayer from 'react-player';
+import { col, row } from '../../../../styles/styles';
+import useTimeAgo from '../../../../hooks/useTimeAgo';
+import iconPhotovideoOn from '../../../../public/imagenes/photovideo-on.png';
+import iconwall from '../../../../public/icons/wall-profile/Muro-Personal.png';
+import iconinvite from '../../../../public/icons/wall-profile/Invite-friend-on.png';
+import imgcerrar from '../../../../public/imagenes/closeWhite.png';
+import closeWhite from '../../../../public/icons/wall-profile/closeWhite.png';
+import iconCommentOn from '../../../../public/icons/wall-profile/comment-on.png';
+import iconDislikeOn from '../../../../public/icons/wall-profile/dislike-on.png';
+import Comments from '../../../organims/Modal/ModalPublication/Comments';
+import CommentForm from '../../publications/CommentForm';
 import Link from 'next/link';
+import Avatar from '../../../molecules/BodyPerfil/Publications/Avatar';
+import Footer from '../publication/Footer';
 
-import Footer from '../Publication/Footer';
+import ModalBasic from '../../../organims/Modal/ModalBasic';
+import PortadaForm from '../../publications/DeletePublication';
+
 export default function index(props) {
 	const { publication } = props;
-
+	const { origen } = props;
 	const timeago = useTimeAgo(publication.createAt);
 	const [ showModal, setShowModal ] = useState(false);
+	const [ titleModal, setTitleModal ] = useState('');
+	const [ childrenModal, setChildrenModal ] = useState(null);
+
+	const handlerModal = (type) => {
+		switch (type) {
+			case 'portada':
+				console.log('aqui en portada');
+				setTitleModal('Eliminar Publicacion');
+				setChildrenModal(<PortadaForm setShowModal={setShowModal} publication={publication} />);
+				setShowModal(true);
+				break;
+
+			default:
+				break;
+		}
+	};
 	return (
 		<React.Fragment>
 			<Postphoto>
 				<Headerpost>
 					<Row>
-						<HpostphotoCol1>
-							<Link href="/followers/[id]" as={`/followers/${publication.idUser.id}`}>
-								<a>
-									<HpostphotoCol1Img>
-										<AvatarPostAuthor src={publication.idUser.avatar} />
-									</HpostphotoCol1Img>
-									<HpostphotoCol1Name>
-										{publication.idUser.name}
-										<div>{timeago}</div>
-									</HpostphotoCol1Name>
-								</a>
-							</Link>
-						</HpostphotoCol1>
-
+						{origen === 'H' && (
+							<HpostphotoCol1>
+								<Link href="/followers/[id]" as={`/followers/${publication.idUser.id}`}>
+									<a>
+										<HpostphotoCol1Img>
+											<AvatarPostAuthor src={publication.idUser.avatar} />
+										</HpostphotoCol1Img>
+										<HpostphotoCol1Name>
+											{publication.idUser.name}
+											<div>{timeago}</div>
+										</HpostphotoCol1Name>
+									</a>
+								</Link>
+							</HpostphotoCol1>
+						)}
+						{origen === 'W' && <Avatar publication={publication} />}
+						{origen === 'F' && <Avatar publication={publication} />}
 						<HpostphotoCol3>
 							<HpostphotoCol3Div1>
 								<HpostphotoCol3Icon1 />
@@ -44,9 +69,13 @@ export default function index(props) {
 							<HpostphotoCol3Div2>
 								<HpostphotoCol3Icon2 />
 							</HpostphotoCol3Div2>
-							<HpostphotoCol3Div3>
-								<HpostphotoCol3Icon3 />
-							</HpostphotoCol3Div3>
+							{origen === 'W' && (
+								<HpostphotoCol3Div3>
+									<BtnCerrar onClick={() => handlerModal('portada')}>
+										<ImgCerrar type="submit" />
+									</BtnCerrar>
+								</HpostphotoCol3Div3>
+							)}
 						</HpostphotoCol3>
 					</Row>
 					<ComentHeader>
@@ -55,7 +84,12 @@ export default function index(props) {
 				</Headerpost>
 
 				<Bodypostphoto>
-					<Imgpost src={publication.file} />
+					{publication.typeFile === 'image' && <Imgpost src={publication.file} />}
+					{publication.typeFile === 'video' && (
+						<div className="image">
+							<ReactPlayer url={publication.file} width="100%" height="85%" volume={0.8} controls loop />
+						</div>
+					)}
 				</Bodypostphoto>
 
 				<Footer publication={publication} />
@@ -64,10 +98,45 @@ export default function index(props) {
 				<div>
 					<CommentForm publication={publication} />
 				</div>
+				<ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
+					{childrenModal}
+				</ModalBasic>
 			</Postphoto>
 		</React.Fragment>
 	);
 }
+
+const BtnCerrar = styled.a`
+	width: 40px;
+	outline: none;
+
+	color: #fff;
+	background-color: #00a79d;
+
+	border-radius: 20px;
+	margin: 2px 2px;
+	box-sizing: content-box;
+	display: inline-block;
+	-webkit-text-decoration: none;
+	text-decoration: none;
+	white-space: normal;
+	word-wrap: break-Word;
+	text-align: center;
+	cursor: pointer;
+	:hover {
+		filter: brightness(0.33);
+	}
+`;
+const ImgCerrar = styled.img.attrs({ src: imgcerrar })`
+width: 40px;
+vertical-align: middle;
+border-style: none;
+color: #fff;
+white-space: normal;
+word-wrap: break-Word;
+text-align: center;
+cursor: pointer;
+`;
 
 const HpostphotoCol1 = styled.div`
 	${col};
@@ -181,6 +250,7 @@ const HpostphotoCol3Div3 = styled.div`
 	float: right;
 	margin-left: 10px;
 `;
+
 const HpostphotoCol3Icon1 = styled.img.attrs({ src: iconPhotovideoOn })`
     width: 40px;
     :hover {
@@ -201,7 +271,7 @@ width: 40px;
 		width: 25px;
 	}
 `;
-const HpostphotoCol3Icon3 = styled.img.attrs({ src: iconinvite })`
+const HpostphotoCol3Icon3 = styled.img.attrs({ src: closeWhite })`
 width: 40px;
 :hover {
     filter: brightness(0.33);

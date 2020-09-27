@@ -11,7 +11,7 @@ import AsideSection5 from '../Wall/SidebarLeft/Section5';
 import AsideSection6 from '../Wall/SidebarLeft/Section6';
 import Portada from '../Wall/Portada';
 import Portada2 from '../Wall/Portada2';
-import Publications from '../Wall/Publications';
+import Publications from '../../molecules/publications';
 export default function index(props) {
 	const { userId } = props;
 
@@ -34,7 +34,7 @@ export default function index(props) {
 					</section>
 
 					<section>
-						<Publications data={props} />
+						<Publications data={props} origen={'F'} />
 					</section>
 
 					<ClearFix />

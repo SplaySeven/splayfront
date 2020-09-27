@@ -9,12 +9,32 @@ import iconWallOff from '../../../../public/imagenes/icons/wall-profile/wall-off
 import iconwall from '../../../../public/imagenes/icons/wall-profile/Muro-Personal.png';
 import AvatarM from '../../../../public/imagenes/AvatarMasculino.png';
 import ModalUpload from '../../../organims/Modal/ModalUpload';
-
+import ModalUploadVideo from '../../../organims/Modal/ModalUploadVideo';
 import { row, px0, pr0, col, Col3, Col6, colmd2, colmd3, colmd9, textcenter } from '../../../../styles/styles';
 
 export default function index(props) {
 	const { getUser } = props;
 	const [ showModal, setShowModal ] = useState(false);
+	const [ titleModal, setTitleModal ] = useState('');
+	const [ childrenModal, setChildrenModal ] = useState(null);
+
+	const handlerModal = (type) => {
+		switch (type) {
+			case 'foto':
+				setTitleModal('foto');
+				setChildrenModal(<ModalUpload setShowModal={setShowModal} />);
+				setShowModal(true);
+				break;
+			case 'video':
+				setTitleModal('video');
+				setChildrenModal(<ModalUpload setShowModal={setShowModal} Tipo={'video'} />);
+				setShowModal(true);
+				break;
+			default:
+				break;
+		}
+	};
+
 	return (
 		<Encabezado>
 			<Colmd9Aaa>
@@ -32,21 +52,21 @@ export default function index(props) {
 					</DivAvatar3>
 				</Colmd9Aableft>
 				<Colmd9Aabcenter>
-					<Colmd9AabcenterP onClick={() => setShowModal(true)}>¿ Que Piensas ?</Colmd9AabcenterP>
+					<Colmd9AabcenterP onClick={() => handlerModal('foto')}>¿ Que Piensas ?</Colmd9AabcenterP>
 				</Colmd9Aabcenter>
 				<Colmd9Aabright>
 					<Colmd9AabrightImg />
 				</Colmd9Aabright>
 			</Colmd9Aab>
 			<Colmd9Aac>
-				<Colmd9Aac1 onClick={() => setShowModal(true)}>
-					<IconPostOn />
-					<A>Crear publicación</A>
+				<Colmd9Aac1 onClick={() => handlerModal('foto')}>
+					<IconPhotovideoOn />
+					<A> Publicación/Fotos</A>
 				</Colmd9Aac1>
 				<Lineseparator />
-				<Colmd9Aac2 title="Foto/Video">
-					<IconPhotovideoOn alt="Foto / Video" />
-					<A>Foto / Video</A>
+				<Colmd9Aac2 onClick={() => handlerModal('video')}>
+					<IconLiveOn alt="Foto / Video" />
+					<A>Publicación/Video</A>
 				</Colmd9Aac2>
 				<Lineseparator />
 				<Colmd9Aac3>
@@ -59,7 +79,7 @@ export default function index(props) {
 					<A href="">Lugar o acontecimiento</A>
 				</Colmd9Aac4>
 			</Colmd9Aac>
-			<ModalUpload show={showModal} setShow={setShowModal} />
+			<ModalUpload show={showModal} setShow={setShowModal} title={titleModal} />
 		</Encabezado>
 	);
 }

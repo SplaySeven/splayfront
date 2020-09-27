@@ -59,7 +59,6 @@ export default function index() {
 
 const Section = styled.section`
 	height: 400px;
-	background-color: violet;
 	text-align: left;
 	@media (max-width: 768px) {
 		display: none;
