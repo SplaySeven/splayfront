@@ -4,6 +4,7 @@ import ContainerButtonsPortada from '../../molecules/ContainerButtonsPortada';
 import ImgPortada from '../../atoms/ImagenPortada';
 import { row, container } from '../../../styles/styles';
 export default function index(props) {
+	console.log(props);
 	return (
 		<React.Fragment>
 			<Row>

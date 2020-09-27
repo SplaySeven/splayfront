@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_PUBLICATIONS } from '../../../../../gql/publication';
 
 import { map } from 'lodash';
-import Publication from '../../publication';
+import Publication from '..';
 
 export default function index(props) {
 	const { userId } = props.dato.data;
@@ -21,7 +21,7 @@ export default function index(props) {
 		<section>
 			{map(getPublications, (publication, index) => (
 				<section key={index}>
-					<Publication publication={publication} origen={'W'} />
+					<Publication publication={publication} origen={'F'} />
 				</section>
 			))}
 		</section>

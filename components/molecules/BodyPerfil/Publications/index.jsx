@@ -26,7 +26,7 @@ export default function index(props) {
 
 	if (loading) return null;
 	const { getPublications } = data;
-
+	console.log(`Publicaciones ${getPublications}`);
 	return (
 		<div>
 			{map(getPublications, (publication, index) => (

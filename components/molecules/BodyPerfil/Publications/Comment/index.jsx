@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default function index(props) {
 	const { publication } = props;
 
-	const { data, loading, startPolling, stopPolling, refetch } = useQuery(COUNT_COMMENTS, {
+	const { data, loading, startPolling, stopPolling } = useQuery(COUNT_COMMENTS, {
 		variables: { idPublication: publication.id }
 	});
 
