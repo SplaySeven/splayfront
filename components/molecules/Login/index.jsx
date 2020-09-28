@@ -59,6 +59,7 @@ export default function demo2() {
 			if (user) {
 				setUid(user);
 			}
+			firebase.auth().signOut();
 		});
 	}, []);
 
