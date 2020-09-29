@@ -1,16 +1,18 @@
 import React, { useState, useCallback } from 'react';
-import { Modal, Icon, Button, Dimmer, Loader } from 'semantic-ui-react';
+import { Modal, Icon, Button, Dimmer, Loader, Progress } from 'semantic-ui-react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import { useMutation } from '@apollo/client';
 import { PUBLISH, GET_PUBLICATIONS_FOLLOWEDS_FRIENDS } from '../../../../gql/publication';
 import ReactPlayer from 'react-player';
+import { useUpload } from 'react-use-upload';
+
 import '../ModalUpload/ModalUpload.scss';
 
 export default function index(props) {
+	const [ files, setFiles ] = useState();
 	const { show, setShow } = props.data;
 	const [ fileUpload, setFileUpload ] = useState(null);
-	const [ url, setUrl ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ comentarios, setComentarios ] = useState('');
 	const [ publish ] = useMutation(PUBLISH, {
@@ -26,11 +28,10 @@ export default function index(props) {
 			});
 		}
 	});
-	const maxSize = 26214400;
 
+	const maxSize = 26214400;
 	const onDrop = useCallback((acceptedFile) => {
 		const file = acceptedFile[0];
-
 		if (file.size > maxSize) {
 			setFileUpload('maxSize');
 		} else {
@@ -41,7 +42,6 @@ export default function index(props) {
 			});
 		}
 	});
-
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: 'video/mp4',
 		noKeyboard: true,
@@ -57,13 +57,16 @@ export default function index(props) {
 	const onPublish = async () => {
 		try {
 			setIsLoading(true);
+
 			const result = await publish({
 				variables: {
 					file: fileUpload.file,
 					comments: comentarios
 				}
 			});
+
 			const { data } = result;
+			//console.log(data);
 			if (!data.publish.status) {
 				toast.warning('Error en la Publicacion');
 				isLoading(false);
@@ -121,6 +124,7 @@ export default function index(props) {
 			{isLoading && (
 				<Dimmer active className="publishing">
 					<Loader />
+
 					<p>Publicando Espere unos Minutos hasta que se Cierre la pantalla .....</p>
 				</Dimmer>
 			)}

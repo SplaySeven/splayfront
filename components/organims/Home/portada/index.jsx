@@ -9,7 +9,6 @@ import iconWallOff from '../../../../public/imagenes/icons/wall-profile/wall-off
 import iconwall from '../../../../public/imagenes/icons/wall-profile/Muro-Personal.png';
 import AvatarM from '../../../../public/imagenes/AvatarMasculino.png';
 import ModalUpload from '../../../organims/Modal/ModalUpload';
-import ModalUploadVideo from '../../../organims/Modal/ModalUploadVideo';
 import { row, px0, pr0, col, Col3, Col6, colmd2, colmd3, colmd9, textcenter } from '../../../../styles/styles';
 
 export default function index(props) {
@@ -17,16 +16,19 @@ export default function index(props) {
 	const [ showModal, setShowModal ] = useState(false);
 	const [ titleModal, setTitleModal ] = useState('');
 	const [ childrenModal, setChildrenModal ] = useState(null);
+	const [ tipo, setTipo ] = useState('');
 
 	const handlerModal = (type) => {
 		switch (type) {
 			case 'foto':
 				setTitleModal('foto');
+				setTipo('H');
 				setChildrenModal(<ModalUpload setShowModal={setShowModal} />);
 				setShowModal(true);
 				break;
 			case 'video':
 				setTitleModal('video');
+				setTipo('H');
 				setChildrenModal(<ModalUpload setShowModal={setShowModal} Tipo={'video'} />);
 				setShowModal(true);
 				break;
@@ -79,7 +81,7 @@ export default function index(props) {
 					<A href="">Lugar o acontecimiento</A>
 				</Colmd9Aac4>
 			</Colmd9Aac>
-			<ModalUpload show={showModal} setShow={setShowModal} title={titleModal} />
+			<ModalUpload show={showModal} setShow={setShowModal} title={titleModal} tipo={tipo} />
 		</Encabezado>
 	);
 }
