@@ -8,6 +8,16 @@ import Publication from '../../publication';
 
 export default function index() {
 	const { data, loading, startPolling, stopPolling } = useQuery(GET_PUBLICATIONS_FOLLOWEDS_FRIENDS);
+	useEffect(
+		() => {
+			startPolling(1000);
+			return () => {
+				stopPolling;
+			};
+		},
+		[ startPolling, stopPolling ]
+	);
+
 	if (loading) return null;
 	const { getPublicationsFollersFriends } = data;
 	return (

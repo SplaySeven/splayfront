@@ -14,11 +14,35 @@ import iconPlaceOn from '../../../../public/icons/wall-profile/place-on.png';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../../gql/user';
 import AvatarM from '../../../../public/imagenes/AvatarMasculino.png';
+
 import ModalUpload from '../../../organims/Modal/ModalUpload';
+import ModalUploadVideo from '../../../organims/Modal/ModalUploadVideo';
+
 export default function index(props) {
 	const [ showModal, setShowModal ] = useState(false);
-
 	const { userId, origen } = props.userId.userId;
+	const [ titleModal, setTitleModal ] = useState('');
+	const [ tipo, setTipo ] = useState('');
+	const [ childrenModal, setChildrenModal ] = useState(null);
+
+	const handlerModal = (type) => {
+		switch (type) {
+			case 'foto':
+				setTitleModal('foto');
+				setTipo('W');
+				setChildrenModal(<ModalUpload setShowModal={setShowModal} tipo={tipo} />);
+				setShowModal(true);
+				break;
+			case 'video':
+				setTitleModal('video');
+				setTipo('W');
+				setChildrenModal(<ModalUpload setShowModal={setShowModal} tipo={tipo} />);
+				setShowModal(true);
+				break;
+			default:
+				break;
+		}
+	};
 
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: { id: userId }
@@ -45,7 +69,7 @@ export default function index(props) {
 
 					<Colmd9Aabcenter>
 						{origen === 'W' ? (
-							<Colmd9AabcenterP origen={origen} onClick={() => setShowModal(true)}>
+							<Colmd9AabcenterP origen={origen} onClick={() => handlerModal('foto')}>
 								<A>¿ Que Piensas ?</A>
 							</Colmd9AabcenterP>
 						) : (
@@ -59,14 +83,14 @@ export default function index(props) {
 					</Colmd9Aabright>
 				</Colmd9Aab>
 				<Colmd9Aac>
-					<Colmd9Aac1 origen={origen} onClick={() => setShowModal(true)}>
-						<IconPostOn />
-						<A1>Crear publicación</A1>
+					<Colmd9Aac1 origen={origen} onClick={() => handlerModal('foto')}>
+						<IconPhotovideoOn />
+						<A1>Publicación Foto</A1>
 					</Colmd9Aac1>
 					<Lineseparator />
-					<Colmd9Aac2 origen={origen}>
-						<IconPhotovideoOn />
-						<A1>Foto / Video</A1>
+					<Colmd9Aac2 origen={origen} onClick={() => handlerModal('video')}>
+						<IconLiveOn />
+						<A1> Publicación Video</A1>
 					</Colmd9Aac2>
 					<Lineseparator />
 					<Colmd9Aac3 origen={origen}>
@@ -98,7 +122,7 @@ export default function index(props) {
 				</Colmd9Aad>
 				<hr />
 			</Colmd9A>
-			<ModalUpload show={showModal} setShow={setShowModal} />
+			<ModalUpload show={showModal} setShow={setShowModal} title={titleModal} tipo={tipo} />
 		</Section>
 	);
 }

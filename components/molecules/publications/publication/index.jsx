@@ -30,7 +30,6 @@ export default function index(props) {
 	const handlerModal = (type) => {
 		switch (type) {
 			case 'portada':
-				console.log('aqui en portada');
 				setTitleModal('Eliminar Publicacion');
 				setChildrenModal(<PortadaForm setShowModal={setShowModal} publication={publication} />);
 				setShowModal(true);
